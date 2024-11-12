@@ -1,28 +1,35 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace DTO
+public class UserDTO
 {
-    // DTO/UserDTO.cs
-    public class UserDTO
+    public string MaNhanVienID { get; set; }
+    public string TenNhanVien { get; set; }
+    public string ChucVuID { get; set; } // Thêm thuộc tính ChucVuID
+    public string Username { get; set; }
+    public DateTime NgaySinh { get; set; }
+    public string DiaChi { get; set; }
+    public string Email { get; set; }
+    public string SoDienThoai { get; set; }
+    public string TrinhDo { get; set; }
+    public string ChucVu { get; set; } // Tên chức vụ
+    public byte[] Anh { get; set; }
+
+    public UserDTO() { }
+
+    public UserDTO(string maNhanVienID, string tenNhanVien, string chucVuID, string username,
+        DateTime ngaySinh, string diaChi, string email, string soDienThoai,
+        string trinhDo, string chucVu, byte[] anh)
     {
-        public string MaNhanVienID { get; set; }
-        public string TenNhanVien { get; set; }
-        public string ChucVuID { get; set; }
-        public string Username { get; set; }
-
-        public UserDTO() { }
-
-        public UserDTO(string maNhanVienID, string tenNhanVien, string chucVuID, string username)
-        {
-            this.MaNhanVienID = maNhanVienID;
-            this.TenNhanVien = tenNhanVien;
-            this.ChucVuID = chucVuID;
-            this.Username = username;
-        }
+        MaNhanVienID = maNhanVienID;
+        TenNhanVien = tenNhanVien;
+        ChucVuID = chucVuID; // Gán giá trị cho thuộc tính ChucVuID
+        Username = username;
+        NgaySinh = ngaySinh;
+        DiaChi = diaChi;
+        Email = email;
+        SoDienThoai = soDienThoai;
+        TrinhDo = trinhDo;
+        ChucVu = chucVu; // Gán tên chức vụ
+        Anh = anh;
     }
-
 }

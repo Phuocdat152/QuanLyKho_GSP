@@ -52,8 +52,9 @@ namespace GUI
 
                 //QuanTriNguoiDung mainForm = new QuanTriNguoiDung(username, password);
                 //NhapKho mainForm = new NhapKho(username, password);
-                SapXepThuoc mainForm = new SapXepThuoc(username, password);
+                //SapXepThuoc mainForm = new SapXepThuoc(username, password);
                 //QuanLyViTri mainForm = new QuanLyViTri(username, password);
+                QuanLyNhanVien mainForm = new QuanLyNhanVien(username, password);
                 mainForm.Show();
                 this.Hide();
             }

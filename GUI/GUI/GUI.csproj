@@ -150,6 +150,12 @@
     <Compile Include="Quanlynguyenlieu.Designer.cs">
       <DependentUpon>Quanlynguyenlieu.cs</DependentUpon>
     </Compile>
+    <Compile Include="QuanLyNhanVien.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="QuanLyNhanVien.Designer.cs">
+      <DependentUpon>QuanLyNhanVien.cs</DependentUpon>
+    </Compile>
     <Compile Include="Quanlythuoc.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -179,6 +185,12 @@
     </Compile>
     <Compile Include="SapXepThuoc.Designer.cs">
       <DependentUpon>SapXepThuoc.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SuaThongTin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SuaThongTin.Designer.cs">
+      <DependentUpon>SuaThongTin.cs</DependentUpon>
     </Compile>
     <Compile Include="ThemNguoiDung.cs">
       <SubType>Form</SubType>
@@ -253,6 +265,9 @@
     <EmbeddedResource Include="Quanlynguyenlieu.resx">
       <DependentUpon>Quanlynguyenlieu.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="QuanLyNhanVien.resx">
+      <DependentUpon>QuanLyNhanVien.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Quanlythuoc.resx">
       <DependentUpon>Quanlythuoc.cs</DependentUpon>
     </EmbeddedResource>
@@ -267,6 +282,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="SapXepThuoc.resx">
       <DependentUpon>SapXepThuoc.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SuaThongTin.resx">
+      <DependentUpon>SuaThongTin.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ThemNguoiDung.resx">
       <DependentUpon>ThemNguoiDung.cs</DependentUpon>

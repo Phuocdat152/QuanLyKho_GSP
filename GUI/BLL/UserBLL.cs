@@ -26,6 +26,19 @@ namespace BLL
         {
             return userDAL.GetChucVuList();
         }
+        public UserDTO GetUserByUsername(string username)
+        {
+            return userDAL.GetUserByUsername(username);
+        }
+        public DataTable GetAllNhanVienWithChucVu()
+        {
+            return userDAL.GetAllNhanVienWithChucVu();
+        }
+
+        public bool CheckDuplicateNhanVien(string maNhanVien, string username)
+        {
+            return userDAL.CheckDuplicateNhanVien(maNhanVien, username);
+        }
 
         public bool Login()
         {
@@ -36,7 +49,13 @@ namespace BLL
         {
             return userDAL.GetAllUsers();
         }
-        public bool AddUser(string tenNhanVien, string chucVuID, string username, string password, string confirmPassword)
+        public string GenerateNewMaNhanVien()
+        {
+            return userDAL.GetNextNhanVienId();
+        }
+
+        public bool AddUser(string tenNhanVien, string chucVuID, string username, string password, string confirmPassword,
+            DateTime ngaySinh, string diaChi, string email, string soDienThoai, string trinhDo, byte[] anh)
         {
             if (password != confirmPassword)
             {
@@ -48,7 +67,13 @@ namespace BLL
                 MaNhanVienID = "", // ID sẽ tự động sinh
                 TenNhanVien = tenNhanVien,
                 ChucVuID = chucVuID,
-                Username = username
+                Username = username,
+                NgaySinh = ngaySinh,
+                DiaChi = diaChi,
+                Email = email,
+                SoDienThoai = soDienThoai,
+                TrinhDo = trinhDo,
+                Anh = anh
             };
 
             int result = userDAL.AddUserWithProcedure(newUser, password);
@@ -59,6 +84,18 @@ namespace BLL
             }
 
             return result == 0;
+        }
+        public bool UpdateNhanVien(UserDTO user)
+        {
+            try
+            {
+                return userDAL.UpdateNhanVien(user);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Lỗi khi cập nhật thông tin nhân viên: " + ex.Message);
+                return false;
+            }
         }
         public bool UpdatePassword(string username, string newPassword)
         {
@@ -74,6 +111,7 @@ namespace BLL
         {
             return userDAL.DeleteUser(maNhanVien, username);
         }
+
         public bool ChangePassword(string username, string oldPassword, string newPassword)
         {
             try
@@ -104,6 +142,11 @@ namespace BLL
                 throw new Exception("Lỗi khi lấy danh sách ID và Tên Nhân Viên: " + ex.Message);
             }
         }
+        public UserDTO GetUserById(string maNhanVien)
+        {
+            return userDAL.GetUserById(maNhanVien);
+        }
+
 
     }
 }
