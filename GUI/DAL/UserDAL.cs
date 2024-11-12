@@ -15,13 +15,18 @@ namespace DAL
         {
             dataConnect = new DataConnect(username, password);
         }
+        public DataTable GetAllNhanVienWithChucVu()
+        {
+            return dataConnect.ExecuteStoredProcedureWithDataTable("sp_GetAllNhanVienWithChucVu");
+        }
+
 
         // Lấy thông tin user bằng username
         public UserDTO GetUserByUsername(string username)
         {
-            string query = "SELECT * FROM NhanVien WHERE Username = @Username";
+            string query = "sp_GetAllNhanVienWithChucVu"; // Giả sử stored procedure này trả về tên chức vụ
             SqlParameter[] parameters = { new SqlParameter("@Username", username) };
-            DataTable result = dataConnect.GetData(query, parameters);
+            DataTable result = dataConnect.ExecuteStoredProcedureWithDataTable(query, parameters);
 
             if (result.Rows.Count > 0)
             {
@@ -29,8 +34,41 @@ namespace DAL
                 return new UserDTO(
                     row["IDNhanVien"].ToString(),
                     row["TenNhanVien"].ToString(),
-                    row["IDChucVu"].ToString(),
-                    row["Username"].ToString()
+                    row["IDChucVu"].ToString(), // ID của chức vụ
+                    row["Username"].ToString(),
+                    DateTime.Parse(row["NgaySinh"].ToString()),
+                    row["DiaChi"].ToString(),
+                    row["Email"].ToString(),
+                    row["SoDienThoai"].ToString(),
+                    row["TrinhDo"].ToString(),
+                    row["ChucVu"].ToString(), // Tên chức vụ từ bảng ChucVu
+                    row["Anh"] == DBNull.Value ? null : (byte[])row["Anh"]
+                );
+            }
+            return null;
+        }
+
+
+        public UserDTO GetUserById(string maNhanVien)
+        {
+            SqlParameter[] parameters = { new SqlParameter("@MaNhanVien", maNhanVien) };
+            DataTable result = dataConnect.ExecuteStoredProcedureWithDataTable("sp_GetNhanVienById", parameters);
+
+            if (result.Rows.Count > 0)
+            {
+                DataRow row = result.Rows[0];
+                return new UserDTO(
+                    row["IDNhanVien"].ToString(),
+                    row["TenNhanVien"].ToString(),
+                    row["IDChucVu"].ToString(), // ID chức vụ
+                    row["Username"].ToString(),
+                    DateTime.Parse(row["NgaySinh"].ToString()),
+                    row["DiaChi"].ToString(),
+                    row["Email"].ToString(),
+                    row["SoDienThoai"].ToString(),
+                    row["TrinhDo"].ToString(),
+                    row["ChucVu"].ToString(), // Tên chức vụ từ bảng ChucVu
+                    row["Anh"] == DBNull.Value ? null : (byte[])row["Anh"]
                 );
             }
             return null;
@@ -41,17 +79,66 @@ namespace DAL
             return dataConnect.GetData(query);
         }
 
+
+        public bool UpdateNhanVien(UserDTO user)
+        {
+            SqlParameter[] parameters = {
+                new SqlParameter("@IDNhanVien", user.MaNhanVienID),
+                new SqlParameter("@TenNhanVien", user.TenNhanVien),
+                new SqlParameter("@IDChucVu", user.ChucVuID),
+                new SqlParameter("@NgaySinh", user.NgaySinh),
+                new SqlParameter("@DiaChi", user.DiaChi),
+                new SqlParameter("@Email", user.Email),
+                new SqlParameter("@SoDienThoai", user.SoDienThoai),
+                new SqlParameter("@TrinhDo", user.TrinhDo),
+                new SqlParameter("@Anh", user.Anh)
+            };
+
+            int result = dataConnect.ExecuteStoredProcedure("sp_UpdateNhanVien", parameters);
+            return result >= 0; // Trả về true nếu cập nhật thành công
+        }
+
+
+        public string GetNextNhanVienId()
+        {
+            string lastId = null;
+            DataTable result = dataConnect.ExecuteStoredProcedureWithDataTable("sp_GetLastNhanVienId");
+
+            if (result.Rows.Count > 0)
+            {
+                lastId = result.Rows[0]["IDNhanVien"].ToString();
+            }
+
+            if (!string.IsNullOrEmpty(lastId))
+            {
+                // Giả sử mã nhân viên có định dạng NVxxxx, tách phần số và tăng lên 1
+                int number = int.Parse(lastId.Substring(2)) + 1;
+                return "NV" + number.ToString("D4"); // Định dạng số thành 4 chữ số với tiền tố "NV"
+            }
+
+            // Nếu không có mã nào trong CSDL, bắt đầu từ NV0001
+            return "NV0001";
+        }
+
+
         // Thêm user bằng stored procedure
         public int AddUserWithProcedure(UserDTO user, string password)
         {
             SqlParameter[] parameters = {
                 new SqlParameter("@TenNhanVien", user.TenNhanVien),
                 new SqlParameter("@IDChucVu", user.ChucVuID),
-                new SqlParameter("@Username", user.Username),
-                new SqlParameter("@Password", password)
+                new SqlParameter("@Password", password),
+                new SqlParameter("@NgaySinh", user.NgaySinh),
+                new SqlParameter("@DiaChi", user.DiaChi),
+                new SqlParameter("@Email", user.Email),
+                new SqlParameter("@SoDienThoai", user.SoDienThoai),
+                new SqlParameter("@TrinhDo", user.TrinhDo),
+                new SqlParameter("@Anh", user.Anh)
             };
             return dataConnect.ExecuteStoredProcedure("sp_AddNhanVien", parameters);
         }
+
+
         public DataTable GetAllUsers()
         {
             return dataConnect.GetData("sp_GetUserData", null);
@@ -75,12 +162,12 @@ namespace DAL
             try
             {
                 int result = dataConnect.ExecuteStoredProcedure("sp_DeleteNhanVien", parameters);
-                return result == 0;
+                return result == 0; // Trả về true nếu xóa thành công
             }
             catch (Exception ex)
             {
                 Console.WriteLine("Lỗi khi xóa nhân viên: " + ex.Message);
-                return false;
+                return false; // Trả về false nếu có lỗi
             }
         }
 
@@ -159,6 +246,16 @@ namespace DAL
             }
 
             return tenNVList;
+        }
+        public bool CheckDuplicateNhanVien(string maNhanVien, string username)
+        {
+            SqlParameter[] parameters = {
+                new SqlParameter("@IDNhanVien", maNhanVien),
+                new SqlParameter("@Username", username)
+            };
+            int result = dataConnect.ExecuteStoredProcedure("sp_CheckDuplicateNhanVien", parameters);
+
+            return result != 0; // Trả về true nếu có trùng lặp
         }
 
     }

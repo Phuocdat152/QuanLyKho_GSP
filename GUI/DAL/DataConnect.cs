@@ -11,7 +11,7 @@ namespace DAL
 
         public DataConnect(string username, string password)
         {
-            string strConn = $"Data Source=LAPTOP-NITRO5;Initial Catalog=QuanLyGSP;User ID={username};Password={password}";
+            string strConn = $"Data Source=NARIZMUSIC\\CHOCOPRO;Initial Catalog=QuanLyGSP;User ID={username};Password={password}";
             conn = new SqlConnection(strConn);
         }
 
@@ -114,6 +114,37 @@ namespace DAL
             catch (Exception ex)
             {
                 throw new Exception("Error fetching data: " + ex.Message);
+            }
+            finally
+            {
+                CloseConnection();
+            }
+        }
+
+        public DataTable ExecuteStoredProcedureWithDataTable(string storedProcedure, SqlParameter[] parameters = null)
+        {
+            try
+            {
+                OpenConnection();
+                using (SqlCommand cmd = new SqlCommand(storedProcedure, conn))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    if (parameters != null)
+                    {
+                        cmd.Parameters.AddRange(parameters);
+                    }
+
+                    using (SqlDataAdapter adapter = new SqlDataAdapter(cmd))
+                    {
+                        DataTable dataTable = new DataTable();
+                        adapter.Fill(dataTable);
+                        return dataTable;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error executing stored procedure: " + ex.Message);
             }
             finally
             {
