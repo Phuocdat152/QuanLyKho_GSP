@@ -11,7 +11,6 @@ namespace DTO
         public string IDKho { get; set; }
         public string IDKhu {  get; set; }
         public string TenKhu {  get; set; } 
-        public string GhiChu {  get; set; }
 
         public KhuDTO() { }
 
@@ -20,7 +19,6 @@ namespace DTO
             this.IDKho = iDKho;
             this.IDKhu = iDKhu;
             this.TenKhu = tenKhu;
-            this.GhiChu = ghiChu;
         }
     }
 }
