@@ -1,4 +1,5 @@
 ﻿using DAL;
+using DTO;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -32,5 +33,64 @@ namespace BLL
                 return null;
             }
         }
+        public string GenerateNewIDThuoc()
+        {
+            return thuocDAL.GenerateNewIDThuoc();
+        }
+
+        // Lấy danh sách đơn vị tính
+        public DataTable GetDVT()
+        {
+            return thuocDAL.GetDVT();
+        }
+
+        // Lấy danh sách danh mục
+        public DataTable GetDanhMuc()
+        {
+            return thuocDAL.GetDanhMuc();
+        }
+
+        // Thêm thuốc
+        public void AddThuoc(ThuocDTO thuoc)
+        {
+            thuocDAL.AddThuoc(thuoc);
+        }
+        public DataTable GetLoaiKiemTra()
+        {
+            return thuocDAL.GetLoaiKiemTra();
+        }
+        public DataTable GetAllThuoc()
+        {
+            return thuocDAL.GetAllThuoc();
+        }
+        public bool CheckConnection()
+        {
+            return thuocDAL.CheckConnection();
+        }
+        public DataTable GetThuocByDanhMuc(string idDanhMuc)
+        {
+            return thuocDAL.GetThuocByDanhMuc(idDanhMuc);
+        }
+        public DataTable SearchThuoc(string keyword)
+        {
+            return thuocDAL.SearchThuoc(keyword);
+        }
+        public DataTable SearchThuoc(string keyword, string idDanhMuc = null)
+        {
+            return thuocDAL.SearchThuocByDanhMucAndKeyword(keyword, idDanhMuc);
+        }
+        public bool UpdateThuoc(ThuocDTO thuoc)
+        {
+            return thuocDAL.UpdateThuoc(thuoc.IDThuoc, thuoc.TenThuoc, thuoc.IDDVT, thuoc.DonGia, thuoc.IDDanhMuc, thuoc.NuocSanXuat);
+        }
+        public ThuocDTO GetThuocByID(string idThuoc)
+        {
+            return thuocDAL.GetThuocByID(idThuoc);
+        }
+        public bool UpdateBaoQuan(BaoQuanDTO baoQuan)
+        {
+            return thuocDAL.UpdateBaoQuan(baoQuan.IDBaoQuan, baoQuan.NhietDo, baoQuan.DoAm, baoQuan.AnhSang);
+        }
+
     }
 }

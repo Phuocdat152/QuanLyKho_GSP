@@ -144,6 +144,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="QLDanhMucThuoc.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="QLDanhMucThuoc.Designer.cs">
+      <DependentUpon>QLDanhMucThuoc.cs</DependentUpon>
+    </Compile>
     <Compile Include="Quanlynguyenlieu.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -186,17 +192,47 @@
     <Compile Include="SapXepThuoc.Designer.cs">
       <DependentUpon>SapXepThuoc.cs</DependentUpon>
     </Compile>
+    <Compile Include="SuaDanhMuc.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SuaDanhMuc.Designer.cs">
+      <DependentUpon>SuaDanhMuc.cs</DependentUpon>
+    </Compile>
     <Compile Include="SuaThongTin.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="SuaThongTin.Designer.cs">
       <DependentUpon>SuaThongTin.cs</DependentUpon>
     </Compile>
+    <Compile Include="SuaThuoc.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SuaThuoc.Designer.cs">
+      <DependentUpon>SuaThuoc.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SuaTTThuoc.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SuaTTThuoc.Designer.cs">
+      <DependentUpon>SuaTTThuoc.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ThemDanhMuc.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ThemDanhMuc.Designer.cs">
+      <DependentUpon>ThemDanhMuc.cs</DependentUpon>
+    </Compile>
     <Compile Include="ThemNguoiDung.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="ThemNguoiDung.Designer.cs">
       <DependentUpon>ThemNguoiDung.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ThemThuoc.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ThemThuoc.Designer.cs">
+      <DependentUpon>ThemThuoc.cs</DependentUpon>
     </Compile>
     <Compile Include="Theodoitonkho.cs">
       <SubType>Form</SubType>
@@ -268,6 +304,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="QLDanhMucThuoc.resx">
+      <DependentUpon>QLDanhMucThuoc.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Quanlynguyenlieu.resx">
       <DependentUpon>Quanlynguyenlieu.cs</DependentUpon>
     </EmbeddedResource>
@@ -289,11 +328,23 @@
     <EmbeddedResource Include="SapXepThuoc.resx">
       <DependentUpon>SapXepThuoc.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="SuaDanhMuc.resx">
+      <DependentUpon>SuaDanhMuc.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="SuaThongTin.resx">
       <DependentUpon>SuaThongTin.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="SuaTTThuoc.resx">
+      <DependentUpon>SuaTTThuoc.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ThemDanhMuc.resx">
+      <DependentUpon>ThemDanhMuc.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ThemNguoiDung.resx">
       <DependentUpon>ThemNguoiDung.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ThemThuoc.resx">
+      <DependentUpon>ThemThuoc.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Theodoitonkho.resx">
       <DependentUpon>Theodoitonkho.cs</DependentUpon>

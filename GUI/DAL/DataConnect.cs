@@ -96,6 +96,7 @@ namespace DAL
                 return false; // Đăng nhập thất bại
             }
         }
+
         public DataTable GetData(string query, SqlParameter[] parameters = null)
         {
             try
@@ -176,6 +177,27 @@ namespace DAL
             catch (Exception ex)
             {
                 throw new Exception("Error executing stored procedure: " + ex.Message);
+            }
+            finally
+            {
+                CloseConnection();
+            }
+        }
+        public object ExecuteScalar(string query, SqlParameter[] parameters = null)
+        {
+            try
+            {
+                OpenConnection();
+                cmd = new SqlCommand(query, conn);
+                if (parameters != null)
+                {
+                    cmd.Parameters.AddRange(parameters);
+                }
+                return cmd.ExecuteScalar();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error executing scalar query: " + ex.Message);
             }
             finally
             {
