@@ -475,6 +475,7 @@
             // 
             // pb_AnhNV
             // 
+            this.pb_AnhNV.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pb_AnhNV.Image = ((System.Drawing.Image)(resources.GetObject("pb_AnhNV.Image")));
             this.pb_AnhNV.Location = new System.Drawing.Point(5, 31);
             this.pb_AnhNV.Name = "pb_AnhNV";

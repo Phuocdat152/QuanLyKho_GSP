@@ -41,6 +41,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BaoQuanDAL.cs" />
+    <Compile Include="DanhMucThuocDAL.cs" />
     <Compile Include="DataConnect.cs" />
     <Compile Include="KeDAL.cs" />
     <Compile Include="KhoDAL.cs" />

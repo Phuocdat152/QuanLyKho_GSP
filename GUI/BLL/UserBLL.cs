@@ -22,6 +22,10 @@ namespace BLL
             userDAL = new UserDAL(username, password);
             dataConnect = new DataConnect(username, password);
         }
+        public bool CheckConnection()
+        {
+            return dataConnect.CheckConnection();
+        }
         public DataTable GetChucVuList()
         {
             return userDAL.GetChucVuList();
