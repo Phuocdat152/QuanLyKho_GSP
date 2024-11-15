@@ -53,7 +53,14 @@ namespace GUI
                 //QuanTriNguoiDung mainForm = new QuanTriNguoiDung(username, password);
                 //NhapKho mainForm = new NhapKho(username, password);
                 //SapXepThuoc mainForm = new SapXepThuoc(username, password);
+<<<<<<< Updated upstream
                 ViTri mainForm = new ViTri(username, password);
+=======
+                //KiemKeDoiChieu mainForm = new KiemKeDoiChieu();
+                //ViTri mainForm = new ViTri(username, password);
+                TraCuuThuoc mainForm = new TraCuuThuoc(username, password);
+                //QuanLyNhanVien mainForm = new QuanLyNhanVien(username, password);
+>>>>>>> Stashed changes
                 mainForm.Show();
                 this.Hide();
             }
