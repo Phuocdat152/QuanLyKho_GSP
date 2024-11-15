@@ -21,6 +21,12 @@ namespace GUI
         {
             InitializeComponent();
             viTriBLL = new ViTriBLL(username, password);
+            // Đăng ký sự kiện RowClick cho GridView
+            GridView gridView = gc_ViTri.MainView as GridView;
+            if (gridView != null)
+            {
+                gridView.RowClick += GridView_RowClick;
+            }
         }
 
         private void LoadViTriData()
@@ -55,6 +61,13 @@ namespace GUI
 
         private void btn_Luu_Click(object sender, EventArgs e)
         {
+            // Kiểm tra điều kiện: các giá trị phải lớn hơn hoặc bằng 1
+            if (num_Khu.Value < 1 || num_Ke.Value < 1 || num_O.Value < 1)
+            {
+                MessageBox.Show("Số lượng khu, kệ và ô phải lớn hơn hoặc bằng 1.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             // Lấy giá trị từ các điều khiển nhập số
             int soLuongKhu = (int)num_Khu.Value;
             int soLuongKe = (int)num_Ke.Value;
@@ -69,6 +82,14 @@ namespace GUI
                 {
                     MessageBox.Show("Thêm vị trí thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     LoadViTriData();
+
+                    // Đặt lại các giá trị NumberUpDown về 0
+                    num_Khu.Value = 0;
+                    num_Ke.Value = 0;
+                    num_O.Value = 0;
+
+                    // Cập nhật trạng thái các nút
+                    btn_Huy.Enabled = false;
                     btn_Them.Enabled = true;
                     btn_Luu.Enabled = false;
                     num_Khu.Enabled = false;
@@ -86,12 +107,13 @@ namespace GUI
             }
         }
 
-        private void GridView_FocusedRowChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs e)
+        // Xử lý sự kiện RowClick của gridView
+        private void GridView_RowClick(object sender, RowClickEventArgs e)
         {
             GridView view = sender as GridView;
-            if (view != null)
+            if (view != null && view.GetFocusedDataRow() != null)
             {
-                // Lấy dữ liệu từ các cột của hàng được chọn
+                // Lấy dữ liệu từ các cột của dòng được chọn
                 string tenKhu = view.GetFocusedRowCellValue("TenKhu")?.ToString();
                 string tenKe = view.GetFocusedRowCellValue("TenKe")?.ToString();
                 string tenO = view.GetFocusedRowCellValue("TenO")?.ToString();
@@ -110,11 +132,22 @@ namespace GUI
 
         private void btn_Them_Click(object sender, EventArgs e)
         {
+            btn_Huy.Enabled = true;
             btn_Them.Enabled = false;
             btn_Luu.Enabled = true;
             num_Khu.Enabled=true;
             num_Ke.Enabled=true;
             num_O.Enabled=true;
+        }
+
+        private void btn_Huy_Click(object sender, EventArgs e)
+        {
+            btn_Huy.Enabled = false;
+            btn_Them.Enabled = true;
+            btn_Luu.Enabled = false;
+            num_Khu.Enabled = false;
+            num_Ke.Enabled = false;
+            num_O.Enabled = false;
         }
     }
 }

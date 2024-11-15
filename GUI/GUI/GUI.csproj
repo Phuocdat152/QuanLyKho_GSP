@@ -246,6 +246,12 @@
     <Compile Include="ThongkeBaocao.Designer.cs">
       <DependentUpon>ThongkeBaocao.cs</DependentUpon>
     </Compile>
+    <Compile Include="TraCuuThuoc.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TraCuuThuoc.Designer.cs">
+      <DependentUpon>TraCuuThuoc.cs</DependentUpon>
+    </Compile>
     <Compile Include="ViTri.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -351,6 +357,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ThongkeBaocao.resx">
       <DependentUpon>ThongkeBaocao.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TraCuuThuoc.resx">
+      <DependentUpon>TraCuuThuoc.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ViTri.resx">
       <DependentUpon>ViTri.cs</DependentUpon>

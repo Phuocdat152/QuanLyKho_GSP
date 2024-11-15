@@ -52,6 +52,7 @@
             this.btn_Them = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.btn_Luu = new System.Windows.Forms.ToolStripButton();
+            this.btn_Huy = new System.Windows.Forms.ToolStripButton();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1.Panel1)).BeginInit();
             this.splitContainerControl1.Panel1.SuspendLayout();
@@ -275,7 +276,8 @@
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.btn_Them,
             this.toolStripSeparator1,
-            this.btn_Luu});
+            this.btn_Luu,
+            this.btn_Huy});
             this.toolStrip1.Location = new System.Drawing.Point(2, 23);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
@@ -308,6 +310,17 @@
             this.btn_Luu.Text = "Lưu";
             this.btn_Luu.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btn_Luu.Click += new System.EventHandler(this.btn_Luu_Click);
+            // 
+            // btn_Huy
+            // 
+            this.btn_Huy.Enabled = false;
+            this.btn_Huy.Image = ((System.Drawing.Image)(resources.GetObject("btn_Huy.Image")));
+            this.btn_Huy.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btn_Huy.Name = "btn_Huy";
+            this.btn_Huy.Size = new System.Drawing.Size(33, 39);
+            this.btn_Huy.Text = "Hủy";
+            this.btn_Huy.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btn_Huy.Click += new System.EventHandler(this.btn_Huy_Click);
             // 
             // ViTri
             // 
@@ -373,5 +386,6 @@
         private DevExpress.XtraEditors.TextEdit txt_O;
         private DevExpress.XtraEditors.TextEdit txt_Ke;
         private DevExpress.XtraEditors.GroupControl groupControl2;
+        private System.Windows.Forms.ToolStripButton btn_Huy;
     }
 }
