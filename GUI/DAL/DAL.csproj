@@ -55,6 +55,7 @@
     <Compile Include="ThuocDAL.cs" />
     <Compile Include="UserDAL.cs" />
     <Compile Include="ViTriDAL.cs" />
+    <Compile Include="XuatKhoDAL.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DTO\DTO.csproj">

@@ -101,47 +101,42 @@ namespace DAL
             }
         }
 
-        //Tra cứu thuốc theo IDThuoc
-        public DataTable TraCuuThuocTheoIDThuoc(string idThuoc)
+        //Tra cứu thuốc theo tên thuốc
+        public DataTable TraCuuThuocTheoTen(string tenThuoc)
+        {
+            string query = "sp_TraCuuThuocTheoTenThuocLuuTru";
+            SqlParameter[] parameters = new SqlParameter[]
+            {
+        new SqlParameter("@TenThuoc", tenThuoc)
+            };
+            return dataConnect.ExecuteStoredProcedureWithDataTable(query, parameters);
+        }
+
+
+        // Hàm gọi stored procedure sp_TraCuuThuocTheoKhoangThoiGian
+        public DataTable TraCuuThuocTheoKhoangThoiGian(DateTime ngayBatDau, DateTime ngayKetThuc)
         {
             try
             {
-                // Khai báo tham số cho stored procedure
+                // Tên stored procedure
+                string storedProcedure = "sp_TraCuuThuocTheoKhoangThoiGian";
+
+                // Tham số đầu vào cho stored procedure
                 SqlParameter[] parameters = new SqlParameter[]
                 {
-            new SqlParameter("@IDThuoc", idThuoc)
+                    new SqlParameter("@NgayBatDau", SqlDbType.Date) { Value = ngayBatDau },
+                    new SqlParameter("@NgayKetThuc", SqlDbType.Date) { Value = ngayKetThuc }
                 };
 
-                // Gọi stored procedure và trả về kết quả dưới dạng DataTable
-                return dataConnect.ExecuteStoredProcedureWithDataTable("sp_TraCuuThuocTheoIDThuoc", parameters);
+                // Gọi stored procedure và lấy dữ liệu trả về dưới dạng DataTable
+                return dataConnect.ExecuteStoredProcedureWithDataTable(storedProcedure, parameters);
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Lỗi khi tra cứu thông tin thuốc: " + ex.Message);
-                return null;
+                throw new Exception("Lỗi khi tra cứu thuốc theo khoảng thời gian: " + ex.Message);
             }
         }
 
-        //Tra cứu theo Ngày hết hạn
-        public DataTable TraCuuThuocTheoNgayHetHan(DateTime ngayHetHan)
-        {
-            try
-            {
-                // Khai báo tham số cho stored procedure
-                SqlParameter[] parameters = new SqlParameter[]
-                {
-            new SqlParameter("@NgayHetHan", ngayHetHan)
-                };
-
-                // Gọi stored procedure và trả về kết quả dưới dạng DataTable
-                return dataConnect.ExecuteStoredProcedureWithDataTable("sp_TraCuuThuocTheoNgayHetHan", parameters);
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Lỗi khi tra cứu thuốc theo ngày hết hạn: " + ex.Message);
-                return null;
-            }
-        }
 
         //Tra cứu theo trạng thái
         public DataTable TraCuuThuocTheoTrangThai(string trangThai)
@@ -172,6 +167,7 @@ namespace DAL
                 // Tạo câu truy vấn lấy danh sách thuốc sắp hết hạn trong vòng 1 tháng
                 string query = @"
                     SELECT 
+                        lt.IDLuuTru,
                         lt.IDChiTietPhieuNhap,
                         lt.IDThuoc,
                         t.TenThuoc,
@@ -195,6 +191,25 @@ namespace DAL
             {
                 Console.WriteLine("Lỗi khi kiểm tra thuốc sắp hết hạn: " + ex.Message);
                 return null;
+            }
+        }
+
+        public void CapNhatTrangThaiThuoc(string idLuuTru, string trangThai)
+        {
+            try
+            {
+                string query = "UPDATE LuuTru SET TrangThai = @TrangThai WHERE IDLuuTru = @IDLuuTru";
+                SqlParameter[] parameters = new SqlParameter[]
+                {
+            new SqlParameter("@TrangThai", trangThai),
+            new SqlParameter("@IDLuuTru", idLuuTru)
+                };
+
+                dataConnect.ExecuteNonQuery(query, parameters);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Lỗi khi cập nhật trạng thái thuốc: " + ex.Message);
             }
         }
 

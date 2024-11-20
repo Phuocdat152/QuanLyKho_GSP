@@ -151,6 +151,23 @@ namespace BLL
             return userDAL.GetUserById(maNhanVien);
         }
 
+        public string GetTenNhanVien(string username)
+        {
+            return userDAL.GetTenNhanVien(username);
+        }
+
+        public DataRow GetNhanVienByUsername(string username)
+        {
+            try
+            {
+                return userDAL.GetNhanVienByUsername(username);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Lỗi khi lấy thông tin nhân viên từ username: " + ex.Message);
+            }
+        }
+
 
     }
 }

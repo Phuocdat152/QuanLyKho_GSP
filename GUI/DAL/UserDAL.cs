@@ -258,5 +258,52 @@ namespace DAL
             return result != 0; // Trả về true nếu có trùng lặp
         }
 
+        public string GetTenNhanVien(string username)
+        {
+            try
+            {
+                SqlParameter[] parameters = {
+                    new SqlParameter("@Username", username)
+                };
+
+                DataTable dt = dataConnect.ExecuteStoredProcedureWithDataTable("sp_GetTenNhanVien", parameters);
+
+                if (dt != null && dt.Rows.Count > 0)
+                {
+                    return dt.Rows[0]["TenNhanVien"].ToString();
+                }
+                return string.Empty;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Lỗi khi lấy tên nhân viên: " + ex.Message);
+            }
+        }
+
+
+        public DataRow GetNhanVienByUsername(string username)
+        {
+            try
+            {
+                string query = "sp_GetNhanVienByUsername";
+                SqlParameter[] parameters = new SqlParameter[]
+                {
+            new SqlParameter("@Username", username)
+                };
+
+                DataTable result = dataConnect.ExecuteStoredProcedureWithDataTable(query, parameters);
+                if (result.Rows.Count > 0)
+                {
+                    return result.Rows[0]; // Trả về dòng đầu tiên chứa thông tin nhân viên
+                }
+                return null;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Lỗi khi lấy thông tin nhân viên: " + ex.Message);
+            }
+        }
+
+
     }
 }
