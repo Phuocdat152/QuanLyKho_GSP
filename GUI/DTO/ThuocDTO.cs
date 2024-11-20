@@ -12,6 +12,7 @@ namespace DTO
         public string TenThuoc { get; set; }
         public string IDDVT { get; set; }
         public float DonGia { get; set; }
+        public string ThanhPhan { get; set; }
         public string IDDanhMuc { get; set; }
         public string NuocSanXuat { get; set; }
         public string IDBaoQuan { get; set; }
@@ -19,17 +20,20 @@ namespace DTO
         public string IDLoaiKT { get; set; } // Thêm thuộc tính IDLoaiKT
 
         public ThuocDTO() { }
-        public ThuocDTO(string idThuoc, string tenThuoc, string idDVT, float donGia, string idDanhMuc, string nuocSanXuat, string idBaoQuan, string idLoaiKT)
+        public ThuocDTO(string idThuoc, string tenThuoc,string thanhPhan, string idDVT, float donGia, string idDanhMuc, string nuocSanXuat, string idBaoQuan, string idLoaiKT)
         {
             IDThuoc = idThuoc;
             TenThuoc = tenThuoc;
             IDDVT = idDVT;
             DonGia = donGia;
+            ThanhPhan = thanhPhan;
             IDDanhMuc = idDanhMuc;
             NuocSanXuat = nuocSanXuat;
             IDBaoQuan = idBaoQuan;
             IDLoaiKT = idLoaiKT;
         }
+
+
         public ThuocDTO(string idThuoc, string tenThuoc, string idDVT, float donGia, string idDanhMuc, string nuocSanXuat, string idBaoQuan, int soLuong)
         {
             IDThuoc = idThuoc;

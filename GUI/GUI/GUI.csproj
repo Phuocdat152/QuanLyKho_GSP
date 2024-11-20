@@ -150,6 +150,12 @@
     <Compile Include="QLDanhMucThuoc.Designer.cs">
       <DependentUpon>QLDanhMucThuoc.cs</DependentUpon>
     </Compile>
+    <Compile Include="QuanLyNCC.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="QuanLyNCC.Designer.cs">
+      <DependentUpon>QuanLyNCC.cs</DependentUpon>
+    </Compile>
     <Compile Include="Quanlynguyenlieu.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -198,6 +204,12 @@
     <Compile Include="SuaDanhMuc.Designer.cs">
       <DependentUpon>SuaDanhMuc.cs</DependentUpon>
     </Compile>
+    <Compile Include="SuaNCC.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SuaNCC.Designer.cs">
+      <DependentUpon>SuaNCC.cs</DependentUpon>
+    </Compile>
     <Compile Include="SuaThongTin.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -221,6 +233,12 @@
     </Compile>
     <Compile Include="ThemDanhMuc.Designer.cs">
       <DependentUpon>ThemDanhMuc.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ThemNCC.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ThemNCC.Designer.cs">
+      <DependentUpon>ThemNCC.cs</DependentUpon>
     </Compile>
     <Compile Include="ThemNguoiDung.cs">
       <SubType>Form</SubType>
@@ -313,6 +331,9 @@
     <EmbeddedResource Include="QLDanhMucThuoc.resx">
       <DependentUpon>QLDanhMucThuoc.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="QuanLyNCC.resx">
+      <DependentUpon>QuanLyNCC.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Quanlynguyenlieu.resx">
       <DependentUpon>Quanlynguyenlieu.cs</DependentUpon>
     </EmbeddedResource>
@@ -337,6 +358,9 @@
     <EmbeddedResource Include="SuaDanhMuc.resx">
       <DependentUpon>SuaDanhMuc.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="SuaNCC.resx">
+      <DependentUpon>SuaNCC.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="SuaThongTin.resx">
       <DependentUpon>SuaThongTin.cs</DependentUpon>
     </EmbeddedResource>
@@ -345,6 +369,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ThemDanhMuc.resx">
       <DependentUpon>ThemDanhMuc.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ThemNCC.resx">
+      <DependentUpon>ThemNCC.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ThemNguoiDung.resx">
       <DependentUpon>ThemNguoiDung.cs</DependentUpon>

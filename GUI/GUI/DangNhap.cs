@@ -57,6 +57,8 @@ namespace GUI
                 //QuanLyNhanVien mainForm = new QuanLyNhanVien(username, password);
                 //QLDanhMucThuoc mainForm = new QLDanhMucThuoc(username, password);
                 Quanlythuoc mainForm = new Quanlythuoc(username, password);
+                //QuanLyNCC mainForm = new QuanLyNCC(username, password);
+                //KiemKeDoiChieu mainForm = new KiemKeDoiChieu();
                 mainForm.Show();
                 this.Hide();
             }

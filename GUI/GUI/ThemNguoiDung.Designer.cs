@@ -119,7 +119,7 @@
             this.btn_addNhanVien.Name = "btn_addNhanVien";
             this.btn_addNhanVien.Size = new System.Drawing.Size(134, 67);
             this.btn_addNhanVien.TabIndex = 2;
-            this.btn_addNhanVien.Text = "Thêm";
+            this.btn_addNhanVien.Text = "Lưu";
             this.btn_addNhanVien.Click += new System.EventHandler(this.btn_addNhanVien_Click);
             // 
             // groupControl2
@@ -138,6 +138,7 @@
             // 
             // txt_XacNhanMatKhau
             // 
+            this.txt_XacNhanMatKhau.Enabled = false;
             this.txt_XacNhanMatKhau.Location = new System.Drawing.Point(439, 129);
             this.txt_XacNhanMatKhau.Name = "txt_XacNhanMatKhau";
             this.txt_XacNhanMatKhau.Size = new System.Drawing.Size(222, 23);
@@ -146,6 +147,7 @@
             // 
             // txt_addTenTK
             // 
+            this.txt_addTenTK.Enabled = false;
             this.txt_addTenTK.Location = new System.Drawing.Point(439, 48);
             this.txt_addTenTK.Name = "txt_addTenTK";
             this.txt_addTenTK.Size = new System.Drawing.Size(222, 23);
@@ -173,6 +175,7 @@
             // 
             // txt_addMatKhau
             // 
+            this.txt_addMatKhau.Enabled = false;
             this.txt_addMatKhau.Location = new System.Drawing.Point(439, 88);
             this.txt_addMatKhau.Name = "txt_addMatKhau";
             this.txt_addMatKhau.Size = new System.Drawing.Size(222, 23);
@@ -382,7 +385,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "ThemNguoiDung";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "ThemNguoiDung";
+            this.Text = "Thêm Nhân Viên";
             this.Load += new System.EventHandler(this.ThemNguoiDung_Load);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();

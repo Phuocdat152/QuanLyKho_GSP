@@ -226,7 +226,7 @@
             this.btn_XoaNV.Name = "btn_XoaNV";
             this.btn_XoaNV.Size = new System.Drawing.Size(277, 66);
             this.btn_XoaNV.TabIndex = 2;
-            this.btn_XoaNV.Text = "Xoá Nhân Viên";
+            this.btn_XoaNV.Text = "Xoá";
             this.btn_XoaNV.Click += new System.EventHandler(this.btn_XoaNV_Click);
             // 
             // btn_SuaNV
@@ -252,7 +252,7 @@
             this.btn_ThemNV.Name = "btn_ThemNV";
             this.btn_ThemNV.Size = new System.Drawing.Size(277, 66);
             this.btn_ThemNV.TabIndex = 0;
-            this.btn_ThemNV.Text = "Thêm Nhân Viên";
+            this.btn_ThemNV.Text = "Thêm";
             this.btn_ThemNV.Click += new System.EventHandler(this.btn_ThemNV_Click);
             // 
             // groupControl1

@@ -66,10 +66,11 @@ namespace DAL
                 new SqlParameter("@IDDanhMuc", thuoc.IDDanhMuc),
                 new SqlParameter("@NuocSanXuat", thuoc.NuocSanXuat),
                 new SqlParameter("@IDBaoQuan", thuoc.IDBaoQuan),
-                new SqlParameter("@IDLoaiKT", thuoc.IDLoaiKT) // Tham số IDLoaiKT
+                new SqlParameter("@IDLoaiKT", thuoc.IDLoaiKT),
+                new SqlParameter("@ThanhPhan", thuoc.ThanhPhan) // Thêm tham số ThanhPhan
             };
-
             dataConnect.ExecuteStoredProcedure("sp_AddThuoc", parameters);
+
         }
 
         public DataTable GetLoaiKiemTra()
@@ -99,35 +100,15 @@ namespace DAL
             };
             return dataConnect.ExecuteStoredProcedureWithDataTable("sp_SearchThuoc", parameters);
         }
+
         public DataTable SearchThuocByDanhMucAndKeyword(string keyword, string idDanhMuc)
         {
-            SqlParameter[] parameters = {
+            SqlParameter[] parameters =
+            {
                 new SqlParameter("@Keyword", keyword),
                 new SqlParameter("@IDDanhMuc", string.IsNullOrEmpty(idDanhMuc) ? (object)DBNull.Value : idDanhMuc)
             };
             return dataConnect.ExecuteStoredProcedureWithDataTable("sp_SearchThuoc", parameters);
-        }
-        public bool UpdateThuoc(string idThuoc, string tenThuoc, string idDVT, float donGia, string idDanhMuc, string nuocSanXuat)
-        {
-            SqlParameter[] parameters = {
-                new SqlParameter("@IDThuoc", idThuoc),
-                new SqlParameter("@TenThuoc", tenThuoc),
-                new SqlParameter("@IDDVT", idDVT),
-                new SqlParameter("@DonGia", donGia),
-                new SqlParameter("@IDDanhMuc", idDanhMuc),
-                new SqlParameter("@NuocSanXuat", nuocSanXuat)
-            };
-
-            try
-            {
-                int result = dataConnect.ExecuteStoredProcedure("sp_UpdateThuoc", parameters);
-                return result > 0;
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Error updating Thuoc: " + ex.Message);
-                return false;
-            }
         }
 
         public bool UpdateBaoQuan(string idBaoQuan, string nhietDo, string doAm, string anhSang)
@@ -162,14 +143,96 @@ namespace DAL
                 {
                     IDThuoc = row["IDThuoc"].ToString(),
                     TenThuoc = row["TenThuoc"].ToString(),
+                    ThanhPhan = row["ThanhPhan"].ToString(),
                     IDDVT = row["IDDVT"].ToString(),
                     DonGia = Convert.ToSingle(row["DonGia"]),
                     IDDanhMuc = row["IDDanhMuc"].ToString(),
                     NuocSanXuat = row["NuocSanXuat"].ToString()
                 };
+
             }
 
             return null;
         }
+        public ThuocDTO GetThuocChiTiet(string idThuoc)
+        {
+            SqlParameter[] parameters = {
+                new SqlParameter("@IDThuoc", idThuoc)
+            };
+
+            // Gọi đúng phương thức qua đối tượng DataConnect
+            DataTable result = dataConnect.ExecuteStoredProcedureWithDataTable("sp_GetThuocChiTiet", parameters);
+
+            if (result.Rows.Count > 0)
+            {
+                DataRow row = result.Rows[0];
+                return new ThuocDTO
+                {
+                    IDThuoc = row["IDThuoc"].ToString(),
+                    TenThuoc = row["TenThuoc"].ToString(),
+                    ThanhPhan = row["ThanhPhan"].ToString(),
+                    IDDVT = row["IDDVT"].ToString(),
+                    DonGia = float.Parse(row["DonGia"].ToString()),
+                    IDDanhMuc = row["IDDanhMuc"].ToString(),
+                    NuocSanXuat = row["NuocSanXuat"].ToString(),
+                    IDBaoQuan = row["IDBaoQuan"].ToString()
+                };
+            }
+
+            return null;
+        }
+        public bool UpdateThuoc(string idThuoc, string tenThuoc, string thanhPhan, string idDVT, float donGia, string idDanhMuc, string nuocSanXuat)
+        {
+            SqlParameter[] parameters = {
+                new SqlParameter("@IDThuoc", idThuoc),
+                new SqlParameter("@TenThuoc", tenThuoc),
+                new SqlParameter("@ThanhPhan", thanhPhan), // Tham số ThanhPhan
+                new SqlParameter("@IDDVT", idDVT),
+                new SqlParameter("@DonGia", donGia),
+                new SqlParameter("@IDDanhMuc", idDanhMuc),
+                new SqlParameter("@NuocSanXuat", nuocSanXuat)
+            };
+
+            try
+            {
+                int rowsAffected = dataConnect.ExecuteStoredProcedure("sp_UpdateThuoc", parameters);
+                return rowsAffected > 0;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error updating Thuoc: " + ex.Message);
+            }
+        }
+
+        public string GetBaoQuanIDByThuocID(string idThuoc)
+        {
+            SqlParameter[] parameters = {
+                new SqlParameter("@IDThuoc", idThuoc)
+            };
+
+            DataTable result = dataConnect.ExecuteStoredProcedureWithDataTable("sp_GetBaoQuanIDByThuocID", parameters);
+
+            if (result.Rows.Count > 0)
+            {
+                return result.Rows[0]["IDBaoQuan"].ToString();
+            }
+
+            return null; // Nếu không tìm thấy
+        }
+
+
+
+        public DataTable GetAllDVT()
+        {
+            // Sử dụng đối tượng dataConnect để gọi phương thức ExecuteStoredProcedureWithDataTable
+            return dataConnect.ExecuteStoredProcedureWithDataTable("sp_GetAllDVT");
+        }
+
+        public DataTable GetAllDanhMucThuoc()
+        {
+            return dataConnect.ExecuteStoredProcedureWithDataTable("sp_GetAllDanhMuc");
+        }
+
+
     }
 }

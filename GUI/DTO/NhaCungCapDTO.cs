@@ -10,9 +10,9 @@ namespace DTO
     {
         public string IDNhaCC { get; set; }
         public string TenNhaCC { get; set; }
-        public string SDT {  get; set; }
-        public string DiaChi {  get; set; }
-        public string Email {  get; set; }
+        public string SDT { get; set; }
+        public string DiaChi { get; set; }
+        public string Email { get; set; }
 
         public NhaCungCapDTO() { }
 
@@ -24,5 +24,6 @@ namespace DTO
             this.DiaChi = diaChi;
             this.Email = email;
         }
+        
     }
 }
