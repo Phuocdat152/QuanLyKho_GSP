@@ -96,12 +96,13 @@ namespace GUI
                 ThuocDTO thuoc = new ThuocDTO(
                     txt_addMaThuoc.Text,
                     txt_addTenThuoc.Text,
+                    txt_ThanhPhan.Text, // Truyền giá trị trực tiếp
                     cb_DVT.SelectedValue.ToString(),
                     float.Parse(txt_DonGia.Text),
                     cb_DanhMuc.SelectedValue.ToString(),
                     cb_NSX.Text,
                     idBaoQuan,
-                    cb_KiemTra.SelectedValue.ToString() // Lưu IDLoaiKT
+                    cb_KiemTra.SelectedValue.ToString()
                 );
 
                 thuocBLL.AddThuoc(thuoc);

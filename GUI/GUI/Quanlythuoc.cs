@@ -49,6 +49,7 @@ namespace GUI
             // Đặt tiêu đề cột tiếng Việt
             dgv_DanhSachThuoc.Columns["MaThuoc"].HeaderText = "Mã Thuốc";
             dgv_DanhSachThuoc.Columns["TenThuoc"].HeaderText = "Tên Thuốc";
+            dgv_DanhSachThuoc.Columns["ThanhPhan"].HeaderText = "Thành Phần";
             dgv_DanhSachThuoc.Columns["DVT"].HeaderText = "Đơn Vị Tính";
             dgv_DanhSachThuoc.Columns["DonGia"].HeaderText = "Đơn Giá";
             dgv_DanhSachThuoc.Columns["NSX"].HeaderText = "Nước Sản Xuất";
@@ -107,12 +108,15 @@ namespace GUI
 
                 // Hiển thị các thông tin khác của thuốc trên các Label
                 lb_TenThuoc.Text = row.Cells["TenThuoc"].Value.ToString();
+                lb_ThanhPhan.Text = row.Cells["ThanhPhan"].Value.ToString();
                 lb_DVT.Text = row.Cells["DVT"].Value.ToString();
                 lb_DonGia.Text = row.Cells["DonGia"].Value.ToString();
                 lb_NSX.Text = row.Cells["NSX"].Value.ToString();
                 lb_NhietDo.Text = row.Cells["NhietDo"].Value.ToString();
                 lb_DoAm.Text = row.Cells["DoAm"].Value.ToString();
                 lb_AnhSang.Text = row.Cells["AnhSang"].Value.ToString();
+                
+
             }
 
 
@@ -129,12 +133,14 @@ namespace GUI
             // Đặt tiêu đề cột tiếng Việt
             dgv_DanhSachThuoc.Columns["MaThuoc"].HeaderText = "Mã Thuốc";
             dgv_DanhSachThuoc.Columns["TenThuoc"].HeaderText = "Tên Thuốc";
+            dgv_DanhSachThuoc.Columns["ThanhPhan"].HeaderText = "Thành Phần";
             dgv_DanhSachThuoc.Columns["DVT"].HeaderText = "Đơn Vị Tính";
             dgv_DanhSachThuoc.Columns["DonGia"].HeaderText = "Đơn Giá";
             dgv_DanhSachThuoc.Columns["NSX"].HeaderText = "Nước Sản Xuất";
             dgv_DanhSachThuoc.Columns["NhietDo"].HeaderText = "Nhiệt Độ Bảo Quản";
             dgv_DanhSachThuoc.Columns["DoAm"].HeaderText = "Độ Ẩm Bảo Quản";
             dgv_DanhSachThuoc.Columns["AnhSang"].HeaderText = "Điều Kiện Ánh Sáng";
+            
 
             // Ẩn hai cột Số Lượng và Loại Kiểm Tra
             dgv_DanhSachThuoc.Columns["SoLuong"].Visible = false;
@@ -202,16 +208,21 @@ namespace GUI
 
         private void btn_ChinhSua_Click(object sender, EventArgs e)
         {
-            if (!string.IsNullOrEmpty(selectedMaThuoc) && !string.IsNullOrEmpty(selectedIDBaoQuan))
+            if (!string.IsNullOrEmpty(selectedMaThuoc))
             {
-                // Mở form SuaTTThuoc và truyền IDThuoc và IDBaoQuan đã chọn
-                SuaTTThuoc formSuaTT = new SuaTTThuoc(selectedMaThuoc, selectedIDBaoQuan, _username, _password);
-                formSuaTT.FormClosed += (s, args) => LoadThuocData(); // Tải lại DataGridView sau khi đóng form
-                formSuaTT.ShowDialog();
+                // Mở form sửa thông tin thuốc
+                SuaTTThuoc suaTTThuocForm = new SuaTTThuoc(selectedMaThuoc, _username, _password);
+                suaTTThuocForm.FormClosed += (s, args) =>
+                {
+                    // Tải lại danh sách thuốc khi form đóng
+                    LoadThuocData();
+                };
+                suaTTThuocForm.ShowDialog();
+                
             }
             else
             {
-                MessageBox.Show("Vui lòng chọn một thuốc để chỉnh sửa.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Vui lòng chọn một thuốc để chỉnh sửa.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 

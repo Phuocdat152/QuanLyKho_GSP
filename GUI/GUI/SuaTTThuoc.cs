@@ -21,27 +21,50 @@ namespace GUI
         private string _idBaoQuan;
         private BaoQuanBLL baoQuanBLL;
         private ThuocBLL thuocBLL;
-        public SuaTTThuoc(string maThuoc, string idBaoQuan, string username, string password)
+
+        public SuaTTThuoc(string maThuoc, string username, string password)
         {
             InitializeComponent();
             _username = username;
             _password = password;
             _maThuoc = maThuoc;
-            _idBaoQuan = idBaoQuan;
             thuocBLL = new ThuocBLL(_username, _password);
             baoQuanBLL = new BaoQuanBLL(_username, _password);
 
+            // Lấy IDBaoQuan từ cơ sở dữ liệu
+            _idBaoQuan = thuocBLL.GetBaoQuanIDByThuocID(_maThuoc);
+
+            LoadComboBoxData();
             LoadFormData();
+        }
+
+
+
+
+
+
+
+
+        private void LoadComboBoxData()
+        {
+            // Tải danh sách đơn vị tính
+            DataTable dvtData = thuocBLL.GetAllDVT();
+            cb_DVT.DataSource = dvtData;
+            cb_DVT.DisplayMember = "TenDVT";
+            cb_DVT.ValueMember = "IDDVT";
+
+            // Tải danh sách danh mục thuốc
+            DataTable danhMucData = thuocBLL.GetAllDanhMucThuoc();
+            cb_DanhMucThuoc.DataSource = danhMucData;
+            cb_DanhMucThuoc.DisplayMember = "TenDanhMuc";
+            cb_DanhMucThuoc.ValueMember = "IDDanhMuc";
         }
         private void LoadFormData()
         {
-            // Lấy thông tin thuốc dựa trên mã thuốc
-            var thuoc = thuocBLL.GetThuocByID(_maThuoc);
-            var baoQuan = baoQuanBLL.GetBaoQuanByID(_idBaoQuan); // Lấy thông tin bảo quản dựa trên IDBaoQuan
-
-            if (thuoc == null || baoQuan == null)
+            ThuocDTO thuoc = thuocBLL.GetThuocChiTiet(_maThuoc);
+            if (thuoc == null)
             {
-                MessageBox.Show("Không tìm thấy thông tin thuốc hoặc bảo quản.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Không tìm thấy thông tin thuốc.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 this.Close();
                 return;
             }
@@ -49,61 +72,105 @@ namespace GUI
             // Hiển thị thông tin thuốc
             txt_suaMaThuoc.Text = thuoc.IDThuoc;
             txt_suaTenThuoc.Text = thuoc.TenThuoc;
+            txt_ThanhPhan.Text = thuoc.ThanhPhan; // Hiển thị thông tin thành phần
             cb_DVT.SelectedValue = thuoc.IDDVT;
             txt_DonGia.Text = thuoc.DonGia.ToString();
             cb_DanhMucThuoc.SelectedValue = thuoc.IDDanhMuc;
             cb_NSX.Text = thuoc.NuocSanXuat;
 
             // Hiển thị thông tin bảo quản
-            nup_NhietDo.Value = Convert.ToDecimal(baoQuan.NhietDo);
-            nup_DoAm.Value = Convert.ToDecimal(baoQuan.DoAm);
-            txt_AnhSang.Text = baoQuan.AnhSang;
+            var baoQuan = baoQuanBLL.GetBaoQuanByID(thuoc.IDBaoQuan);
+            if (baoQuan != null)
+            {
+                nup_NhietDo.Value = Convert.ToDecimal(baoQuan.NhietDo);
+                nup_DoAm.Value = Convert.ToDecimal(baoQuan.DoAm);
+                txt_AnhSang.Text = baoQuan.AnhSang;
+            }
         }
 
 
         private void btn_LuuThuoc_Click(object sender, EventArgs e)
         {
-            DialogResult result = MessageBox.Show("Bạn có chắc chắn muốn lưu thay đổi không?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            // Hiển thị hộp thoại xác nhận
+            DialogResult result = MessageBox.Show(
+                "Bạn có chắc chắn muốn lưu các thay đổi này không?",
+                "Xác nhận",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question
+            );
+
             if (result == DialogResult.Yes)
             {
-                // Cập nhật thông tin từ các điều khiển trên form cho ThuocDTO
-                var thuoc = new ThuocDTO
-                {
-                    IDThuoc = txt_suaMaThuoc.Text,
-                    TenThuoc = txt_suaTenThuoc.Text,
-                    IDDVT = cb_DVT.SelectedValue.ToString(),
-                    DonGia = float.Parse(txt_DonGia.Text),
-                    IDDanhMuc = cb_DanhMucThuoc.SelectedValue.ToString(),
-                    NuocSanXuat = cb_NSX.Text
-                };
+                SaveThuocData();
+            }
 
-                // Cập nhật thông tin từ các điều khiển trên form cho BaoQuanDTO
+        }
+        private void SaveThuocData()
+        {
+            try
+            {
+                // Tạo đối tượng BaoQuanDTO
                 var baoQuan = new BaoQuanDTO
                 {
-                    IDBaoQuan = _idBaoQuan,
+                    IDBaoQuan = _idBaoQuan, // Lấy từ cơ sở dữ liệu
                     NhietDo = nup_NhietDo.Value.ToString(),
                     DoAm = nup_DoAm.Value.ToString(),
-                    AnhSang = txt_AnhSang.Text
+                    AnhSang = txt_AnhSang.Text.Trim()
                 };
 
-                // Lưu thông tin cập nhật cho thuốc và bảo quản
-                bool isThuocUpdated = thuocBLL.UpdateThuoc(thuoc);
-                bool isBaoQuanUpdated = thuocBLL.UpdateBaoQuan(baoQuan);
-
-                if (isThuocUpdated && isBaoQuanUpdated)
+                // Tạo đối tượng ThuocDTO
+                var thuoc = new ThuocDTO
                 {
-                    MessageBox.Show("Cập nhật thông tin thuốc và bảo quản thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    this.Close(); // Đóng form sau khi lưu thành công
+                    IDThuoc = txt_suaMaThuoc.Text.Trim(),
+                    TenThuoc = txt_suaTenThuoc.Text.Trim(),
+                    ThanhPhan = txt_ThanhPhan.Text.Trim(), // Lưu thông tin thành phần
+                    IDDVT = cb_DVT.SelectedValue?.ToString(),
+                    DonGia = float.Parse(txt_DonGia.Text.Trim()),
+                    IDDanhMuc = cb_DanhMucThuoc.SelectedValue?.ToString(),
+                    NuocSanXuat = cb_NSX.Text.Trim()
+                };
+
+
+                // Gọi phương thức cập nhật thông tin bảo quản
+                bool isBaoQuanUpdated = baoQuanBLL.UpdateBaoQuan(baoQuan);
+
+                // Gọi phương thức cập nhật thông tin thuốc
+                bool isThuocUpdated = thuocBLL.UpdateThuoc(thuoc);
+
+                // Kiểm tra kết quả
+                if (isBaoQuanUpdated && isThuocUpdated)
+                {
+                    MessageBox.Show("Cập nhật thông tin thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    this.Close(); // Đóng form
                 }
                 else
                 {
-                    MessageBox.Show("Có lỗi xảy ra khi cập nhật thông tin.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Cập nhật thông tin thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    this.Close();
                 }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Có lỗi xảy ra khi lưu thông tin: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        private void LoadBaoQuanID()
+        {
+            _idBaoQuan = thuocBLL.GetBaoQuanIDByThuocID(_maThuoc);
+
+            if (string.IsNullOrEmpty(_idBaoQuan))
+            {
+                MessageBox.Show("Không tìm thấy ID bảo quản cho thuốc này.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                this.Close();
             }
         }
 
-
         private void SuaTTThuoc_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
         {
 
         }

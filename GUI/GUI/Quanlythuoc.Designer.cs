@@ -63,6 +63,8 @@
             this.labelControl22 = new DevExpress.XtraEditors.LabelControl();
             this.cb_DanhMuc = new System.Windows.Forms.ComboBox();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
+            this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
+            this.lb_ThanhPhan = new DevExpress.XtraEditors.LabelControl();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl4)).BeginInit();
@@ -225,7 +227,7 @@
             this.btn_XoaThuoc.Appearance.Options.UseFont = true;
             this.btn_XoaThuoc.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btn_XoaThuoc.ImageOptions.Image")));
             this.btn_XoaThuoc.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
-            this.btn_XoaThuoc.Location = new System.Drawing.Point(32, 166);
+            this.btn_XoaThuoc.Location = new System.Drawing.Point(51, 165);
             this.btn_XoaThuoc.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
             this.btn_XoaThuoc.Name = "btn_XoaThuoc";
             this.btn_XoaThuoc.Size = new System.Drawing.Size(251, 52);
@@ -238,7 +240,7 @@
             this.btn_ChinhSua.Appearance.Options.UseFont = true;
             this.btn_ChinhSua.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btn_ChinhSua.ImageOptions.Image")));
             this.btn_ChinhSua.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
-            this.btn_ChinhSua.Location = new System.Drawing.Point(32, 103);
+            this.btn_ChinhSua.Location = new System.Drawing.Point(51, 102);
             this.btn_ChinhSua.Margin = new System.Windows.Forms.Padding(5);
             this.btn_ChinhSua.Name = "btn_ChinhSua";
             this.btn_ChinhSua.Size = new System.Drawing.Size(251, 52);
@@ -252,7 +254,7 @@
             this.btn_ThemThuoc.Appearance.Options.UseFont = true;
             this.btn_ThemThuoc.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btn_ThemThuoc.ImageOptions.Image")));
             this.btn_ThemThuoc.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
-            this.btn_ThemThuoc.Location = new System.Drawing.Point(32, 46);
+            this.btn_ThemThuoc.Location = new System.Drawing.Point(51, 45);
             this.btn_ThemThuoc.Margin = new System.Windows.Forms.Padding(4);
             this.btn_ThemThuoc.Name = "btn_ThemThuoc";
             this.btn_ThemThuoc.Size = new System.Drawing.Size(251, 50);
@@ -262,6 +264,8 @@
             // 
             // groupControl2
             // 
+            this.groupControl2.Controls.Add(this.lb_ThanhPhan);
+            this.groupControl2.Controls.Add(this.labelControl3);
             this.groupControl2.Controls.Add(this.lb_NSX);
             this.groupControl2.Controls.Add(this.labelControl13);
             this.groupControl2.Controls.Add(this.labelControl12);
@@ -284,7 +288,7 @@
             // 
             this.lb_NSX.Appearance.Font = new System.Drawing.Font("Segoe UI Semibold", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lb_NSX.Appearance.Options.UseFont = true;
-            this.lb_NSX.Location = new System.Drawing.Point(157, 236);
+            this.lb_NSX.Location = new System.Drawing.Point(157, 261);
             this.lb_NSX.Margin = new System.Windows.Forms.Padding(11, 10, 11, 10);
             this.lb_NSX.Name = "lb_NSX";
             this.lb_NSX.Size = new System.Drawing.Size(9, 25);
@@ -295,7 +299,7 @@
             // 
             this.labelControl13.Appearance.Font = new System.Drawing.Font("Segoe UI Semibold", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelControl13.Appearance.Options.UseFont = true;
-            this.labelControl13.Location = new System.Drawing.Point(144, 236);
+            this.labelControl13.Location = new System.Drawing.Point(144, 261);
             this.labelControl13.Margin = new System.Windows.Forms.Padding(15);
             this.labelControl13.Name = "labelControl13";
             this.labelControl13.Size = new System.Drawing.Size(0, 25);
@@ -305,7 +309,7 @@
             // 
             this.labelControl12.Appearance.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelControl12.Appearance.Options.UseFont = true;
-            this.labelControl12.Location = new System.Drawing.Point(16, 238);
+            this.labelControl12.Location = new System.Drawing.Point(16, 263);
             this.labelControl12.Margin = new System.Windows.Forms.Padding(12);
             this.labelControl12.Name = "labelControl12";
             this.labelControl12.Size = new System.Drawing.Size(118, 23);
@@ -316,7 +320,7 @@
             // 
             this.lb_DonGia.Appearance.Font = new System.Drawing.Font("Segoe UI Semibold", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lb_DonGia.Appearance.Options.UseFont = true;
-            this.lb_DonGia.Location = new System.Drawing.Point(157, 194);
+            this.lb_DonGia.Location = new System.Drawing.Point(157, 221);
             this.lb_DonGia.Margin = new System.Windows.Forms.Padding(11, 10, 11, 10);
             this.lb_DonGia.Name = "lb_DonGia";
             this.lb_DonGia.Size = new System.Drawing.Size(54, 25);
@@ -327,7 +331,7 @@
             // 
             this.labelControl8.Appearance.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelControl8.Appearance.Options.UseFont = true;
-            this.labelControl8.Location = new System.Drawing.Point(16, 194);
+            this.labelControl8.Location = new System.Drawing.Point(15, 221);
             this.labelControl8.Margin = new System.Windows.Forms.Padding(8, 7, 8, 7);
             this.labelControl8.Name = "labelControl8";
             this.labelControl8.Size = new System.Drawing.Size(66, 23);
@@ -338,7 +342,7 @@
             // 
             this.lb_DVT.Appearance.Font = new System.Drawing.Font("Segoe UI Semibold", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lb_DVT.Appearance.Options.UseFont = true;
-            this.lb_DVT.Location = new System.Drawing.Point(157, 151);
+            this.lb_DVT.Location = new System.Drawing.Point(157, 178);
             this.lb_DVT.Margin = new System.Windows.Forms.Padding(8, 7, 8, 7);
             this.lb_DVT.Name = "lb_DVT";
             this.lb_DVT.Size = new System.Drawing.Size(27, 25);
@@ -349,7 +353,7 @@
             // 
             this.labelControl6.Appearance.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelControl6.Appearance.Options.UseFont = true;
-            this.labelControl6.Location = new System.Drawing.Point(15, 153);
+            this.labelControl6.Location = new System.Drawing.Point(16, 180);
             this.labelControl6.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
             this.labelControl6.Name = "labelControl6";
             this.labelControl6.Size = new System.Drawing.Size(94, 23);
@@ -485,6 +489,28 @@
             this.labelControl1.TabIndex = 0;
             this.labelControl1.Text = "Danh Mục Thuốc";
             // 
+            // labelControl3
+            // 
+            this.labelControl3.Appearance.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelControl3.Appearance.Options.UseFont = true;
+            this.labelControl3.Location = new System.Drawing.Point(15, 144);
+            this.labelControl3.Margin = new System.Windows.Forms.Padding(5);
+            this.labelControl3.Name = "labelControl3";
+            this.labelControl3.Size = new System.Drawing.Size(96, 23);
+            this.labelControl3.TabIndex = 13;
+            this.labelControl3.Text = "Thành Phần:";
+            // 
+            // lb_ThanhPhan
+            // 
+            this.lb_ThanhPhan.Appearance.Font = new System.Drawing.Font("Segoe UI Semibold", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lb_ThanhPhan.Appearance.Options.UseFont = true;
+            this.lb_ThanhPhan.Location = new System.Drawing.Point(157, 142);
+            this.lb_ThanhPhan.Margin = new System.Windows.Forms.Padding(8, 7, 8, 7);
+            this.lb_ThanhPhan.Name = "lb_ThanhPhan";
+            this.lb_ThanhPhan.Size = new System.Drawing.Size(27, 25);
+            this.lb_ThanhPhan.TabIndex = 14;
+            this.lb_ThanhPhan.Text = "xxx";
+            // 
             // Quanlythuoc
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -551,5 +577,7 @@
         private DevExpress.XtraEditors.SimpleButton btn_XoaThuoc;
         private DevExpress.XtraEditors.SimpleButton btn_ChinhSua;
         private DevExpress.XtraEditors.LabelControl lb_NSX;
+        private DevExpress.XtraEditors.LabelControl lb_ThanhPhan;
+        private DevExpress.XtraEditors.LabelControl labelControl3;
     }
 }

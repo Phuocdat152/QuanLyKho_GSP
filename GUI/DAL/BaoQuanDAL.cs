@@ -61,6 +61,30 @@ namespace DAL
 
             return null;
         }
+        public bool UpdateBaoQuan(string idBaoQuan, string nhietDo, string doAm, string anhSang)
+        {
+            SqlParameter[] parameters = {
+                new SqlParameter("@IDBaoQuan", idBaoQuan),  // Đảm bảo tham số này không null
+                new SqlParameter("@NhietDo", nhietDo),
+                new SqlParameter("@DoAm", doAm),
+                new SqlParameter("@AnhSang", anhSang)
+            };
+
+            try
+            {
+                int rowsAffected = dataConnect.ExecuteStoredProcedure("sp_UpdateBaoQuan", parameters);
+                return rowsAffected > 0; // Trả về true nếu cập nhật thành công
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error updating BaoQuan: " + ex.Message);
+            }
+        }
+
+
+
+
+
     }
 
 }

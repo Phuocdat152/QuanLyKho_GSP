@@ -32,6 +32,18 @@ namespace BLL
         {
             return baoQuanDAL.GetBaoQuanByID(idBaoQuan);
         }
+        public bool UpdateBaoQuan(BaoQuanDTO baoQuan)
+        {
+            return baoQuanDAL.UpdateBaoQuan(
+                baoQuan.IDBaoQuan,  // Đảm bảo IDBaoQuan không null
+                baoQuan.NhietDo,
+                baoQuan.DoAm,
+                baoQuan.AnhSang
+            );
+        }
+
+
+
     }
 
 }

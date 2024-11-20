@@ -81,16 +81,43 @@ namespace BLL
         }
         public bool UpdateThuoc(ThuocDTO thuoc)
         {
-            return thuocDAL.UpdateThuoc(thuoc.IDThuoc, thuoc.TenThuoc, thuoc.IDDVT, thuoc.DonGia, thuoc.IDDanhMuc, thuoc.NuocSanXuat);
+            return thuocDAL.UpdateThuoc(
+                thuoc.IDThuoc,
+                thuoc.TenThuoc,
+                thuoc.ThanhPhan, // Truyền thêm ThanhPhan
+                thuoc.IDDVT,
+                thuoc.DonGia,
+                thuoc.IDDanhMuc,
+                thuoc.NuocSanXuat
+            );
         }
+
+        public string GetBaoQuanIDByThuocID(string idThuoc)
+        {
+            return thuocDAL.GetBaoQuanIDByThuocID(idThuoc);
+        }
+
+
+
         public ThuocDTO GetThuocByID(string idThuoc)
         {
             return thuocDAL.GetThuocByID(idThuoc);
         }
-        public bool UpdateBaoQuan(BaoQuanDTO baoQuan)
+        public ThuocDTO GetThuocChiTiet(string idThuoc)
         {
-            return thuocDAL.UpdateBaoQuan(baoQuan.IDBaoQuan, baoQuan.NhietDo, baoQuan.DoAm, baoQuan.AnhSang);
+            return thuocDAL.GetThuocChiTiet(idThuoc);
         }
+
+        public DataTable GetAllDVT()
+        {
+            return thuocDAL.GetAllDVT();
+        }
+
+        public DataTable GetAllDanhMucThuoc()
+        {
+            return thuocDAL.GetAllDanhMucThuoc();
+        }
+        
 
     }
 }
