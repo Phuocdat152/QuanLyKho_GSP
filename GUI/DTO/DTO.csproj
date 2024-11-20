@@ -43,8 +43,10 @@
   <ItemGroup>
     <Compile Include="BaoQuanDTO.cs" />
     <Compile Include="ChiTietNhapKhoDTO.cs" />
+    <Compile Include="ChiTietXuatKhoDTO.cs" />
     <Compile Include="DanhMucThuocDTO.cs" />
     <Compile Include="KeDTO.cs" />
+    <Compile Include="KhoDenDTO.cs" />
     <Compile Include="KhoDTO.cs" />
     <Compile Include="KhuDTO.cs" />
     <Compile Include="LuuTruDTO.cs" />
@@ -56,6 +58,7 @@
     <Compile Include="ThuocDTO.cs" />
     <Compile Include="UserDTO.cs" />
     <Compile Include="ViTriDTO.cs" />
+    <Compile Include="XuatKhoDTO.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

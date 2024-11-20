@@ -51,18 +51,18 @@ namespace BLL
         }
 
         //Tra cứu theo IDthuoc
-        public DataTable TraCuuThuocTheoIDThuoc(string idThuoc)
+        public DataTable TraCuuThuocTheoTenThuoc(string tenThuoc)
         {
 
-                return luuTruDAL.TraCuuThuocTheoIDThuoc(idThuoc);           
+            return luuTruDAL.TraCuuThuocTheoTen(tenThuoc);           
         }
 
-        //Tra cứu theo Ngày hết hạn
-        public DataTable TraCuuThuocTheoNgayHetHan(DateTime ngayHetHan)
+        // Gọi DAL để tra cứu thuốc theo khoảng thời gian
+        public DataTable TraCuuThuocTheoKhoangThoiGian(DateTime ngayBatDau, DateTime ngayKetThuc)
         {
-
-            return luuTruDAL.TraCuuThuocTheoNgayHetHan(ngayHetHan);
+            return luuTruDAL.TraCuuThuocTheoKhoangThoiGian(ngayBatDau, ngayKetThuc);
         }
+
 
         //Tra cứu thuốc theo trạng thái
         public DataTable TraCuuThuocTheoTrangThai(string trangThai)
@@ -76,5 +76,14 @@ namespace BLL
         {
             return luuTruDAL.KiemTraThuocSapHetHan();
         }
+
+        public void CapNhatTrangThaiThuoc(string idLuuTru, string trangThai)
+        {
+            
+                luuTruDAL.CapNhatTrangThaiThuoc(idLuuTru, trangThai);
+           
+        }
+
+
     }
 }

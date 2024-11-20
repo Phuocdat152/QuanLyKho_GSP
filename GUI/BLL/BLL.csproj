@@ -55,6 +55,7 @@
     <Compile Include="UserBLL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViTriBLL.cs" />
+    <Compile Include="XuatKhoBLL.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DAL\DAL.csproj">

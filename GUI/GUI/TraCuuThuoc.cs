@@ -107,34 +107,7 @@ namespace GUI
             }
         }
 
-        private void LoadThuocToComboBox()
-        {
-            try
-            {
-                // Gọi phương thức từ BLL để lấy dữ liệu
-                DataTable thuocData = thuocBLL.GetThuocInfo();
-
-                if (thuocData != null && thuocData.Rows.Count > 0)
-                {
-                    // Thiết lập dữ liệu cho ComboBox
-                    cb_TenThuoc.DataSource = thuocData;
-                    cb_TenThuoc.DisplayMember = "TenThuoc"; // Cột hiển thị tên thuốc
-                    cb_TenThuoc.ValueMember = "IDThuoc";    // Cột giá trị là IDThuoc
-
-                    // Đặt giá trị mặc định là chưa chọn
-                    cb_TenThuoc.SelectedIndex = -1;
-                }
-                else
-                {
-                    // Xóa dữ liệu trong ComboBox nếu không có dữ liệu
-                    cb_TenThuoc.DataSource = null;
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Lỗi khi tải dữ liệu thuốc vào ComboBox: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
+        
 
 
 
@@ -144,63 +117,78 @@ namespace GUI
             ConfigureGridColumnHeaders();
             DisableCacCot();
             LoadTrangThaiToComboBox();
-            LoadThuocToComboBox();
             CheckThuocSapHetHan();
             HienThiThongTinTraCuu();
             gv_TraCuu.RowStyle += gv_TraCuu_RowStyle;
+            txt_TenThuoc.TextChanged += txt_TenThuoc_TextChanged;
+
 
         }
 
-        private void cb_TenThuoc_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            // Kiểm tra xem có dữ liệu nào được chọn trong ComboBox không
-            if (cb_TenThuoc.SelectedValue != null)
-            {
-                string selectedIDThuoc = cb_TenThuoc.SelectedValue.ToString();
 
-                // Gọi phương thức từ LuuTruBLL để lấy thông tin thuốc
-                DataTable thuocInfo = luuTruBLL.TraCuuThuocTheoIDThuoc(selectedIDThuoc);
-
-                // Kiểm tra nếu có dữ liệu trả về
-                if (thuocInfo != null && thuocInfo.Rows.Count > 0)
-                {
-                    // Gán DataTable vào DataGridView hoặc GridControl để hiển thị
-                    gc_TraCuu.DataSource = thuocInfo;
-                }
-                else
-                {
-                    // Xóa dữ liệu hiển thị nếu không có thông tin
-                    gc_TraCuu.DataSource = null;
-                }
-            }
-        }
 
         private void gv_TraCuu_RowStyle(object sender, DevExpress.XtraGrid.Views.Grid.RowStyleEventArgs e)
         {
             var view = sender as DevExpress.XtraGrid.Views.Grid.GridView;
 
-            if (view == null) return;
+            if (view == null || e.RowHandle < 0) return;
 
-            // Lấy giá trị NgayHetHan từ dòng hiện tại
+            // Lấy giá trị cột "TrangThai" và "NgayHetHan" của dòng hiện tại
+            string trangThai = view.GetRowCellValue(e.RowHandle, "TrangThai")?.ToString();
             DateTime ngayHetHan = Convert.ToDateTime(view.GetRowCellValue(e.RowHandle, "NgayHetHan"));
             DateTime currentDate = DateTime.Now;
 
-            // Kiểm tra nếu ngày hết hạn trong vòng 1 tháng
-            if (ngayHetHan <= currentDate.AddMonths(1) && ngayHetHan >= currentDate)
+            // Nếu thuốc sắp hết hạn, tô màu dòng
+            if (trangThai == "Sắp hết hạn" || (ngayHetHan <= currentDate.AddMonths(1) && ngayHetHan >= currentDate))
             {
-                // Tô màu đỏ cho các dòng sắp hết hạn
                 e.Appearance.BackColor = Color.LightCoral;
                 e.Appearance.ForeColor = Color.White;
             }
         }
 
 
+
+
+        private void txt_TenThuoc_TextChanged(object sender, EventArgs e)
+        {
+            string tenThuoc = txt_TenThuoc.Text.Trim(); // Lấy giá trị từ TextBox
+
+            if (!string.IsNullOrEmpty(tenThuoc))
+            {
+                try
+                {
+                    // Tìm kiếm thông tin thuốc theo tên
+                    DataTable thuocInfo = luuTruBLL.TraCuuThuocTheoTenThuoc(tenThuoc);
+
+                    if (thuocInfo != null && thuocInfo.Rows.Count > 0)
+                    {
+                        gc_TraCuu.DataSource = thuocInfo;
+                    }
+                    else
+                    {
+                        gc_TraCuu.DataSource = null;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Lỗi khi tìm kiếm thuốc: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            else
+            {
+                // Nếu TextBox rỗng, hiển thị lại toàn bộ danh sách thuốc
+                HienThiThongTinTraCuu();
+            }
+        }
+
+
+
         // Phương thức tải trạng thái vào ComboBox
         private void LoadTrangThaiToComboBox()
         {
             cb_TrangThai.Items.Clear();
-            cb_TrangThai.Items.Add("Bình thường");
-            cb_TrangThai.Items.Add("Hết hạn");
+            cb_TrangThai.Items.Add("Tất cả");
+            cb_TrangThai.Items.Add("Bình thường");          
             cb_TrangThai.Items.Add("Sắp hết hạn");
             cb_TrangThai.SelectedIndex = -1;
         }
@@ -212,61 +200,92 @@ namespace GUI
             {
                 string selectedTrangThai = cb_TrangThai.SelectedItem.ToString();
 
-                // Gọi phương thức từ BLL để tra cứu thuốc theo trạng thái
-                DataTable thuocData = luuTruBLL.TraCuuThuocTheoTrangThai(selectedTrangThai);
-
-                // Kiểm tra nếu có dữ liệu trả về
-                if (thuocData != null && thuocData.Rows.Count > 0)
+                if (selectedTrangThai == "Tất cả")
                 {
-                    // Hiển thị dữ liệu vào GridControl
-                    gc_TraCuu.DataSource = thuocData;
+                    // Hiển thị tất cả trạng thái của thuốc
+                    HienThiThongTinTraCuu();
                 }
                 else
                 {
-                    // Xóa dữ liệu hiển thị nếu không có thông tin
-                    gc_TraCuu.DataSource = null;
+                    // Gọi phương thức từ BLL để tra cứu thuốc theo trạng thái
+                    DataTable thuocData = luuTruBLL.TraCuuThuocTheoTrangThai(selectedTrangThai);
+
+                    // Kiểm tra nếu có dữ liệu trả về
+                    if (thuocData != null && thuocData.Rows.Count > 0)
+                    {
+                        // Hiển thị dữ liệu vào GridControl
+                        gc_TraCuu.DataSource = thuocData;
+                    }
+                    else
+                    {
+                        // Xóa dữ liệu hiển thị nếu không có thông tin
+                        gc_TraCuu.DataSource = null;
+                    }
                 }
             }
         }
 
         private void btn_TraCuu_Click(object sender, EventArgs e)
         {
-            // Lấy ngày hết hạn từ DateTimePicker
-            DateTime ngayHetHan = date_NgayHetHan.DateTime;
-
-            // Gọi phương thức từ LuuTruBLL để tra cứu theo ngày hết hạn
-            DataTable thuocInfo = luuTruBLL.TraCuuThuocTheoNgayHetHan(ngayHetHan);
-
-            // Kiểm tra nếu có dữ liệu trả về
-            if (thuocInfo != null && thuocInfo.Rows.Count > 0)
+            try
             {
-                // Gán DataTable vào GridControl để hiển thị
-                gc_TraCuu.DataSource = thuocInfo;
+                // Lấy khoảng thời gian từ giao diện
+                DateTime ngayBatDau = date_NgayBatDau.DateTime;
+                DateTime ngayKetThuc = date_NgayKetThuc.DateTime;
+
+                // Gọi phương thức từ BLL
+                DataTable thuocData = luuTruBLL.TraCuuThuocTheoKhoangThoiGian(ngayBatDau, ngayKetThuc);
+
+                // Hiển thị dữ liệu trong GridControl
+                if (thuocData != null && thuocData.Rows.Count > 0)
+                {
+                    gc_TraCuu.DataSource = thuocData;
+                }
+                else
+                {
+                    gc_TraCuu.DataSource = null;
+                }
             }
-            else
+            catch (Exception ex)
             {
-                // Xóa dữ liệu hiển thị nếu không có thông tin
-                gc_TraCuu.DataSource = null;
+                MessageBox.Show("Lỗi: " + ex.Message, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
         private void CheckThuocSapHetHan()
         {
-            DataTable dtSapHetHan = luuTruBLL.KiemTraThuocSapHetHan();
-
-            if (dtSapHetHan != null && dtSapHetHan.Rows.Count > 0)
+            try
             {
-                foreach (DataRow row in dtSapHetHan.Rows)
+                // Lấy danh sách thuốc sắp hết hạn
+                DataTable dtSapHetHan = luuTruBLL.KiemTraThuocSapHetHan();
+
+                if (dtSapHetHan != null && dtSapHetHan.Rows.Count > 0)
                 {
-                    string tenThuoc = row["TenThuoc"].ToString();
-                    DateTime ngayHetHan = Convert.ToDateTime(row["NgayHetHan"]);
-                    MessageBox.Show($"Thuốc '{tenThuoc}' sẽ hết hạn vào ngày {ngayHetHan:dd/MM/yyyy}.",
-                                    "Thông Báo Thuốc Sắp Hết Hạn",
-                                    MessageBoxButtons.OK,
-                                    MessageBoxIcon.Warning);
+                    foreach (DataRow row in dtSapHetHan.Rows)
+                    {
+                        string idLuuTru = row["IDLuuTru"].ToString();
+
+                        // Cập nhật trạng thái thuốc thành "Sắp hết hạn"
+                        luuTruBLL.CapNhatTrangThaiThuoc(idLuuTru, "Sắp hết hạn");
+                    }
                 }
+
+                // Tải lại thông tin sau khi cập nhật
+                HienThiThongTinTraCuu();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi khi kiểm tra thuốc sắp hết hạn: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
+        private void btn_LamMoi_Click(object sender, EventArgs e)
+        {
+            HienThiThongTinTraCuu();
+            txt_TenThuoc.Text = "";
+            cb_TrangThai.SelectedIndex = -1;
+            date_NgayBatDau.EditValue = null;
+            date_NgayKetThuc.EditValue = null;
+        }
     }
 }
