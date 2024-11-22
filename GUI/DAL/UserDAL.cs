@@ -304,7 +304,7 @@ namespace DAL
         }
 
 
-        public DataRow GetNhanVienByUsername(string username)
+        public DataRow GetNhanVienByUsername1(string username)
         {
             try
             {

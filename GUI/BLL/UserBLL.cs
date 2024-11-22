@@ -160,11 +160,11 @@ namespace BLL
             return userDAL.GetTenNhanVien(username);
         }
 
-        public DataRow GetNhanVienByUsername(string username)
+        public DataRow GetNhanVienByUsername1(string username)
         {
             try
             {
-                return userDAL.GetNhanVienByUsername(username);
+                return userDAL.GetNhanVienByUsername1(username);
             }
             catch (Exception ex)
             {

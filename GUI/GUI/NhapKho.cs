@@ -89,7 +89,7 @@ namespace GUI
         {
             try
             {
-                DataRow nhanVienInfo = userBLL.GetNhanVienByUsername(username);
+                DataRow nhanVienInfo = userBLL.GetNhanVienByUsername1(username);
                 if (nhanVienInfo != null)
                 {
                     string tenNhanVien = nhanVienInfo["TenNhanVien"].ToString();
