@@ -25,7 +25,6 @@ namespace BLL
             string idNhaCC,
             string idNhanVien,
             string ghiChu,
-            string trangThai,
             List<ChiTietNhapKhoDTO> chiTietPhieuNhap)
         {
   
@@ -35,7 +34,6 @@ namespace BLL
                     idNhaCC,
                     idNhanVien,
                     ghiChu,
-                    trangThai,
                     chiTietPhieuNhap
                 );     
         }

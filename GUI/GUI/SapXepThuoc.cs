@@ -280,45 +280,61 @@ namespace GUI
         {
             try
             {
-                // Lấy dữ liệu vị trí từ ViTriBLL
-                DataTable dtViTri = viTriBLL.GetThongTinViTri();
+                // Lấy dữ liệu vị trí theo loại khu nhập từ ViTriBLL
+                DataTable dtViTri = viTriBLL.GetViTriTheoLoaiKhuNhap(); // Gọi hàm mới
+
+                // Kiểm tra nếu không có dữ liệu
+                if (dtViTri == null || dtViTri.Rows.Count == 0)
+                {
+                    MessageBox.Show("Không có dữ liệu vị trí để hiển thị!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
 
                 // Tạo RepositoryItemLookUpEdit cho cột "Vị trí"
                 RepositoryItemLookUpEdit lookUpEditViTri = new RepositoryItemLookUpEdit
                 {
                     DataSource = dtViTri,
-                    DisplayMember = "IDViTri",  // Hiển thị IDViTri trong ComboBox
-                    ValueMember = "IDViTri",     // Lưu giá trị IDViTri
-                    NullText = "Chọn vị trí"
+                    DisplayMember = "Mã Vị Trí",  // Tên cột hiển thị trong ComboBox
+                    ValueMember = "Mã Vị Trí",    // Tên cột làm giá trị lưu trữ
+                    NullText = "Chọn vị trí",
+                    BestFitMode = DevExpress.XtraEditors.Controls.BestFitMode.BestFit // Tự động điều chỉnh kích thước
                 };
 
-                // Thiết lập các cột hiển thị trong dropdown của LookUpEdit
+                // Cấu hình các cột hiển thị trong LookUpEdit
                 lookUpEditViTri.PopulateColumns();
-                lookUpEditViTri.Columns["IDViTri"].Caption = "ID Vị Trí";
-                lookUpEditViTri.Columns["TenKhu"].Caption = "Tên Khu";
-                lookUpEditViTri.Columns["TenKe"].Caption = "Tên Kệ";
-                lookUpEditViTri.Columns["TenO"].Caption = "Tên Ô";
 
-                // Chỉ định độ rộng của từng cột nếu cần thiết
-                lookUpEditViTri.Columns["IDViTri"].Width = 60;
-                lookUpEditViTri.Columns["TenKhu"].Width = 100;
-                lookUpEditViTri.Columns["TenKe"].Width = 100;
-                lookUpEditViTri.Columns["TenO"].Width = 100;
+                // Đặt tên hiển thị cho các cột
+                if (lookUpEditViTri.Columns["Mã Vị Trí"] != null)
+                    lookUpEditViTri.Columns["Mã Vị Trí"].Caption = "Mã Vị Trí";
+                if (lookUpEditViTri.Columns["Tên Khu"] != null)
+                    lookUpEditViTri.Columns["Tên Khu"].Caption = "Tên Khu";
+                if (lookUpEditViTri.Columns["Tên Kệ"] != null)
+                    lookUpEditViTri.Columns["Tên Kệ"].Caption = "Tên Kệ";
+                if (lookUpEditViTri.Columns["Tên Ô"] != null)
+                    lookUpEditViTri.Columns["Tên Ô"].Caption = "Tên Ô";
 
-                // Gán LookUpEdit vào cột "Vị trí"
+                // Ẩn các cột không cần thiết (nếu có)
+                if (lookUpEditViTri.Columns["Trạng Thái"] != null)
+                    lookUpEditViTri.Columns["Trạng Thái"].Visible = false;
+                if (lookUpEditViTri.Columns["Loại Khu"] != null)
+                    lookUpEditViTri.Columns["Loại Khu"].Caption = "Loại khu";
+
+                // Gán RepositoryItemLookUpEdit vào cột "IDViTri" trên GridView
                 var colViTri = gv_ThuocChuaSapXep.Columns["IDViTri"];
                 if (colViTri != null)
                 {
                     colViTri.ColumnEdit = lookUpEditViTri;
                 }
 
+                // Làm mới GridView
                 gv_ThuocChuaSapXep.RefreshData();
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Lỗi khi tải dữ liệu vào ComboBox Vị trí: " + ex.Message);
+                MessageBox.Show($"Lỗi khi tải dữ liệu vào ComboBox Vị trí: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
 
         private void HienThiThongTinLuuTru()
         {

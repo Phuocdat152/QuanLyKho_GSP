@@ -18,16 +18,17 @@ namespace DAL
             dataConnect = new DataConnect(username, password);
         }
 
-        public bool TaoKhuKeO(int soLuongKhu, int soLuongKe, int soLuongO)
+        public bool TaoKhuKeO(int soLuongKhu, int soLuongKe, int soLuongO, string loaiKhu)
         {
             try
             {
                 // Thiết lập các tham số đầu vào cho thủ tục
                 SqlParameter[] parameters = new SqlParameter[]
                 {
-                    new SqlParameter("@SoLuongKhu", SqlDbType.Int) { Value = soLuongKhu },
-                    new SqlParameter("@SoLuongKe", SqlDbType.Int) { Value = soLuongKe },
-                    new SqlParameter("@SoLuongO", SqlDbType.Int) { Value = soLuongO }
+            new SqlParameter("@SoLuongKhu", SqlDbType.Int) { Value = soLuongKhu },
+            new SqlParameter("@SoLuongKe", SqlDbType.Int) { Value = soLuongKe },
+            new SqlParameter("@SoLuongO", SqlDbType.Int) { Value = soLuongO },
+            new SqlParameter("@LoaiKhu", SqlDbType.NVarChar, 50) { Value = loaiKhu }
                 };
 
                 // Gọi thủ tục lưu trữ `sp_TaoKhuKeO_TrongKhoK0001` và thực thi
@@ -42,6 +43,7 @@ namespace DAL
                 return false; // Thực hiện thất bại
             }
         }
+
 
         public DataTable GetThongTinViTri()
         {
@@ -63,6 +65,32 @@ namespace DAL
             catch (Exception ex)
             {
                 throw new Exception("Lỗi khi lấy thông tin vị trí: " + ex.Message);
+            }
+        }
+
+        public DataTable GetViTriTheoLoaiKhuNhap()
+        {
+            try
+            {
+                // Gọi stored procedure
+                return dataConnect.ExecuteStoredProcedureWithDataTable("sp_HienThiThongTinViTriTheoLoaiKhuNhap");
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Lỗi khi lấy thông tin vị trí theo loại khu nhập: {ex.Message}");
+            }
+        }
+
+        public DataTable GetViTriTheoLoaiKhuHuy()
+        {
+            try
+            {
+                // Gọi stored procedure
+                return dataConnect.ExecuteStoredProcedureWithDataTable("sp_HienThiThongTinViTriTheoLoaiKhuHuy");
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Lỗi khi lấy thông tin vị trí theo loại khu hủy: {ex.Message}");
             }
         }
     }
