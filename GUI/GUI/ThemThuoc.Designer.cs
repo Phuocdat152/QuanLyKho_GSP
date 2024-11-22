@@ -41,6 +41,8 @@
             this.labelControl7 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl6 = new DevExpress.XtraEditors.LabelControl();
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
+            this.txt_ThanhPhan = new System.Windows.Forms.TextBox();
+            this.labelControl11 = new DevExpress.XtraEditors.LabelControl();
             this.cb_NSX = new System.Windows.Forms.ComboBox();
             this.cb_DanhMuc = new System.Windows.Forms.ComboBox();
             this.labelControl9 = new DevExpress.XtraEditors.LabelControl();
@@ -53,8 +55,6 @@
             this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
-            this.txt_ThanhPhan = new System.Windows.Forms.TextBox();
-            this.labelControl11 = new DevExpress.XtraEditors.LabelControl();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).BeginInit();
             this.groupControl2.SuspendLayout();
@@ -179,6 +179,7 @@
             this.txt_AnhSang.Name = "txt_AnhSang";
             this.txt_AnhSang.Size = new System.Drawing.Size(161, 23);
             this.txt_AnhSang.TabIndex = 17;
+            this.txt_AnhSang.Text = "Tránh Ánh Sáng";
             // 
             // labelControl8
             // 
@@ -235,6 +236,25 @@
             this.groupControl1.Size = new System.Drawing.Size(389, 335);
             this.groupControl1.TabIndex = 0;
             this.groupControl1.Text = "Thông Tin Thuốc";
+            // 
+            // txt_ThanhPhan
+            // 
+            this.txt_ThanhPhan.Location = new System.Drawing.Point(192, 124);
+            this.txt_ThanhPhan.Margin = new System.Windows.Forms.Padding(4);
+            this.txt_ThanhPhan.Name = "txt_ThanhPhan";
+            this.txt_ThanhPhan.Size = new System.Drawing.Size(161, 23);
+            this.txt_ThanhPhan.TabIndex = 17;
+            // 
+            // labelControl11
+            // 
+            this.labelControl11.Appearance.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelControl11.Appearance.Options.UseFont = true;
+            this.labelControl11.Location = new System.Drawing.Point(33, 124);
+            this.labelControl11.Margin = new System.Windows.Forms.Padding(4);
+            this.labelControl11.Name = "labelControl11";
+            this.labelControl11.Size = new System.Drawing.Size(96, 23);
+            this.labelControl11.TabIndex = 16;
+            this.labelControl11.Text = "Thành Phần:";
             // 
             // cb_NSX
             // 
@@ -367,25 +387,6 @@
             this.labelControl1.Size = new System.Drawing.Size(77, 23);
             this.labelControl1.TabIndex = 2;
             this.labelControl1.Text = "Mã Thuốc";
-            // 
-            // txt_ThanhPhan
-            // 
-            this.txt_ThanhPhan.Location = new System.Drawing.Point(192, 124);
-            this.txt_ThanhPhan.Margin = new System.Windows.Forms.Padding(4);
-            this.txt_ThanhPhan.Name = "txt_ThanhPhan";
-            this.txt_ThanhPhan.Size = new System.Drawing.Size(161, 23);
-            this.txt_ThanhPhan.TabIndex = 17;
-            // 
-            // labelControl11
-            // 
-            this.labelControl11.Appearance.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelControl11.Appearance.Options.UseFont = true;
-            this.labelControl11.Location = new System.Drawing.Point(33, 124);
-            this.labelControl11.Margin = new System.Windows.Forms.Padding(4);
-            this.labelControl11.Name = "labelControl11";
-            this.labelControl11.Size = new System.Drawing.Size(96, 23);
-            this.labelControl11.TabIndex = 16;
-            this.labelControl11.Text = "Thành Phần:";
             // 
             // ThemThuoc
             // 

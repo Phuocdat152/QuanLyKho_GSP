@@ -53,12 +53,12 @@ namespace GUI
                 //QuanTriNguoiDung mainForm = new QuanTriNguoiDung(username, password);
                 //NhapKho mainForm = new NhapKho(username, password);
                 //SapXepThuoc mainForm = new SapXepThuoc(username, password);
-                //QuanLyViTri mainForm = new QuanLyViTri(username, password);
+                //ViTri mainForm = new ViTri(username, password);
                 //QuanLyNhanVien mainForm = new QuanLyNhanVien(username, password);
                 //QLDanhMucThuoc mainForm = new QLDanhMucThuoc(username, password);
-                Quanlythuoc mainForm = new Quanlythuoc(username, password);
+                //Quanlythuoc mainForm = new Quanlythuoc(username, password);
                 //QuanLyNCC mainForm = new QuanLyNCC(username, password);
-                //KiemKeDoiChieu mainForm = new KiemKeDoiChieu();
+                KiemKeDoiChieu mainForm = new KiemKeDoiChieu(username, password);
                 mainForm.Show();
                 this.Hide();
             }

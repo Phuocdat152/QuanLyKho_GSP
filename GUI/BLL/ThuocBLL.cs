@@ -3,6 +3,7 @@ using DTO;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -117,7 +118,73 @@ namespace BLL
         {
             return thuocDAL.GetAllDanhMucThuoc();
         }
-        
+        public DataTable GetThuocByLoaiKT(string idLoaiKT)
+        {
+            return thuocDAL.GetThuocByLoaiKT(idLoaiKT);
+        }
+        public DataTable GetThuocWithKiemTra(string idLoaiKT)
+        {
+            try
+            {
+                return thuocDAL.GetThuocWithKiemTra(idLoaiKT);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Lỗi khi lấy dữ liệu thuốc với kiểm tra: " + ex.Message);
+            }
+        }
+        public string GenerateNewIDKiemTra()
+        {
+            return thuocDAL.GenerateNewIDKiemTra();
+        }
+        public string GetIDLuuTruByThuocID(string idThuoc)
+        {
+            return thuocDAL.GetIDLuuTruByThuocID(idThuoc);
+        }
+        public void SaveKiemTra(string idKiemTra, DateTime ngayKT, string idLuuTru, string idThuoc, string tinhTrang, int slThucTe, int slTon, string idLoaiKT, string nhanVienKT)
+        {
+            thuocDAL.SaveKiemTra(idKiemTra, ngayKT, idLuuTru, idThuoc, tinhTrang, slThucTe, slTon, idLoaiKT, nhanVienKT);
+        }
+        public DataTable GetDanhSachKiemKe()
+        {
+            try
+            {
+                return thuocDAL.GetDanhSachKiemKe();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Lỗi khi lấy danh sách kiểm kê: " + ex.Message);
+            }
+        }
+        public DataTable GetThuocToKiemKe(string idLoaiKT, DateTime currentDate)
+        {
+            try
+            {
+                return thuocDAL.GetThuocToKiemKe(idLoaiKT, currentDate);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Lỗi khi lấy danh sách thuốc cần kiểm kê: " + ex.Message);
+            }
+        }
+        public void UpdateSoLuongTon(string idThuoc, int slTon)
+        {
+            try
+            {
+                thuocDAL.UpdateSoLuongTon(idThuoc, slTon); // Gọi phương thức từ DAL
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Lỗi khi cập nhật số lượng tồn kho: " + ex.Message);
+            }
+        }
+        public DataTable GetDanhSachKiemKeByLoaiKT(string idLoaiKT)
+        {
+            return thuocDAL.GetDanhSachKiemKeByLoaiKT(idLoaiKT);
+        }
+
+
+
 
     }
 }

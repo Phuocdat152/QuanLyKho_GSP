@@ -27,44 +27,57 @@ namespace GUI
 
         private void SuaDanhMuc_Load(object sender, EventArgs e)
         {
-
+            DataTable danhMucData = _danhMucThuocBLL.GetAllDanhMucThuoc();
+            foreach (DataRow row in danhMucData.Rows)
+            {
+                if (row["IDDanhMuc"].ToString() == _maDanhMuc)
+                {
+                    cb_LoaiThuoc.SelectedItem = row["LoaiThuoc"].ToString();
+                    break;
+                }
+            }
         }
 
         private void btn_SuaDanhMuc_Click(object sender, EventArgs e)
         {
             string tenDanhMucMoi = txt_suaDanhMuc.Text.Trim();
+            string loaiThuocMoi = cb_LoaiThuoc.SelectedItem?.ToString();
 
-            // Kiểm tra nếu tên không thay đổi
-            if (string.IsNullOrWhiteSpace(tenDanhMucMoi))
+            // Kiểm tra nếu tên danh mục hoặc loại thuốc trống
+            if (string.IsNullOrWhiteSpace(tenDanhMucMoi) || string.IsNullOrWhiteSpace(loaiThuocMoi))
             {
-                MessageBox.Show("Tên danh mục không được để trống.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
-            if (tenDanhMucMoi.Equals(_tenDanhMucCu, StringComparison.OrdinalIgnoreCase))
-            {
-                MessageBox.Show("Tên danh mục không có thay đổi.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Tên danh mục và loại thuốc không được để trống.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
             // Hiển thị xác nhận thay đổi
             DialogResult result = MessageBox.Show(
-                $"Bạn có muốn đổi tên danh mục từ '{_tenDanhMucCu}' thành '{tenDanhMucMoi}' không?",
+                $"Bạn có muốn đổi tên danh mục từ '{_tenDanhMucCu}' thành '{tenDanhMucMoi}' và loại thuốc thành '{loaiThuocMoi}' không?",
                 "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
             if (result == DialogResult.Yes)
             {
                 // Gọi phương thức BLL để cập nhật danh mục
-                if (_danhMucThuocBLL.UpdateDanhMuc(_maDanhMuc, tenDanhMucMoi))
+                if (_danhMucThuocBLL.UpdateDanhMuc(_maDanhMuc, tenDanhMucMoi, loaiThuocMoi))
                 {
                     MessageBox.Show("Chỉnh sửa thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     this.Close(); // Đóng form sau khi cập nhật thành công
                 }
                 else
                 {
-                    MessageBox.Show("Chỉnh sửa thành công!", "Thành Công", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Chỉnh sửa không thành công!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
+        }
+
+        private void txt_suaDanhMuc_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void labelControl1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

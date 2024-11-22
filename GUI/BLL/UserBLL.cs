@@ -43,6 +43,10 @@ namespace BLL
         {
             return userDAL.CheckDuplicateNhanVien(maNhanVien, username);
         }
+        public UserDTO GetNhanVienByUsername(string username)
+        {
+            return userDAL.GetNhanVienByUsername(username);
+        }
 
         public bool Login()
         {
