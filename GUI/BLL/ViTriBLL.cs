@@ -17,17 +17,27 @@ namespace BLL
             viTriDAL = new ViTriDAL(username, password);
         }
 
-        public bool TaoKhuKeO(int soLuongKhu, int soLuongKe, int soLuongO)
+        public bool TaoKhuKeO(int soLuongKhu, int soLuongKe, int soLuongO, string loaiKhu)
         {
-                return viTriDAL.TaoKhuKeO(soLuongKhu, soLuongKe, soLuongO);
-           
+            return viTriDAL.TaoKhuKeO(soLuongKhu, soLuongKe, soLuongO, loaiKhu);
         }
+
 
         public DataTable GetThongTinViTri()
         {
 
                 return viTriDAL.GetThongTinViTri();
             
+        }
+
+        public DataTable GetViTriTheoLoaiKhuNhap()
+        {
+            return viTriDAL.GetViTriTheoLoaiKhuNhap();
+        }
+
+        public DataTable GetViTriTheoLoaiKhuHuy()
+        {
+            return viTriDAL.GetViTriTheoLoaiKhuHuy();
         }
     }
 }

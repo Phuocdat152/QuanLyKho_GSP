@@ -53,6 +53,7 @@
     <Compile Include="ODAL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ThuocDAL.cs" />
+    <Compile Include="ThuocHuyDAL.cs" />
     <Compile Include="UserDAL.cs" />
     <Compile Include="ViTriDAL.cs" />
     <Compile Include="XuatKhoDAL.cs" />

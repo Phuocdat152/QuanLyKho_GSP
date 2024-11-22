@@ -48,6 +48,7 @@ namespace GUI
                     gridView.Columns["TenKhu"].Caption = "Tên Khu";
                     gridView.Columns["TenKe"].Caption = "Tên Kệ";
                     gridView.Columns["TenO"].Caption = "Tên Ô";
+                    gridView.Columns["LoaiKhu"].Caption = "Loại Khu";
 
                     // Không cho phép chỉnh sửa trên gridView
                     gridView.OptionsBehavior.Editable = false;
@@ -62,9 +63,9 @@ namespace GUI
         private void btn_Luu_Click(object sender, EventArgs e)
         {
             // Kiểm tra điều kiện: các giá trị phải lớn hơn hoặc bằng 1
-            if (num_Khu.Value < 1 || num_Ke.Value < 1 || num_O.Value < 1)
+            if (num_Khu.Value < 1 || num_Ke.Value < 1 || num_O.Value < 1 || string.IsNullOrEmpty(cb_LoaiKhu.Text))
             {
-                MessageBox.Show("Số lượng khu, kệ và ô phải lớn hơn hoặc bằng 1.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Số lượng khu, kệ, ô phải lớn hơn hoặc bằng 1 và loại khu không được để trống.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -72,21 +73,23 @@ namespace GUI
             int soLuongKhu = (int)num_Khu.Value;
             int soLuongKe = (int)num_Ke.Value;
             int soLuongO = (int)num_O.Value;
+            string loaiKhu = cb_LoaiKhu.SelectedItem?.ToString();
 
             try
             {
                 // Gọi hàm TaoKhuKeO trong ViTriBLL
-                bool result = viTriBLL.TaoKhuKeO(soLuongKhu, soLuongKe, soLuongO);
+                bool result = viTriBLL.TaoKhuKeO(soLuongKhu, soLuongKe, soLuongO, loaiKhu);
 
                 if (result)
                 {
                     MessageBox.Show("Thêm vị trí thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     LoadViTriData();
 
-                    // Đặt lại các giá trị NumberUpDown về 0
+                    // Đặt lại các giá trị NumberUpDown và ComboBox về mặc định
                     num_Khu.Value = 0;
                     num_Ke.Value = 0;
                     num_O.Value = 0;
+                    cb_LoaiKhu.SelectedIndex = -1;
 
                     // Cập nhật trạng thái các nút
                     btn_Huy.Enabled = false;
@@ -95,6 +98,7 @@ namespace GUI
                     num_Khu.Enabled = false;
                     num_Ke.Enabled = false;
                     num_O.Enabled = false;
+                    cb_LoaiKhu.Enabled = false;
                 }
                 else
                 {
@@ -117,17 +121,22 @@ namespace GUI
                 string tenKhu = view.GetFocusedRowCellValue("TenKhu")?.ToString();
                 string tenKe = view.GetFocusedRowCellValue("TenKe")?.ToString();
                 string tenO = view.GetFocusedRowCellValue("TenO")?.ToString();
+                string loaiKhu = view.GetFocusedRowCellValue("LoaiKhu")?.ToString();
 
                 // Hiển thị thông tin trong các TextBox
                 txt_Khu.Text = tenKhu;
                 txt_Ke.Text = tenKe;
                 txt_O.Text = tenO;
+                txt_LoaiKhu.Text = loaiKhu;
             }
         }
 
         private void ViTri_Load(object sender, EventArgs e)
         {
             LoadViTriData();
+            // Thêm giá trị cho ComboBox Loại Khu
+            cb_LoaiKhu.Items.Add("Khu thuốc nhập");
+            cb_LoaiKhu.Items.Add("Khu thuốc hủy");
         }
 
         private void btn_Them_Click(object sender, EventArgs e)
@@ -138,6 +147,7 @@ namespace GUI
             num_Khu.Enabled=true;
             num_Ke.Enabled=true;
             num_O.Enabled=true;
+            cb_LoaiKhu.Enabled=true;
         }
 
         private void btn_Huy_Click(object sender, EventArgs e)
@@ -148,6 +158,13 @@ namespace GUI
             num_Khu.Enabled = false;
             num_Ke.Enabled = false;
             num_O.Enabled = false;
+            cb_LoaiKhu.Enabled = false;
+
+            // Reset các điều khiển
+            num_Khu.Value = 0;
+            num_Ke.Value = 0;
+            num_O.Value = 0;
+            cb_LoaiKhu.SelectedIndex = -1;
         }
     }
 }

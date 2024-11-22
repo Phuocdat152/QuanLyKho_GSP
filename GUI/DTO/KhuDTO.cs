@@ -11,14 +11,16 @@ namespace DTO
         public string IDKho { get; set; }
         public string IDKhu {  get; set; }
         public string TenKhu {  get; set; } 
+        public string LoaiKhu {  get; set; }
 
         public KhuDTO() { }
 
-        public KhuDTO(string iDKho, string iDKhu, string tenKhu, string ghiChu)
+        public KhuDTO(string iDKho, string iDKhu, string tenKhu, string ghiChu, string loaiKhu)
         {
             this.IDKho = iDKho;
             this.IDKhu = iDKhu;
             this.TenKhu = tenKhu;
+            this.LoaiKhu = loaiKhu;
         }
     }
 }

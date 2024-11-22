@@ -35,7 +35,10 @@ namespace GUI
             thuocBLL = new ThuocBLL(username, password);
             nhapKhoBLL = new NhapKhoBLL(username, password);
             userBLL = new UserBLL(username, password);
-              
+
+            HienThiTenNhanVien(username);
+
+
         }
 
         private void LoadNhaCungCapToComboBox()
@@ -82,25 +85,28 @@ namespace GUI
             }
         }
 
-        private void LoadNhanVienToComboBox()
+        private void HienThiTenNhanVien(string username)
         {
             try
             {
-                Dictionary<string, string> tenUserList = userBLL.GetIDAndTenNhanVien();
-
-                cb_NhanVien.Items.Clear();
-
-                foreach (var item in tenUserList)
+                DataRow nhanVienInfo = userBLL.GetNhanVienByUsername(username);
+                if (nhanVienInfo != null)
                 {
-                    cb_NhanVien.Items.Add(new KeyValuePair<string, string>(item.Key, item.Value));
-                }
+                    string tenNhanVien = nhanVienInfo["TenNhanVien"].ToString();
+                    string idNhanVien = nhanVienInfo["IDNhanVien"].ToString();
 
-                cb_NhanVien.DisplayMember = "Value";
-                cb_NhanVien.ValueMember = "Key";
+                    txt_NhanVien.Text = tenNhanVien;   // Hiển thị tên nhân viên
+                    txt_IDNhanVien.Text = idNhanVien; // Lưu ID nhân viên vào TextBox ẩn
+                }
+                else
+                {
+                    txt_NhanVien.Text = "Không tìm thấy tên nhân viên";
+                    txt_IDNhanVien.Text = ""; // Xóa giá trị nếu không tìm thấy
+                }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Lỗi khi tải loại kho: " + ex.Message);
+                MessageBox.Show("Lỗi khi hiển thị tên nhân viên: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -110,7 +116,6 @@ namespace GUI
             LoadNhaCungCapToComboBox();
             LoadKhoToComboBox();
             LoadThuocIntoComboBox();
-            LoadNhanVienToComboBox();
             AddCot();
 
             dte_NgayNhap.EditValue = DateTime.Today;
@@ -400,16 +405,23 @@ namespace GUI
             // Xóa dữ liệu trong các TextBox
             txt_GhiChu.Clear();
             txt_TongTien.Clear();
+            txt_TrangThai.Clear();
+            txt_NhanVien.Clear();
+
+            txt_GhiChu.Enabled = true;
 
             // Đặt lại lựa chọn trong ComboBox (về trạng thái không có mục nào được chọn)
             cb_Kho.SelectedIndex = -1;
             cb_NhaCC.SelectedIndex = -1;
-            cb_NhanVien.SelectedIndex = -1;
-            cb_TrangThai.SelectedIndex = -1;
+            cb_Kho.Enabled = true;
+            cb_NhaCC.Enabled = true;
+            
 
             btn_Luu.Enabled = true;
             btn_ThemSP.Enabled = true;
             btn_XoaSP.Enabled = true;
+            btn_Them.Enabled = false;
+            btn_Xoa.Enabled = false;
 
             gc_SanPham.DataSource = null;
 
@@ -451,15 +463,14 @@ namespace GUI
                 // Lấy dữ liệu từ các điều khiển trên form
                 string idKho = (cb_Kho.SelectedItem as KeyValuePair<string, string>?).Value.Key ?? "";
                 string idNhaCC = (cb_NhaCC.SelectedItem as KeyValuePair<string, string>?).Value.Key ?? "";
-                string idNhanVien = (cb_NhanVien.SelectedItem as KeyValuePair<string, string>?).Value.Key ?? "";
+                string idNhanVien = txt_IDNhanVien.Text; // Lấy ID nhân viên từ TextBox ẩn
                 string ghiChu = txt_GhiChu.Text;
-                string trangThai = cb_TrangThai.SelectedItem?.ToString() ?? "";
                 DateTime ngayNhap = dte_NgayNhap.EditValue == null ? DateTime.Now : (DateTime)dte_NgayNhap.EditValue;
 
                 // Kiểm tra dữ liệu đầu vào cần thiết
-                if (string.IsNullOrEmpty(idKho) || string.IsNullOrEmpty(idNhaCC) || string.IsNullOrEmpty(idNhanVien))
+                if (string.IsNullOrEmpty(idKho) || string.IsNullOrEmpty(idNhaCC))
                 {
-                    MessageBox.Show("Vui lòng điền đầy đủ thông tin.");
+                    MessageBox.Show("Vui lòng điền đầy đủ thông tin.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
 
@@ -491,12 +502,12 @@ namespace GUI
 
                 if (chiTietPhieuNhapList.Count == 0)
                 {
-                    MessageBox.Show("Danh sách chi tiết phiếu nhập trống.");
+                    MessageBox.Show("Danh sách chi tiết phiếu nhập trống.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
 
                 // Xác nhận trước khi lưu
-                DialogResult confirmation = MessageBox.Show("Bạn có chắc chắn muốn lưu phiếu nhập này?", "Xác nhận lưu", MessageBoxButtons.YesNo);
+                DialogResult confirmation = MessageBox.Show("Bạn có chắc chắn muốn lưu phiếu nhập này?", "Xác nhận lưu", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (confirmation == DialogResult.No)
                 {
                     return;
@@ -509,28 +520,48 @@ namespace GUI
                     idNhaCC,
                     idNhanVien,
                     ghiChu,
-                    trangThai,
                     chiTietPhieuNhapList
                 );
 
                 // Kiểm tra giá trị trả về
                 if (!string.IsNullOrEmpty(newPhieuNhapID))
                 {
-                    MessageBox.Show("Thêm phiếu nhập thành công với ID: " + newPhieuNhapID);
+                    MessageBox.Show($"Thêm phiếu nhập thành công với ID: {newPhieuNhapID}", "Thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     ResetForm(); // Reset dữ liệu sau khi lưu thành công
                     LoadDanhSachPhieuNhap();
+                    // Xóa dữ liệu trong các TextBox
+                    txt_GhiChu.Clear();
+                    txt_TongTien.Clear();
+                    txt_TrangThai.Clear();
+                    txt_NhanVien.Clear();
+
+                    txt_GhiChu.Enabled = false;
+
+                    // Đặt lại lựa chọn trong ComboBox (về trạng thái không có mục nào được chọn)
+                    cb_Kho.SelectedIndex = -1;
+                    cb_NhaCC.SelectedIndex = -1;
+                    cb_Kho.Enabled = false;
+                    cb_NhaCC.Enabled = false;
+
+
                     btn_Luu.Enabled = false;
                     btn_ThemSP.Enabled = false;
                     btn_XoaSP.Enabled = false;
+                    btn_Them.Enabled = true;
+                    btn_Xoa.Enabled = true;
+
+                    gc_SanPham.DataSource = null;
+
+                    dte_NgayNhap.EditValue = DateTime.Today;
                 }
                 else
                 {
-                    MessageBox.Show("Tạo phiếu thất bại: ID rỗng.");
+                    MessageBox.Show("Tạo phiếu thất bại: ID rỗng.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Lỗi khi lưu phiếu nhập: " + ex.Message);
+                MessageBox.Show($"Lỗi khi lưu phiếu nhập: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -553,12 +584,12 @@ namespace GUI
             // Xóa dữ liệu trong các TextBox
             txt_GhiChu.Clear();
             txt_TongTien.Clear();
+            txt_NhanVien.Clear();
+            txt_TrangThai.Clear();
 
             // Đặt lại lựa chọn trong ComboBox
             cb_Kho.SelectedIndex = -1;
             cb_NhaCC.SelectedIndex = -1;
-            cb_NhanVien.SelectedIndex = -1;
-            cb_TrangThai.SelectedIndex = -1;
 
             // Đặt lại DateEdit (xóa giá trị ngày)
             dte_NgayNhap.EditValue = null;
@@ -584,20 +615,33 @@ namespace GUI
                 // Chỉ hiển thị các cột cần thiết
                 dgv_PhieuNhap.Columns["IDPhieuNhap"].Visible = true;
                 dgv_PhieuNhap.Columns["NgayNhap"].Visible = true;
-                //dgv_PhieuNhap.Columns["TongTien"].Visible = true;
                 dgv_PhieuNhap.Columns["TrangThai"].Visible = true;
 
                 // Đặt tiêu đề cho các cột (nếu cần)
                 dgv_PhieuNhap.Columns["IDPhieuNhap"].HeaderText = "Mã Phiếu Nhập";
                 dgv_PhieuNhap.Columns["NgayNhap"].HeaderText = "Ngày Nhập";
-                //dgv_PhieuNhap.Columns["TongTien"].HeaderText = "Tổng Tiền";
                 dgv_PhieuNhap.Columns["TrangThai"].HeaderText = "Trạng Thái";
+
+                // Canh đều các cột trong DataGridView
+                foreach (DataGridViewColumn column in dgv_PhieuNhap.Columns)
+                {
+                    if (column.Visible)
+                    {
+                        column.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill; // Tự động giãn đều
+                        column.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter; // Căn giữa nội dung
+                        column.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter; // Căn giữa tiêu đề
+                    }
+                }
+
+                // Tùy chỉnh thêm nếu cần
+                dgv_PhieuNhap.AutoResizeColumns();
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Lỗi khi tải danh sách phiếu nhập: " + ex.Message);
             }
         }
+
 
         private void dgv_PhieuNhap_CellClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -620,15 +664,23 @@ namespace GUI
                         txt_IDPN.Text = phieuNhapRow["IDPhieuNhap"].ToString();
                         dte_NgayNhap.EditValue = Convert.ToDateTime(phieuNhapRow["NgayNhap"]);
 
+                        // Hiển thị loại kho
                         cb_Kho.SelectedItem = cb_Kho.Items.Cast<KeyValuePair<string, string>>()
-                        .FirstOrDefault(item => item.Value == phieuNhapRow["LoaiKho"].ToString());
+                            .FirstOrDefault(item => item.Value == phieuNhapRow["LoaiKho"].ToString());
+
+                        // Hiển thị nhà cung cấp
                         cb_NhaCC.SelectedItem = cb_NhaCC.Items.Cast<KeyValuePair<string, string>>()
-                        .FirstOrDefault(item => item.Value == phieuNhapRow["TenNhaCC"].ToString());
-                        cb_NhanVien.SelectedItem = cb_NhanVien.Items.Cast<KeyValuePair<string, string>>()
-                        .FirstOrDefault(item => item.Value == phieuNhapRow["TenNhanVien"].ToString());
+                            .FirstOrDefault(item => item.Value == phieuNhapRow["TenNhaCC"].ToString());
+
+                        // Hiển thị tên nhân viên trong TextBox
+                        txt_NhanVien.Text = phieuNhapRow["TenNhanVien"].ToString();
+
+                        // Hiển thị ghi chú và tổng tiền
                         txt_GhiChu.Text = phieuNhapRow["GhiChu"].ToString();
                         txt_TongTien.Text = Convert.ToDecimal(phieuNhapRow["TongTien"]).ToString("#,##0 ₫");
-                        cb_TrangThai.SelectedItem = phieuNhapRow["TrangThai"].ToString();
+
+                        // Hiển thị trạng thái trong TextBox
+                        txt_TrangThai.Text = phieuNhapRow["TrangThai"].ToString();
                     }
 
                     // Hiển thị chi tiết phiếu nhập
@@ -665,7 +717,7 @@ namespace GUI
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Lỗi khi hiển thị chi tiết phiếu nhập: " + ex.Message);
+                    MessageBox.Show("Lỗi khi hiển thị chi tiết phiếu nhập: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }

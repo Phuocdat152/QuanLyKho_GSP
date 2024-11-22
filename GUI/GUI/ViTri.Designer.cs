@@ -53,6 +53,10 @@
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.btn_Luu = new System.Windows.Forms.ToolStripButton();
             this.btn_Huy = new System.Windows.Forms.ToolStripButton();
+            this.label7 = new System.Windows.Forms.Label();
+            this.cb_LoaiKhu = new System.Windows.Forms.ComboBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.txt_LoaiKhu = new DevExpress.XtraEditors.TextEdit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1.Panel1)).BeginInit();
             this.splitContainerControl1.Panel1.SuspendLayout();
@@ -74,6 +78,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.num_Ke)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.num_Khu)).BeginInit();
             this.toolStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txt_LoaiKhu.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // splitContainerControl1
@@ -140,6 +145,8 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.txt_LoaiKhu);
+            this.groupBox2.Controls.Add(this.label8);
             this.groupBox2.Controls.Add(this.txt_O);
             this.groupBox2.Controls.Add(this.txt_Ke);
             this.groupBox2.Controls.Add(this.txt_Khu);
@@ -148,7 +155,7 @@
             this.groupBox2.Controls.Add(this.label4);
             this.groupBox2.Location = new System.Drawing.Point(519, 79);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(373, 164);
+            this.groupBox2.Size = new System.Drawing.Size(373, 206);
             this.groupBox2.TabIndex = 35;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Thông tin vị trí";
@@ -206,6 +213,8 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.cb_LoaiKhu);
+            this.groupBox1.Controls.Add(this.label7);
             this.groupBox1.Controls.Add(this.num_O);
             this.groupBox1.Controls.Add(this.num_Ke);
             this.groupBox1.Controls.Add(this.num_Khu);
@@ -214,7 +223,7 @@
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Location = new System.Drawing.Point(12, 79);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(407, 164);
+            this.groupBox1.Size = new System.Drawing.Size(407, 206);
             this.groupBox1.TabIndex = 34;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Thêm vị trí ";
@@ -322,6 +331,41 @@
             this.btn_Huy.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btn_Huy.Click += new System.EventHandler(this.btn_Huy_Click);
             // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(26, 179);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(50, 13);
+            this.label7.TabIndex = 40;
+            this.label7.Text = "Loại khu:";
+            // 
+            // cb_LoaiKhu
+            // 
+            this.cb_LoaiKhu.Enabled = false;
+            this.cb_LoaiKhu.FormattingEnabled = true;
+            this.cb_LoaiKhu.Location = new System.Drawing.Point(241, 171);
+            this.cb_LoaiKhu.Name = "cb_LoaiKhu";
+            this.cb_LoaiKhu.Size = new System.Drawing.Size(121, 21);
+            this.cb_LoaiKhu.TabIndex = 41;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(43, 179);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(50, 13);
+            this.label8.TabIndex = 41;
+            this.label8.Text = "Loại khu:";
+            // 
+            // txt_LoaiKhu
+            // 
+            this.txt_LoaiKhu.Enabled = false;
+            this.txt_LoaiKhu.Location = new System.Drawing.Point(120, 168);
+            this.txt_LoaiKhu.Name = "txt_LoaiKhu";
+            this.txt_LoaiKhu.Size = new System.Drawing.Size(222, 20);
+            this.txt_LoaiKhu.TabIndex = 42;
+            // 
             // ViTri
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -357,6 +401,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.num_Khu)).EndInit();
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txt_LoaiKhu.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -387,5 +432,9 @@
         private DevExpress.XtraEditors.TextEdit txt_Ke;
         private DevExpress.XtraEditors.GroupControl groupControl2;
         private System.Windows.Forms.ToolStripButton btn_Huy;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.ComboBox cb_LoaiKhu;
+        private DevExpress.XtraEditors.TextEdit txt_LoaiKhu;
+        private System.Windows.Forms.Label label8;
     }
 }
