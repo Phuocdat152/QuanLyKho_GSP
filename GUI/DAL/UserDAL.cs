@@ -47,6 +47,29 @@ namespace DAL
             }
             return null;
         }
+        public UserDTO GetNhanVienByUsername(string username)
+        {
+            try
+            {
+                SqlParameter[] parameters = { new SqlParameter("@Username", username) };
+                DataTable result = dataConnect.ExecuteStoredProcedureWithDataTable("sp_GetNhanVienByUsername", parameters);
+
+                if (result.Rows.Count > 0)
+                {
+                    DataRow row = result.Rows[0];
+                    return new UserDTO
+                    {
+                        MaNhanVienID = row["IDNhanVien"].ToString(),
+                        TenNhanVien = row["TenNhanVien"].ToString()
+                    };
+                }
+                return null;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Lỗi khi lấy thông tin nhân viên theo Username: " + ex.Message);
+            }
+        }
 
 
         public UserDTO GetUserById(string maNhanVien)

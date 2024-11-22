@@ -15,7 +15,11 @@ public class UserDTO
     public byte[] Anh { get; set; }
 
     public UserDTO() { }
-
+    public UserDTO(string maNhanVienID, string tenNhanVien)
+    {
+        MaNhanVienID = maNhanVienID;
+        TenNhanVien = tenNhanVien;
+    }
     public UserDTO(string maNhanVienID, string tenNhanVien, string chucVuID, string username,
         DateTime ngaySinh, string diaChi, string email, string soDienThoai,
         string trinhDo, string chucVu, byte[] anh)

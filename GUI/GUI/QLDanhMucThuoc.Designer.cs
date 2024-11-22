@@ -43,6 +43,8 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
+            this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
+            this.lb_LoaiThuoc = new DevExpress.XtraEditors.LabelControl();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl3)).BeginInit();
             this.groupControl3.SuspendLayout();
@@ -85,7 +87,7 @@
             this.btn_XoaDM.Name = "btn_XoaDM";
             this.btn_XoaDM.Size = new System.Drawing.Size(289, 53);
             this.btn_XoaDM.TabIndex = 2;
-            this.btn_XoaDM.Text = "Xoá Danh Mục";
+            this.btn_XoaDM.Text = "Xoá";
             this.btn_XoaDM.UseVisualStyleBackColor = true;
             this.btn_XoaDM.Click += new System.EventHandler(this.btn_XoaDM_Click);
             // 
@@ -96,7 +98,7 @@
             this.btn_SuaDM.Name = "btn_SuaDM";
             this.btn_SuaDM.Size = new System.Drawing.Size(289, 53);
             this.btn_SuaDM.TabIndex = 1;
-            this.btn_SuaDM.Text = "Sửa Danh Mục";
+            this.btn_SuaDM.Text = "Sửa";
             this.btn_SuaDM.UseVisualStyleBackColor = true;
             this.btn_SuaDM.Click += new System.EventHandler(this.btn_SuaDM_Click);
             // 
@@ -107,7 +109,7 @@
             this.btn_ThemDM.Name = "btn_ThemDM";
             this.btn_ThemDM.Size = new System.Drawing.Size(289, 53);
             this.btn_ThemDM.TabIndex = 0;
-            this.btn_ThemDM.Text = "Thêm Danh Mục";
+            this.btn_ThemDM.Text = "Thêm";
             this.btn_ThemDM.UseVisualStyleBackColor = true;
             this.btn_ThemDM.Click += new System.EventHandler(this.button1_Click);
             // 
@@ -139,6 +141,8 @@
             // 
             this.groupControl1.Appearance.BackColor = System.Drawing.Color.PaleTurquoise;
             this.groupControl1.Appearance.Options.UseBackColor = true;
+            this.groupControl1.Controls.Add(this.lb_LoaiThuoc);
+            this.groupControl1.Controls.Add(this.labelControl4);
             this.groupControl1.Controls.Add(this.lb_TenDM);
             this.groupControl1.Controls.Add(this.lb_MaDM);
             this.groupControl1.Controls.Add(this.labelControl3);
@@ -148,6 +152,7 @@
             this.groupControl1.Size = new System.Drawing.Size(527, 251);
             this.groupControl1.TabIndex = 1;
             this.groupControl1.Text = "Thông Tin Danh Mục";
+            this.groupControl1.Paint += new System.Windows.Forms.PaintEventHandler(this.groupControl1_Paint);
             // 
             // lb_TenDM
             // 
@@ -215,6 +220,28 @@
             this.labelControl1.TabIndex = 1;
             this.labelControl1.Text = "Quản Lý Danh Mục Thuốc";
             // 
+            // labelControl4
+            // 
+            this.labelControl4.Appearance.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelControl4.Appearance.Options.UseFont = true;
+            this.labelControl4.Location = new System.Drawing.Point(40, 177);
+            this.labelControl4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.labelControl4.Name = "labelControl4";
+            this.labelControl4.Size = new System.Drawing.Size(98, 28);
+            this.labelControl4.TabIndex = 5;
+            this.labelControl4.Text = "Loại Thuốc:";
+            // 
+            // lb_LoaiThuoc
+            // 
+            this.lb_LoaiThuoc.Appearance.Font = new System.Drawing.Font("Segoe UI Semibold", 13F, System.Drawing.FontStyle.Bold);
+            this.lb_LoaiThuoc.Appearance.Options.UseFont = true;
+            this.lb_LoaiThuoc.Location = new System.Drawing.Point(195, 175);
+            this.lb_LoaiThuoc.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.lb_LoaiThuoc.Name = "lb_LoaiThuoc";
+            this.lb_LoaiThuoc.Size = new System.Drawing.Size(135, 30);
+            this.lb_LoaiThuoc.TabIndex = 6;
+            this.lb_LoaiThuoc.Text = "labelControl5";
+            // 
             // QLDanhMucThuoc
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -256,5 +283,7 @@
         private System.Windows.Forms.DataGridView dgv_DanhMucThuoc;
         private DevExpress.XtraEditors.LabelControl lb_TenDM;
         private DevExpress.XtraEditors.LabelControl lb_MaDM;
+        private DevExpress.XtraEditors.LabelControl labelControl4;
+        private DevExpress.XtraEditors.LabelControl lb_LoaiThuoc;
     }
 }

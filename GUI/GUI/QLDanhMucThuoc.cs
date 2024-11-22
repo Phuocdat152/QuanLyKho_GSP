@@ -25,7 +25,9 @@ namespace GUI
         {
             DataTable danhMucData = _danhMucThuocBLL.GetAllDanhMucThuoc();
             dgv_DanhMucThuoc.DataSource = danhMucData;
+            dgv_DanhMucThuoc.Columns["LoaiThuoc"].HeaderText = "Loại Thuốc"; // Hiển thị cột Loại Thuốc
         }
+
 
         private void button1_Click(object sender, EventArgs e)
         {
@@ -51,6 +53,7 @@ namespace GUI
                 DataGridViewRow row = dgv_DanhMucThuoc.Rows[e.RowIndex];
                 lb_MaDM.Text = row.Cells["IDDanhMuc"].Value.ToString();
                 lb_TenDM.Text = row.Cells["TenDanhMuc"].Value.ToString();
+                lb_LoaiThuoc.Text = row.Cells["LoaiThuoc"].Value.ToString(); // Hiển thị Loại Thuốc
             }
         }
 
@@ -101,6 +104,11 @@ namespace GUI
                 }
             }
             LoadDanhMucThuoc();
+        }
+
+        private void groupControl1_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

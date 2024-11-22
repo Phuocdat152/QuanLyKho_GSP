@@ -27,6 +27,7 @@ namespace BLL
             danhMuc.IDDanhMuc = _danhMucThuocDAL.GenerateNewIDDanhMuc();
             return _danhMucThuocDAL.AddDanhMucThuoc(danhMuc) > 0;
         }
+
         public bool IsDuplicateTenDanhMuc(string tenDanhMuc)
         {
             return _danhMucThuocDAL.IsDuplicateTenDanhMuc(tenDanhMuc);
@@ -41,10 +42,11 @@ namespace BLL
         {
             return _danhMucThuocDAL.GetAllDanhMucThuoc();
         }
-        public bool UpdateDanhMuc(string maDanhMuc, string tenDanhMucMoi)
+        public bool UpdateDanhMuc(string maDanhMuc, string tenDanhMucMoi, string loaiThuocMoi)
         {
-            return _danhMucThuocDAL.UpdateDanhMuc(maDanhMuc, tenDanhMucMoi) > 0;
+            return _danhMucThuocDAL.UpdateDanhMuc(maDanhMuc, tenDanhMucMoi, loaiThuocMoi) > 0;
         }
+
         public bool DeleteDanhMuc(string maDanhMuc)
         {
             return _danhMucThuocDAL.DeleteDanhMuc(maDanhMuc) > 0;

@@ -17,10 +17,12 @@ namespace DAL
         {
             SqlParameter[] parameters = {
                 new SqlParameter("@IDDanhMuc", danhMuc.IDDanhMuc),
-                new SqlParameter("@TenDanhMuc", danhMuc.TenDanhMuc)
+                new SqlParameter("@TenDanhMuc", danhMuc.TenDanhMuc),
+                new SqlParameter("@LoaiThuoc", danhMuc.LoaiThuoc) // Thêm LoaiThuoc
             };
             return _dataConnect.ExecuteStoredProcedure("sp_AddDanhMucThuoc", parameters);
         }
+
 
         public string GenerateNewIDDanhMuc()
         {
@@ -41,6 +43,7 @@ namespace DAL
         {
             return _dataConnect.ExecuteStoredProcedureWithDataTable("sp_GetAllDanhMucThuoc");
         }
+
         public bool IsDuplicateTenDanhMuc(string tenDanhMuc)
         {
             string query = "SELECT COUNT(*) FROM DanhMucThuoc WHERE UPPER(TenDanhMuc) = UPPER(@TenDanhMuc)";
@@ -48,14 +51,16 @@ namespace DAL
             int count = (int)_dataConnect.ExecuteScalar(query, parameters);
             return count > 0;
         }
-        public int UpdateDanhMuc(string maDanhMuc, string tenDanhMucMoi)
+        public int UpdateDanhMuc(string maDanhMuc, string tenDanhMucMoi, string loaiThuocMoi)
         {
             SqlParameter[] parameters = {
                 new SqlParameter("@IDDanhMuc", maDanhMuc),
-                new SqlParameter("@TenDanhMuc", tenDanhMucMoi)
+                new SqlParameter("@TenDanhMuc", tenDanhMucMoi),
+                new SqlParameter("@LoaiThuoc", loaiThuocMoi) // Thêm LoaiThuoc
             };
             return _dataConnect.ExecuteStoredProcedure("sp_UpdateDanhMucThuoc", parameters);
         }
+
 
         public int DeleteDanhMuc(string maDanhMuc)
         {

@@ -232,6 +232,125 @@ namespace DAL
         {
             return dataConnect.ExecuteStoredProcedureWithDataTable("sp_GetAllDanhMuc");
         }
+        public DataTable GetThuocByLoaiKT(string idLoaiKT)
+        {
+            try
+            {
+                SqlParameter[] parameters = {
+                    new SqlParameter("@IDLoaiKT", idLoaiKT)
+                };
+
+                return dataConnect.ExecuteStoredProcedureWithDataTable("sp_GetThuocByLoaiKT", parameters);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Lỗi khi lấy danh sách thuốc theo loại kiểm tra: " + ex.Message);
+            }
+        }
+        public DataTable GetThuocWithKiemTra(string idLoaiKT)
+        {
+            try
+            {
+                SqlParameter[] parameters = { new SqlParameter("@IDLoaiKT", idLoaiKT) };
+                return dataConnect.ExecuteStoredProcedureWithDataTable("sp_GetThuocWithKiemTra", parameters);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Lỗi khi lấy dữ liệu thuốc với kiểm tra: " + ex.Message);
+            }
+        }
+        public string GenerateNewIDKiemTra()
+        {
+            DataTable dt = dataConnect.ExecuteStoredProcedureWithDataTable("sp_GetLastIDKiemTra");
+            if (dt.Rows.Count > 0)
+            {
+                string lastID = dt.Rows[0]["IDKiemTra"].ToString();
+                int number = int.Parse(lastID.Substring(2)) + 1;
+                return "KT" + number.ToString("D4");
+            }
+            return "KT0001";
+        }
+        public string GetIDLuuTruByThuocID(string idThuoc)
+        {
+            SqlParameter[] parameters = { new SqlParameter("@IDThuoc", idThuoc) };
+            DataTable result = dataConnect.ExecuteStoredProcedureWithDataTable("sp_GetIDLuuTruByThuocID", parameters);
+
+            if (result.Rows.Count > 0)
+            {
+                return result.Rows[0]["IDLuuTru"].ToString();
+            }
+
+            return null;
+        }
+        public void SaveKiemTra(string idKiemTra, DateTime ngayKT, string idLuuTru, string idThuoc, string tinhTrang, int slThucTe, int slTon, string idLoaiKT, string nhanVienKT)
+        {
+            SqlParameter[] parameters = {
+                new SqlParameter("@IDKiemTra", idKiemTra),
+                new SqlParameter("@NgayKT", ngayKT),
+                new SqlParameter("@IDLuuTru", idLuuTru),
+                new SqlParameter("@IDThuoc", idThuoc),
+                new SqlParameter("@TinhTrang", tinhTrang),
+                new SqlParameter("@SLThucTe", slThucTe),
+                new SqlParameter("@SLTon", slTon),
+                new SqlParameter("@IDLoaiKT", idLoaiKT),
+                new SqlParameter("@NhanVienKT", nhanVienKT)
+            };
+            dataConnect.ExecuteStoredProcedure("sp_SaveKiemTra", parameters);
+        }
+        public DataTable GetDanhSachKiemKe()
+        {
+            try
+            {
+                // Gọi Stored Procedure để lấy danh sách kiểm kê
+                return dataConnect.ExecuteStoredProcedureWithDataTable("sp_GetDanhSachKiemKe");
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Lỗi khi lấy danh sách kiểm kê: " + ex.Message);
+            }
+        }
+        public DataTable GetThuocToKiemKe(string idLoaiKT, DateTime currentDate)
+        {
+            try
+            {
+                SqlParameter[] parameters = {
+                    new SqlParameter("@CurrentDate", currentDate),
+                    new SqlParameter("@IDLoaiKT", idLoaiKT)
+                };
+
+                return dataConnect.ExecuteStoredProcedureWithDataTable("sp_GetThuocToKiemKe", parameters);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Lỗi khi lấy danh sách thuốc cần kiểm kê: " + ex.Message);
+            }
+        }
+        public void UpdateSoLuongTon(string idThuoc, int slTon)
+        {
+            try
+            {
+                SqlParameter[] parameters = {
+                    new SqlParameter("@IDThuoc", idThuoc),
+                    new SqlParameter("@SLTon", slTon)
+                };
+
+                dataConnect.ExecuteStoredProcedure("sp_UpdateSoLuongTon", parameters);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Lỗi khi cập nhật số lượng tồn kho: " + ex.Message);
+            }
+        }
+        public DataTable GetDanhSachKiemKeByLoaiKT(string idLoaiKT)
+        {
+            SqlParameter[] parameters = new SqlParameter[]
+            {
+                new SqlParameter("@IDLoaiKT", idLoaiKT)
+            };
+
+            return dataConnect.ExecuteStoredProcedureWithDataTable("sp_GetDanhSachKiemKeByLoaiKT", parameters);
+        }
+
 
 
     }
