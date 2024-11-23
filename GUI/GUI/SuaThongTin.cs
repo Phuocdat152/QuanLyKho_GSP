@@ -29,7 +29,7 @@ namespace GUI
             txt_upTen.Text = selectedUser.TenNhanVien;
             cb_upchucvu.SelectedValue = selectedUser.ChucVuID; // Đặt chức vụ đã chọn
             dtp_upNgaySinh.Value = selectedUser.NgaySinh;
-            txt_upTrinhDo.Text = selectedUser.TrinhDo;
+            cb_SuaTrinhDo.Text = selectedUser.TrinhDo;
             txt_upEmail.Text = selectedUser.Email;
             txt_upDiaChi.Text = selectedUser.DiaChi;
             txt_upSDT.Text = selectedUser.SoDienThoai;
@@ -58,7 +58,7 @@ namespace GUI
             selectedUser.TenNhanVien = txt_upTen.Text;
             selectedUser.ChucVuID = cb_upchucvu.SelectedValue.ToString();
             selectedUser.NgaySinh = dtp_upNgaySinh.Value;
-            selectedUser.TrinhDo = txt_upTrinhDo.Text;
+            selectedUser.TrinhDo = cb_SuaTrinhDo.Text;
             selectedUser.Email = txt_upEmail.Text;
             selectedUser.DiaChi = txt_upDiaChi.Text;
             selectedUser.SoDienThoai = txt_upSDT.Text;

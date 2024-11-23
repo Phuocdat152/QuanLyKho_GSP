@@ -32,6 +32,11 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.splitContainerControl1 = new DevExpress.XtraEditors.SplitContainerControl();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
+            this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
+            this.pb_BienBan = new System.Windows.Forms.PictureBox();
+            this.btn_TaiBienBan = new System.Windows.Forms.Button();
             this.btn_Luu = new DevExpress.XtraEditors.SimpleButton();
             this.cb_ThuocHuy = new DevExpress.XtraEditors.ComboBoxEdit();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
@@ -41,11 +46,6 @@
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.gc_DSTH = new DevExpress.XtraGrid.GridControl();
             this.gv_DSHT = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.pb_BienBan = new System.Windows.Forms.PictureBox();
-            this.btn_TaiBienBan = new System.Windows.Forms.Button();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
-            this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).BeginInit();
@@ -54,6 +54,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1.Panel2)).BeginInit();
             this.splitContainerControl1.Panel2.SuspendLayout();
             this.splitContainerControl1.SuspendLayout();
+            this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pb_BienBan)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cb_ThuocHuy.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
             this.groupControl1.SuspendLayout();
@@ -62,8 +64,6 @@
             this.tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gc_DSTH)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gv_DSHT)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pb_BienBan)).BeginInit();
-            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -112,12 +112,60 @@
             this.splitContainerControl1.SplitterPosition = 216;
             this.splitContainerControl1.TabIndex = 0;
             // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.labelControl3);
+            this.groupBox1.Controls.Add(this.labelControl2);
+            this.groupBox1.Controls.Add(this.pb_BienBan);
+            this.groupBox1.Location = new System.Drawing.Point(813, 16);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(487, 160);
+            this.groupBox1.TabIndex = 5;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Biên bản hủy thuốc";
+            // 
+            // labelControl3
+            // 
+            this.labelControl3.Appearance.ForeColor = System.Drawing.Color.Red;
+            this.labelControl3.Appearance.Options.UseForeColor = true;
+            this.labelControl3.Location = new System.Drawing.Point(81, 147);
+            this.labelControl3.Name = "labelControl3";
+            this.labelControl3.Size = new System.Drawing.Size(6, 13);
+            this.labelControl3.TabIndex = 6;
+            this.labelControl3.Text = "*";
+            // 
+            // labelControl2
+            // 
+            this.labelControl2.Location = new System.Drawing.Point(93, 147);
+            this.labelControl2.Name = "labelControl2";
+            this.labelControl2.Size = new System.Drawing.Size(346, 13);
+            this.labelControl2.TabIndex = 6;
+            this.labelControl2.Text = "Bạn cần phải tải biên bản hủy thuốc lên để sử dụng được chức năng này";
+            // 
+            // pb_BienBan
+            // 
+            this.pb_BienBan.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pb_BienBan.Location = new System.Drawing.Point(3, 17);
+            this.pb_BienBan.Name = "pb_BienBan";
+            this.pb_BienBan.Size = new System.Drawing.Size(481, 140);
+            this.pb_BienBan.TabIndex = 3;
+            this.pb_BienBan.TabStop = false;
+            // 
+            // btn_TaiBienBan
+            // 
+            this.btn_TaiBienBan.Location = new System.Drawing.Point(1021, 182);
+            this.btn_TaiBienBan.Name = "btn_TaiBienBan";
+            this.btn_TaiBienBan.Size = new System.Drawing.Size(123, 23);
+            this.btn_TaiBienBan.TabIndex = 4;
+            this.btn_TaiBienBan.Text = "Tải biên bản ";
+            this.btn_TaiBienBan.UseVisualStyleBackColor = true;
+            // 
             // btn_Luu
             // 
             this.btn_Luu.Appearance.ForeColor = System.Drawing.Color.Black;
             this.btn_Luu.Appearance.Options.UseForeColor = true;
             this.btn_Luu.Enabled = false;
-            this.btn_Luu.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("simpleButton1.ImageOptions.SvgImage")));
+            this.btn_Luu.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btn_Luu.ImageOptions.SvgImage")));
             this.btn_Luu.Location = new System.Drawing.Point(709, 40);
             this.btn_Luu.Name = "btn_Luu";
             this.btn_Luu.Size = new System.Drawing.Size(82, 38);
@@ -175,7 +223,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(833, 451);
+            this.tabPage2.Size = new System.Drawing.Size(1311, 621);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Danh sách thuốc hủy";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -186,7 +234,7 @@
             this.gc_DSTH.Location = new System.Drawing.Point(3, 3);
             this.gc_DSTH.MainView = this.gv_DSHT;
             this.gc_DSTH.Name = "gc_DSTH";
-            this.gc_DSTH.Size = new System.Drawing.Size(827, 445);
+            this.gc_DSTH.Size = new System.Drawing.Size(1305, 615);
             this.gc_DSTH.TabIndex = 0;
             this.gc_DSTH.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gv_DSHT});
@@ -197,54 +245,6 @@
             this.gv_DSHT.Name = "gv_DSHT";
             this.gv_DSHT.OptionsView.ShowFooter = true;
             // 
-            // pb_BienBan
-            // 
-            this.pb_BienBan.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pb_BienBan.Location = new System.Drawing.Point(3, 17);
-            this.pb_BienBan.Name = "pb_BienBan";
-            this.pb_BienBan.Size = new System.Drawing.Size(481, 140);
-            this.pb_BienBan.TabIndex = 3;
-            this.pb_BienBan.TabStop = false;
-            // 
-            // btn_TaiBienBan
-            // 
-            this.btn_TaiBienBan.Location = new System.Drawing.Point(1021, 182);
-            this.btn_TaiBienBan.Name = "btn_TaiBienBan";
-            this.btn_TaiBienBan.Size = new System.Drawing.Size(123, 23);
-            this.btn_TaiBienBan.TabIndex = 4;
-            this.btn_TaiBienBan.Text = "Tải biên bản ";
-            this.btn_TaiBienBan.UseVisualStyleBackColor = true;
-            // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.labelControl3);
-            this.groupBox1.Controls.Add(this.labelControl2);
-            this.groupBox1.Controls.Add(this.pb_BienBan);
-            this.groupBox1.Location = new System.Drawing.Point(813, 16);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(487, 160);
-            this.groupBox1.TabIndex = 5;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Biên bản hủy thuốc";
-            // 
-            // labelControl2
-            // 
-            this.labelControl2.Location = new System.Drawing.Point(93, 147);
-            this.labelControl2.Name = "labelControl2";
-            this.labelControl2.Size = new System.Drawing.Size(346, 13);
-            this.labelControl2.TabIndex = 6;
-            this.labelControl2.Text = "Bạn cần phải tải biên bản hủy thuốc lên để sử dụng được chức năng này";
-            // 
-            // labelControl3
-            // 
-            this.labelControl3.Appearance.ForeColor = System.Drawing.Color.Red;
-            this.labelControl3.Appearance.Options.UseForeColor = true;
-            this.labelControl3.Location = new System.Drawing.Point(81, 147);
-            this.labelControl3.Name = "labelControl3";
-            this.labelControl3.Size = new System.Drawing.Size(6, 13);
-            this.labelControl3.TabIndex = 6;
-            this.labelControl3.Text = "*";
-            // 
             // HuyThuoc
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -253,7 +253,7 @@
             this.ClientSize = new System.Drawing.Size(1319, 647);
             this.Controls.Add(this.tabControl1);
             this.Name = "HuyThuoc";
-            this.Text = "HuyThuoc";
+            this.Text = "Hủy thuốc";
             this.Load += new System.EventHandler(this.HuyThuoc_Load);
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
@@ -264,6 +264,9 @@
             this.splitContainerControl1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).EndInit();
             this.splitContainerControl1.ResumeLayout(false);
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pb_BienBan)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cb_ThuocHuy.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).EndInit();
             this.groupControl1.ResumeLayout(false);
@@ -272,9 +275,6 @@
             this.tabPage2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gc_DSTH)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gv_DSHT)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pb_BienBan)).EndInit();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
 
         }

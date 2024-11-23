@@ -51,6 +51,63 @@ namespace GUI
             OpenForm<XuatKho>();
         }
 
+        private void btn_ViTri_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            OpenForm<ViTri>();
+        }
+
+        private void btn_LuuTru_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            OpenForm<SapXepThuoc>();
+        }
+
+        private void btn_DangXuat_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            DialogResult result = MessageBox.Show("Bạn có chắc chắn muốn đăng xuất?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (result == DialogResult.Yes)
+            {
+                this.Hide();
+                DangNhap loginForm = new DangNhap();
+                loginForm.ShowDialog();
+                this.Close();
+            }
+        }
+
+        private void btn_TraCuuThuoc_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            OpenForm<TraCuuThuoc>();
+        }
+
+        private void btn_HuyThuoc_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            OpenForm<HuyThuoc>();
+        }
+
+        private void btn_KiemKe_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            OpenForm<KiemKeDoiChieu>();
+        }
+
+        private void btn_NhanVien_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            OpenForm<QuanLyNhanVien>();
+        }
+
+        private void btn_NhomThuoc_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            OpenForm<QLDanhMucThuoc>();
+        }
+
+        private void btn_Thuoc_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            OpenForm<Quanlythuoc>(); 
+        }
+
+        private void btn_NhaCC_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            OpenForm<QuanLyNCC>();
+        }
+
         private void btn_NhapKho_ItemClick(object sender, ItemClickEventArgs e)
         {
             OpenForm<NhapKho>();

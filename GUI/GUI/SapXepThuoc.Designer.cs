@@ -131,6 +131,7 @@
             // 
             this.gv_ThuocChuaSapXep.GridControl = this.gc_ThuocChuaSapXep;
             this.gv_ThuocChuaSapXep.Name = "gv_ThuocChuaSapXep";
+            this.gv_ThuocChuaSapXep.OptionsView.ShowGroupPanel = false;
             // 
             // toolStrip1
             // 
@@ -195,7 +196,7 @@
             this.Controls.Add(this.splitContainerControl1);
             this.Name = "SapXepThuoc";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "SapXepThuoc";
+            this.Text = "Quản lý lưu trữ thuốc";
             this.Load += new System.EventHandler(this.SapXepThuoc_Load);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1.Panel1)).EndInit();
             this.splitContainerControl1.Panel1.ResumeLayout(false);

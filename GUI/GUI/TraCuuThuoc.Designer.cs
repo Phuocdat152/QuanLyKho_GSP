@@ -31,20 +31,20 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TraCuuThuoc));
             this.splitContainerControl1 = new DevExpress.XtraEditors.SplitContainerControl();
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
+            this.btn_LamMoi = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.date_NgayKetThuc = new DevExpress.XtraEditors.DateEdit();
             this.btn_TraCuu = new System.Windows.Forms.Button();
             this.date_NgayBatDau = new DevExpress.XtraEditors.DateEdit();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.cb_TrangThai = new System.Windows.Forms.ComboBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.txt_TenThuoc = new DevExpress.XtraEditors.TextEdit();
             this.groupControl2 = new DevExpress.XtraEditors.GroupControl();
             this.gc_TraCuu = new DevExpress.XtraGrid.GridControl();
             this.gv_TraCuu = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.txt_TenThuoc = new DevExpress.XtraEditors.TextEdit();
-            this.date_NgayKetThuc = new DevExpress.XtraEditors.DateEdit();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.btn_LamMoi = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1.Panel1)).BeginInit();
             this.splitContainerControl1.Panel1.SuspendLayout();
@@ -54,17 +54,17 @@
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
             this.groupControl1.SuspendLayout();
             this.groupBox3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.date_NgayKetThuc.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.date_NgayKetThuc.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.date_NgayBatDau.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.date_NgayBatDau.Properties.CalendarTimeProperties)).BeginInit();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txt_TenThuoc.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).BeginInit();
             this.groupControl2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gc_TraCuu)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gv_TraCuu)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txt_TenThuoc.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.date_NgayKetThuc.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.date_NgayKetThuc.Properties.CalendarTimeProperties)).BeginInit();
             this.SuspendLayout();
             // 
             // splitContainerControl1
@@ -109,6 +109,18 @@
             this.groupControl1.TabIndex = 0;
             this.groupControl1.Text = "Tra cứu thuốc";
             // 
+            // btn_LamMoi
+            // 
+            this.btn_LamMoi.Image = ((System.Drawing.Image)(resources.GetObject("btn_LamMoi.Image")));
+            this.btn_LamMoi.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btn_LamMoi.Location = new System.Drawing.Point(0, 136);
+            this.btn_LamMoi.Name = "btn_LamMoi";
+            this.btn_LamMoi.Size = new System.Drawing.Size(79, 28);
+            this.btn_LamMoi.TabIndex = 3;
+            this.btn_LamMoi.Text = "     Làm mới";
+            this.btn_LamMoi.UseVisualStyleBackColor = true;
+            this.btn_LamMoi.Click += new System.EventHandler(this.btn_LamMoi_Click);
+            // 
             // groupBox3
             // 
             this.groupBox3.Controls.Add(this.label2);
@@ -122,6 +134,36 @@
             this.groupBox3.TabIndex = 2;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Hạn sử dụng";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(10, 71);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(25, 13);
+            this.label2.TabIndex = 8;
+            this.label2.Text = "đến";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(10, 35);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(20, 13);
+            this.label1.TabIndex = 7;
+            this.label1.Text = "Từ";
+            // 
+            // date_NgayKetThuc
+            // 
+            this.date_NgayKetThuc.EditValue = null;
+            this.date_NgayKetThuc.Location = new System.Drawing.Point(51, 64);
+            this.date_NgayKetThuc.Name = "date_NgayKetThuc";
+            this.date_NgayKetThuc.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.date_NgayKetThuc.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.date_NgayKetThuc.Size = new System.Drawing.Size(208, 20);
+            this.date_NgayKetThuc.TabIndex = 6;
             // 
             // btn_TraCuu
             // 
@@ -175,12 +217,20 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Tên thuốc";
             // 
+            // txt_TenThuoc
+            // 
+            this.txt_TenThuoc.Location = new System.Drawing.Point(6, 28);
+            this.txt_TenThuoc.Name = "txt_TenThuoc";
+            this.txt_TenThuoc.Size = new System.Drawing.Size(188, 20);
+            this.txt_TenThuoc.TabIndex = 0;
+            // 
             // groupControl2
             // 
             this.groupControl2.Controls.Add(this.gc_TraCuu);
-            this.groupControl2.Location = new System.Drawing.Point(-2, 4);
+            this.groupControl2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupControl2.Location = new System.Drawing.Point(0, 0);
             this.groupControl2.Name = "groupControl2";
-            this.groupControl2.Size = new System.Drawing.Size(1053, 363);
+            this.groupControl2.Size = new System.Drawing.Size(1049, 365);
             this.groupControl2.TabIndex = 0;
             this.groupControl2.Text = "Danh sách thuốc";
             // 
@@ -190,7 +240,7 @@
             this.gc_TraCuu.Location = new System.Drawing.Point(2, 23);
             this.gc_TraCuu.MainView = this.gv_TraCuu;
             this.gc_TraCuu.Name = "gc_TraCuu";
-            this.gc_TraCuu.Size = new System.Drawing.Size(1049, 338);
+            this.gc_TraCuu.Size = new System.Drawing.Size(1045, 340);
             this.gc_TraCuu.TabIndex = 0;
             this.gc_TraCuu.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gv_TraCuu});
@@ -200,55 +250,6 @@
             this.gv_TraCuu.GridControl = this.gc_TraCuu;
             this.gv_TraCuu.Name = "gv_TraCuu";
             // 
-            // txt_TenThuoc
-            // 
-            this.txt_TenThuoc.Location = new System.Drawing.Point(6, 28);
-            this.txt_TenThuoc.Name = "txt_TenThuoc";
-            this.txt_TenThuoc.Size = new System.Drawing.Size(188, 20);
-            this.txt_TenThuoc.TabIndex = 0;
-            // 
-            // date_NgayKetThuc
-            // 
-            this.date_NgayKetThuc.EditValue = null;
-            this.date_NgayKetThuc.Location = new System.Drawing.Point(51, 64);
-            this.date_NgayKetThuc.Name = "date_NgayKetThuc";
-            this.date_NgayKetThuc.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.date_NgayKetThuc.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.date_NgayKetThuc.Size = new System.Drawing.Size(208, 20);
-            this.date_NgayKetThuc.TabIndex = 6;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(10, 35);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(20, 13);
-            this.label1.TabIndex = 7;
-            this.label1.Text = "Từ";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(10, 71);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(25, 13);
-            this.label2.TabIndex = 8;
-            this.label2.Text = "đến";
-            // 
-            // btn_LamMoi
-            // 
-            this.btn_LamMoi.Image = ((System.Drawing.Image)(resources.GetObject("btn_LamMoi.Image")));
-            this.btn_LamMoi.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btn_LamMoi.Location = new System.Drawing.Point(0, 136);
-            this.btn_LamMoi.Name = "btn_LamMoi";
-            this.btn_LamMoi.Size = new System.Drawing.Size(79, 28);
-            this.btn_LamMoi.TabIndex = 3;
-            this.btn_LamMoi.Text = "     Làm mới";
-            this.btn_LamMoi.UseVisualStyleBackColor = true;
-            this.btn_LamMoi.Click += new System.EventHandler(this.btn_LamMoi_Click);
-            // 
             // TraCuuThuoc
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -256,7 +257,7 @@
             this.ClientSize = new System.Drawing.Size(1053, 543);
             this.Controls.Add(this.splitContainerControl1);
             this.Name = "TraCuuThuoc";
-            this.Text = "TraCuuThuoc";
+            this.Text = "Tra cứu thuốc";
             this.Load += new System.EventHandler(this.TraCuuThuoc_Load);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1.Panel1)).EndInit();
             this.splitContainerControl1.Panel1.ResumeLayout(false);
@@ -268,17 +269,17 @@
             this.groupControl1.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.date_NgayKetThuc.Properties.CalendarTimeProperties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.date_NgayKetThuc.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.date_NgayBatDau.Properties.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.date_NgayBatDau.Properties)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.txt_TenThuoc.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).EndInit();
             this.groupControl2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gc_TraCuu)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gv_TraCuu)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txt_TenThuoc.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.date_NgayKetThuc.Properties.CalendarTimeProperties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.date_NgayKetThuc.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }
