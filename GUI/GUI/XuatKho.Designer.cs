@@ -108,15 +108,12 @@
             // 
             // panelControl3
             // 
-            this.panelControl3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.panelControl3.AutoSize = true;
             this.panelControl3.Controls.Add(this.groupControl3);
             this.panelControl3.Controls.Add(this.groupControl2);
             this.panelControl3.Location = new System.Drawing.Point(362, 266);
             this.panelControl3.Name = "panelControl3";
-            this.panelControl3.Size = new System.Drawing.Size(1323, 364);
+            this.panelControl3.Size = new System.Drawing.Size(1107, 629);
             this.panelControl3.TabIndex = 33;
             // 
             // groupControl3
@@ -129,9 +126,9 @@
             this.groupControl3.Controls.Add(this.cb_ChonThuoc);
             this.groupControl3.Controls.Add(this.toolStrip2);
             this.groupControl3.Location = new System.Drawing.Point(2, 2);
-            this.groupControl3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupControl3.Margin = new System.Windows.Forms.Padding(2);
             this.groupControl3.Name = "groupControl3";
-            this.groupControl3.Size = new System.Drawing.Size(284, 355);
+            this.groupControl3.Size = new System.Drawing.Size(284, 578);
             this.groupControl3.TabIndex = 1;
             this.groupControl3.Text = "Thuốc cấp phát";
             // 
@@ -159,7 +156,7 @@
             // 
             this.num_SoLuong.Enabled = false;
             this.num_SoLuong.Location = new System.Drawing.Point(91, 138);
-            this.num_SoLuong.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.num_SoLuong.Margin = new System.Windows.Forms.Padding(2);
             this.num_SoLuong.Maximum = new decimal(new int[] {
             5000,
             0,
@@ -174,7 +171,7 @@
             this.cb_ChonThuoc.Enabled = false;
             this.cb_ChonThuoc.FormattingEnabled = true;
             this.cb_ChonThuoc.Location = new System.Drawing.Point(92, 93);
-            this.cb_ChonThuoc.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cb_ChonThuoc.Margin = new System.Windows.Forms.Padding(2);
             this.cb_ChonThuoc.Name = "cb_ChonThuoc";
             this.cb_ChonThuoc.Size = new System.Drawing.Size(186, 21);
             this.cb_ChonThuoc.TabIndex = 31;
@@ -221,14 +218,12 @@
             // 
             // groupControl2
             // 
-            this.groupControl2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupControl2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.groupControl2.AutoSize = true;
             this.groupControl2.Controls.Add(this.gc_SanPham);
-            this.groupControl2.Location = new System.Drawing.Point(289, 2);
+            this.groupControl2.Location = new System.Drawing.Point(287, 1);
             this.groupControl2.Name = "groupControl2";
-            this.groupControl2.Size = new System.Drawing.Size(1027, 355);
+            this.groupControl2.Size = new System.Drawing.Size(820, 360);
             this.groupControl2.TabIndex = 0;
             this.groupControl2.Text = "Chi tiết thuốc cấp phát";
             // 
@@ -238,7 +233,7 @@
             this.gc_SanPham.Location = new System.Drawing.Point(2, 23);
             this.gc_SanPham.MainView = this.gv_SanPham;
             this.gc_SanPham.Name = "gc_SanPham";
-            this.gc_SanPham.Size = new System.Drawing.Size(1023, 330);
+            this.gc_SanPham.Size = new System.Drawing.Size(816, 335);
             this.gc_SanPham.TabIndex = 30;
             this.gc_SanPham.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gv_SanPham});
@@ -303,7 +298,7 @@
             this.panelControl4.Controls.Add(this.toolStrip1);
             this.panelControl4.Location = new System.Drawing.Point(362, 2);
             this.panelControl4.Name = "panelControl4";
-            this.panelControl4.Size = new System.Drawing.Size(1318, 42);
+            this.panelControl4.Size = new System.Drawing.Size(1433, 42);
             this.panelControl4.TabIndex = 34;
             // 
             // toolStrip1
@@ -321,7 +316,7 @@
             this.toolStrip1.Location = new System.Drawing.Point(2, 2);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
-            this.toolStrip1.Size = new System.Drawing.Size(1314, 27);
+            this.toolStrip1.Size = new System.Drawing.Size(1429, 27);
             this.toolStrip1.TabIndex = 28;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -416,14 +411,12 @@
             // 
             // panelControl2
             // 
-            this.panelControl2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.panelControl2.AutoSize = true;
             this.panelControl2.Controls.Add(this.groupBox2);
             this.panelControl2.Controls.Add(this.groupBox1);
             this.panelControl2.Location = new System.Drawing.Point(362, 45);
             this.panelControl2.Name = "panelControl2";
-            this.panelControl2.Size = new System.Drawing.Size(1316, 215);
+            this.panelControl2.Size = new System.Drawing.Size(1107, 574);
             this.panelControl2.TabIndex = 32;
             // 
             // groupBox2
@@ -437,7 +430,7 @@
             this.groupBox2.Controls.Add(this.labelControl2);
             this.groupBox2.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox2.ForeColor = System.Drawing.Color.DodgerBlue;
-            this.groupBox2.Location = new System.Drawing.Point(857, 5);
+            this.groupBox2.Location = new System.Drawing.Point(709, 5);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(391, 196);
             this.groupBox2.TabIndex = 1;
@@ -576,7 +569,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(1680, 629);
+            this.ClientSize = new System.Drawing.Size(1795, 629);
             this.Controls.Add(this.panelControl3);
             this.Controls.Add(this.panelControl1);
             this.Controls.Add(this.panelControl4);

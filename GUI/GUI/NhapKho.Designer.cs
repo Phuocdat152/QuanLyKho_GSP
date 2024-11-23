@@ -32,7 +32,6 @@
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
             this.dgv_PhieuNhap = new System.Windows.Forms.DataGridView();
-            this.panelControl2 = new DevExpress.XtraEditors.PanelControl();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.txt_IDNhanVien = new DevExpress.XtraEditors.TextEdit();
             this.txt_NhanVien = new DevExpress.XtraEditors.TextEdit();
@@ -52,7 +51,6 @@
             this.labelControl5 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
-            this.panelControl3 = new DevExpress.XtraEditors.PanelControl();
             this.groupControl2 = new DevExpress.XtraEditors.GroupControl();
             this.gc_SanPham = new DevExpress.XtraGrid.GridControl();
             this.gv_SanPham = new DevExpress.XtraGrid.Views.Grid.GridView();
@@ -71,13 +69,13 @@
             this.btn_In = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.btn_Thoat = new System.Windows.Forms.ToolStripButton();
+            this.panelControl3 = new DevExpress.XtraEditors.PanelControl();
+            this.panelControl2 = new DevExpress.XtraEditors.PanelControl();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
             this.groupControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_PhieuNhap)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).BeginInit();
-            this.panelControl2.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txt_IDNhanVien.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txt_NhanVien.Properties)).BeginInit();
@@ -88,8 +86,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.txt_TrangThai.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txt_GhiChu.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txt_IDPN.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.panelControl3)).BeginInit();
-            this.panelControl3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).BeginInit();
             this.groupControl2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gc_SanPham)).BeginInit();
@@ -98,15 +94,20 @@
             ((System.ComponentModel.ISupportInitialize)(this.panelControl4)).BeginInit();
             this.panelControl4.SuspendLayout();
             this.toolStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.panelControl3)).BeginInit();
+            this.panelControl3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).BeginInit();
+            this.panelControl2.SuspendLayout();
             this.SuspendLayout();
             // 
             // panelControl1
             // 
+            this.panelControl1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.panelControl1.Controls.Add(this.groupControl1);
-            this.panelControl1.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panelControl1.Location = new System.Drawing.Point(0, 0);
+            this.panelControl1.Location = new System.Drawing.Point(1, 3);
             this.panelControl1.Name = "panelControl1";
-            this.panelControl1.Size = new System.Drawing.Size(408, 734);
+            this.panelControl1.Size = new System.Drawing.Size(311, 612);
             this.panelControl1.TabIndex = 0;
             // 
             // groupControl1
@@ -115,7 +116,7 @@
             this.groupControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupControl1.Location = new System.Drawing.Point(2, 2);
             this.groupControl1.Name = "groupControl1";
-            this.groupControl1.Size = new System.Drawing.Size(404, 730);
+            this.groupControl1.Size = new System.Drawing.Size(307, 608);
             this.groupControl1.TabIndex = 0;
             this.groupControl1.Text = "DANH SÁCH PHIẾU NHẬP KHO";
             // 
@@ -126,24 +127,14 @@
             this.dgv_PhieuNhap.Location = new System.Drawing.Point(2, 23);
             this.dgv_PhieuNhap.Name = "dgv_PhieuNhap";
             this.dgv_PhieuNhap.RowHeadersWidth = 51;
-            this.dgv_PhieuNhap.Size = new System.Drawing.Size(400, 705);
+            this.dgv_PhieuNhap.Size = new System.Drawing.Size(303, 583);
             this.dgv_PhieuNhap.TabIndex = 0;
             this.dgv_PhieuNhap.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_PhieuNhap_CellClick);
             // 
-            // panelControl2
-            // 
-            this.panelControl2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.panelControl2.Controls.Add(this.groupBox2);
-            this.panelControl2.Controls.Add(this.groupBox1);
-            this.panelControl2.Location = new System.Drawing.Point(410, 50);
-            this.panelControl2.Name = "panelControl2";
-            this.panelControl2.Size = new System.Drawing.Size(1283, 219);
-            this.panelControl2.TabIndex = 1;
-            // 
             // groupBox2
             // 
-            this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
+            this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.groupBox2.Controls.Add(this.txt_IDNhanVien);
             this.groupBox2.Controls.Add(this.txt_NhanVien);
             this.groupBox2.Controls.Add(this.dte_NgayNhap);
@@ -153,16 +144,16 @@
             this.groupBox2.Controls.Add(this.labelControl2);
             this.groupBox2.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox2.ForeColor = System.Drawing.Color.DodgerBlue;
-            this.groupBox2.Location = new System.Drawing.Point(899, 5);
+            this.groupBox2.Location = new System.Drawing.Point(716, 5);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(373, 209);
+            this.groupBox2.Size = new System.Drawing.Size(299, 209);
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Chứng từ";
             // 
             // txt_IDNhanVien
             // 
-            this.txt_IDNhanVien.Location = new System.Drawing.Point(309, 32);
+            this.txt_IDNhanVien.Location = new System.Drawing.Point(256, 31);
             this.txt_IDNhanVien.Name = "txt_IDNhanVien";
             this.txt_IDNhanVien.Size = new System.Drawing.Size(22, 20);
             this.txt_IDNhanVien.TabIndex = 33;
@@ -173,7 +164,7 @@
             this.txt_NhanVien.Enabled = false;
             this.txt_NhanVien.Location = new System.Drawing.Point(82, 32);
             this.txt_NhanVien.Name = "txt_NhanVien";
-            this.txt_NhanVien.Size = new System.Drawing.Size(249, 20);
+            this.txt_NhanVien.Size = new System.Drawing.Size(196, 20);
             this.txt_NhanVien.TabIndex = 32;
             // 
             // dte_NgayNhap
@@ -187,7 +178,7 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.dte_NgayNhap.Properties.MaskSettings.Set("MaskManagerType", typeof(DevExpress.Data.Mask.DateTimeMaskManager));
             this.dte_NgayNhap.Properties.MaskSettings.Set("mask", "d");
-            this.dte_NgayNhap.Size = new System.Drawing.Size(249, 20);
+            this.dte_NgayNhap.Size = new System.Drawing.Size(196, 20);
             this.dte_NgayNhap.TabIndex = 31;
             // 
             // labelControl8
@@ -205,7 +196,7 @@
             this.txt_TongTien.Enabled = false;
             this.txt_TongTien.Location = new System.Drawing.Point(82, 150);
             this.txt_TongTien.Name = "txt_TongTien";
-            this.txt_TongTien.Size = new System.Drawing.Size(249, 20);
+            this.txt_TongTien.Size = new System.Drawing.Size(196, 20);
             this.txt_TongTien.TabIndex = 11;
             // 
             // labelControl7
@@ -242,9 +233,9 @@
             this.groupBox1.Controls.Add(this.labelControl1);
             this.groupBox1.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.ForeColor = System.Drawing.Color.DodgerBlue;
-            this.groupBox1.Location = new System.Drawing.Point(4, 5);
+            this.groupBox1.Location = new System.Drawing.Point(14, 5);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(828, 209);
+            this.groupBox1.Size = new System.Drawing.Size(679, 209);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Thông tin chung";
@@ -252,25 +243,25 @@
             // txt_TrangThai
             // 
             this.txt_TrangThai.Enabled = false;
-            this.txt_TrangThai.Location = new System.Drawing.Point(522, 90);
+            this.txt_TrangThai.Location = new System.Drawing.Point(418, 91);
             this.txt_TrangThai.Name = "txt_TrangThai";
-            this.txt_TrangThai.Size = new System.Drawing.Size(283, 20);
+            this.txt_TrangThai.Size = new System.Drawing.Size(231, 20);
             this.txt_TrangThai.TabIndex = 11;
             // 
             // cb_Kho
             // 
             this.cb_Kho.Enabled = false;
             this.cb_Kho.FormattingEnabled = true;
-            this.cb_Kho.Location = new System.Drawing.Point(522, 32);
+            this.cb_Kho.Location = new System.Drawing.Point(418, 33);
             this.cb_Kho.Name = "cb_Kho";
-            this.cb_Kho.Size = new System.Drawing.Size(283, 21);
+            this.cb_Kho.Size = new System.Drawing.Size(231, 21);
             this.cb_Kho.TabIndex = 8;
             // 
             // labelControl6
             // 
             this.labelControl6.Appearance.ForeColor = System.Drawing.Color.Black;
             this.labelControl6.Appearance.Options.UseForeColor = true;
-            this.labelControl6.Location = new System.Drawing.Point(455, 91);
+            this.labelControl6.Location = new System.Drawing.Point(351, 92);
             this.labelControl6.Name = "labelControl6";
             this.labelControl6.Size = new System.Drawing.Size(49, 13);
             this.labelControl6.TabIndex = 10;
@@ -280,7 +271,7 @@
             // 
             this.labelControl4.Appearance.ForeColor = System.Drawing.Color.Black;
             this.labelControl4.Appearance.Options.UseForeColor = true;
-            this.labelControl4.Location = new System.Drawing.Point(455, 35);
+            this.labelControl4.Location = new System.Drawing.Point(351, 36);
             this.labelControl4.Name = "labelControl4";
             this.labelControl4.Size = new System.Drawing.Size(18, 13);
             this.labelControl4.TabIndex = 3;
@@ -292,7 +283,7 @@
             this.cb_NhaCC.FormattingEnabled = true;
             this.cb_NhaCC.Location = new System.Drawing.Point(99, 89);
             this.cb_NhaCC.Name = "cb_NhaCC";
-            this.cb_NhaCC.Size = new System.Drawing.Size(277, 21);
+            this.cb_NhaCC.Size = new System.Drawing.Size(216, 21);
             this.cb_NhaCC.TabIndex = 7;
             // 
             // txt_GhiChu
@@ -300,7 +291,7 @@
             this.txt_GhiChu.Enabled = false;
             this.txt_GhiChu.Location = new System.Drawing.Point(99, 155);
             this.txt_GhiChu.Name = "txt_GhiChu";
-            this.txt_GhiChu.Size = new System.Drawing.Size(706, 20);
+            this.txt_GhiChu.Size = new System.Drawing.Size(550, 20);
             this.txt_GhiChu.TabIndex = 6;
             // 
             // txt_IDPN
@@ -308,7 +299,7 @@
             this.txt_IDPN.Enabled = false;
             this.txt_IDPN.Location = new System.Drawing.Point(99, 31);
             this.txt_IDPN.Name = "txt_IDPN";
-            this.txt_IDPN.Size = new System.Drawing.Size(277, 20);
+            this.txt_IDPN.Size = new System.Drawing.Size(216, 20);
             this.txt_IDPN.TabIndex = 5;
             // 
             // labelControl5
@@ -341,25 +332,14 @@
             this.labelControl1.TabIndex = 0;
             this.labelControl1.Text = "Mã phiếu nhập";
             // 
-            // panelControl3
-            // 
-            this.panelControl3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.panelControl3.Controls.Add(this.groupControl2);
-            this.panelControl3.Location = new System.Drawing.Point(410, 275);
-            this.panelControl3.Name = "panelControl3";
-            this.panelControl3.Size = new System.Drawing.Size(1283, 457);
-            this.panelControl3.TabIndex = 29;
-            // 
             // groupControl2
             // 
+            this.groupControl2.AutoSize = true;
             this.groupControl2.Controls.Add(this.gc_SanPham);
             this.groupControl2.Controls.Add(this.toolStrip2);
-            this.groupControl2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupControl2.Location = new System.Drawing.Point(2, 2);
             this.groupControl2.Name = "groupControl2";
-            this.groupControl2.Size = new System.Drawing.Size(1279, 453);
+            this.groupControl2.Size = new System.Drawing.Size(1032, 341);
             this.groupControl2.TabIndex = 0;
             this.groupControl2.Text = "Thuốc nhập";
             // 
@@ -369,7 +349,7 @@
             this.gc_SanPham.Location = new System.Drawing.Point(2, 50);
             this.gc_SanPham.MainView = this.gv_SanPham;
             this.gc_SanPham.Name = "gc_SanPham";
-            this.gc_SanPham.Size = new System.Drawing.Size(1275, 401);
+            this.gc_SanPham.Size = new System.Drawing.Size(1028, 289);
             this.gc_SanPham.TabIndex = 30;
             this.gc_SanPham.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gv_SanPham});
@@ -393,7 +373,7 @@
             this.toolStrip2.Location = new System.Drawing.Point(2, 23);
             this.toolStrip2.Name = "toolStrip2";
             this.toolStrip2.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
-            this.toolStrip2.Size = new System.Drawing.Size(1275, 27);
+            this.toolStrip2.Size = new System.Drawing.Size(1028, 27);
             this.toolStrip2.TabIndex = 29;
             this.toolStrip2.Text = "toolStrip2";
             // 
@@ -429,9 +409,9 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panelControl4.AutoSize = true;
             this.panelControl4.Controls.Add(this.toolStrip1);
-            this.panelControl4.Location = new System.Drawing.Point(410, 2);
+            this.panelControl4.Location = new System.Drawing.Point(314, 2);
             this.panelControl4.Name = "panelControl4";
-            this.panelControl4.Size = new System.Drawing.Size(1283, 42);
+            this.panelControl4.Size = new System.Drawing.Size(1036, 42);
             this.panelControl4.TabIndex = 30;
             // 
             // toolStrip1
@@ -451,7 +431,7 @@
             this.toolStrip1.Location = new System.Drawing.Point(2, 2);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
-            this.toolStrip1.Size = new System.Drawing.Size(1279, 27);
+            this.toolStrip1.Size = new System.Drawing.Size(1032, 27);
             this.toolStrip1.TabIndex = 28;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -520,12 +500,31 @@
             this.btn_Thoat.Size = new System.Drawing.Size(61, 24);
             this.btn_Thoat.Text = "Thoát";
             // 
+            // panelControl3
+            // 
+            this.panelControl3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.panelControl3.Controls.Add(this.groupControl2);
+            this.panelControl3.Location = new System.Drawing.Point(316, 268);
+            this.panelControl3.Name = "panelControl3";
+            this.panelControl3.Size = new System.Drawing.Size(1036, 345);
+            this.panelControl3.TabIndex = 29;
+            // 
+            // panelControl2
+            // 
+            this.panelControl2.Controls.Add(this.groupBox2);
+            this.panelControl2.Controls.Add(this.groupBox1);
+            this.panelControl2.Location = new System.Drawing.Point(316, 47);
+            this.panelControl2.Name = "panelControl2";
+            this.panelControl2.Size = new System.Drawing.Size(1035, 219);
+            this.panelControl2.TabIndex = 1;
+            // 
             // NhapKho
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(1694, 734);
+            this.ClientSize = new System.Drawing.Size(1356, 622);
             this.Controls.Add(this.panelControl4);
             this.Controls.Add(this.panelControl3);
             this.Controls.Add(this.panelControl2);
@@ -541,8 +540,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).EndInit();
             this.groupControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgv_PhieuNhap)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).EndInit();
-            this.panelControl2.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txt_IDNhanVien.Properties)).EndInit();
@@ -555,8 +552,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.txt_TrangThai.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txt_GhiChu.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txt_IDPN.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.panelControl3)).EndInit();
-            this.panelControl3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).EndInit();
             this.groupControl2.ResumeLayout(false);
             this.groupControl2.PerformLayout();
@@ -569,6 +564,11 @@
             this.panelControl4.PerformLayout();
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.panelControl3)).EndInit();
+            this.panelControl3.ResumeLayout(false);
+            this.panelControl3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).EndInit();
+            this.panelControl2.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -578,8 +578,6 @@
 
         private DevExpress.XtraEditors.PanelControl panelControl1;
         private DevExpress.XtraEditors.GroupControl groupControl1;
-        private DevExpress.XtraEditors.PanelControl panelControl2;
-        private DevExpress.XtraEditors.PanelControl panelControl3;
         private System.Windows.Forms.DataGridView dgv_PhieuNhap;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.GroupBox groupBox1;
@@ -618,5 +616,7 @@
         private DevExpress.XtraEditors.TextEdit txt_IDNhanVien;
         private DevExpress.XtraEditors.TextEdit txt_NhanVien;
         private DevExpress.XtraEditors.TextEdit txt_TrangThai;
+        private DevExpress.XtraEditors.PanelControl panelControl3;
+        private DevExpress.XtraEditors.PanelControl panelControl2;
     }
 }

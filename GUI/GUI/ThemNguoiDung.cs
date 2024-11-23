@@ -74,7 +74,7 @@ namespace GUI
                     txt_addDiaChi.Text,         // Địa chỉ
                     txt_addEmail.Text,          // Email
                     txt_addSDT.Text,            // Số điện thoại
-                    txt_addTrinhDo.Text,        // Trình độ
+                    cb_TrinhDo.Text,        // Trình độ
                     anh                         // Ảnh
                 );
 
@@ -168,7 +168,7 @@ namespace GUI
                         txt_addDiaChi.Text,
                         txt_addEmail.Text,
                         txt_addSDT.Text,
-                        txt_addTrinhDo.Text,
+                        cb_TrinhDo.Text,
                         anh))
                 {
                     MessageBox.Show("Thêm nhân viên thành công!");
