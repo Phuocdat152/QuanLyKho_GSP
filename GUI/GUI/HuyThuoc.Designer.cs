@@ -38,7 +38,6 @@
             this.pb_BienBan = new System.Windows.Forms.PictureBox();
             this.btn_TaiBienBan = new System.Windows.Forms.Button();
             this.btn_Luu = new DevExpress.XtraEditors.SimpleButton();
-            this.cb_ThuocHuy = new DevExpress.XtraEditors.ComboBoxEdit();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
             this.gc_ThuocHuy = new DevExpress.XtraGrid.GridControl();
@@ -46,6 +45,13 @@
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.gc_DSTH = new DevExpress.XtraGrid.GridControl();
             this.gv_DSHT = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.cb_ThuocHuy = new DevExpress.XtraEditors.SearchLookUpEdit();
+            this.searchLookUpEdit1View = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.splitContainerControl2 = new DevExpress.XtraEditors.SplitContainerControl();
+            this.groupControl2 = new DevExpress.XtraEditors.GroupControl();
+            this.gc_DSTDH = new DevExpress.XtraGrid.GridControl();
+            this.gv_DSTDH = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.groupControl3 = new DevExpress.XtraEditors.GroupControl();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).BeginInit();
@@ -56,7 +62,6 @@
             this.splitContainerControl1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pb_BienBan)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cb_ThuocHuy.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
             this.groupControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gc_ThuocHuy)).BeginInit();
@@ -64,6 +69,20 @@
             this.tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gc_DSTH)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gv_DSHT)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cb_ThuocHuy.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit1View)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl2.Panel1)).BeginInit();
+            this.splitContainerControl2.Panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl2.Panel2)).BeginInit();
+            this.splitContainerControl2.Panel2.SuspendLayout();
+            this.splitContainerControl2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).BeginInit();
+            this.groupControl2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gc_DSTDH)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gv_DSTDH)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.groupControl3)).BeginInit();
+            this.groupControl3.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -97,10 +116,10 @@
             // 
             // splitContainerControl1.Panel1
             // 
+            this.splitContainerControl1.Panel1.Controls.Add(this.cb_ThuocHuy);
             this.splitContainerControl1.Panel1.Controls.Add(this.groupBox1);
             this.splitContainerControl1.Panel1.Controls.Add(this.btn_TaiBienBan);
             this.splitContainerControl1.Panel1.Controls.Add(this.btn_Luu);
-            this.splitContainerControl1.Panel1.Controls.Add(this.cb_ThuocHuy);
             this.splitContainerControl1.Panel1.Controls.Add(this.labelControl1);
             this.splitContainerControl1.Panel1.Text = "Panel1";
             // 
@@ -172,16 +191,6 @@
             this.btn_Luu.TabIndex = 2;
             this.btn_Luu.Text = "Lưu";
             // 
-            // cb_ThuocHuy
-            // 
-            this.cb_ThuocHuy.Enabled = false;
-            this.cb_ThuocHuy.Location = new System.Drawing.Point(43, 48);
-            this.cb_ThuocHuy.Name = "cb_ThuocHuy";
-            this.cb_ThuocHuy.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.cb_ThuocHuy.Size = new System.Drawing.Size(644, 20);
-            this.cb_ThuocHuy.TabIndex = 1;
-            // 
             // labelControl1
             // 
             this.labelControl1.Location = new System.Drawing.Point(43, 29);
@@ -219,7 +228,7 @@
             // 
             // tabPage2
             // 
-            this.tabPage2.Controls.Add(this.gc_DSTH);
+            this.tabPage2.Controls.Add(this.splitContainerControl2);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
@@ -231,10 +240,10 @@
             // gc_DSTH
             // 
             this.gc_DSTH.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gc_DSTH.Location = new System.Drawing.Point(3, 3);
+            this.gc_DSTH.Location = new System.Drawing.Point(2, 23);
             this.gc_DSTH.MainView = this.gv_DSHT;
             this.gc_DSTH.Name = "gc_DSTH";
-            this.gc_DSTH.Size = new System.Drawing.Size(1305, 615);
+            this.gc_DSTH.Size = new System.Drawing.Size(1301, 272);
             this.gc_DSTH.TabIndex = 0;
             this.gc_DSTH.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gv_DSHT});
@@ -243,7 +252,82 @@
             // 
             this.gv_DSHT.GridControl = this.gc_DSTH;
             this.gv_DSHT.Name = "gv_DSHT";
-            this.gv_DSHT.OptionsView.ShowFooter = true;
+            this.gv_DSHT.OptionsView.ShowGroupPanel = false;
+            // 
+            // cb_ThuocHuy
+            // 
+            this.cb_ThuocHuy.Enabled = false;
+            this.cb_ThuocHuy.Location = new System.Drawing.Point(43, 49);
+            this.cb_ThuocHuy.Name = "cb_ThuocHuy";
+            this.cb_ThuocHuy.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.cb_ThuocHuy.Properties.PopupView = this.searchLookUpEdit1View;
+            this.cb_ThuocHuy.Size = new System.Drawing.Size(644, 20);
+            this.cb_ThuocHuy.TabIndex = 6;
+            // 
+            // searchLookUpEdit1View
+            // 
+            this.searchLookUpEdit1View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
+            this.searchLookUpEdit1View.Name = "searchLookUpEdit1View";
+            this.searchLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = false;
+            this.searchLookUpEdit1View.OptionsView.ShowGroupPanel = false;
+            // 
+            // splitContainerControl2
+            // 
+            this.splitContainerControl2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainerControl2.Horizontal = false;
+            this.splitContainerControl2.Location = new System.Drawing.Point(3, 3);
+            this.splitContainerControl2.Name = "splitContainerControl2";
+            // 
+            // splitContainerControl2.Panel1
+            // 
+            this.splitContainerControl2.Panel1.Controls.Add(this.groupControl2);
+            this.splitContainerControl2.Panel1.Text = "Panel1";
+            // 
+            // splitContainerControl2.Panel2
+            // 
+            this.splitContainerControl2.Panel2.Controls.Add(this.groupControl3);
+            this.splitContainerControl2.Panel2.Text = "Panel2";
+            this.splitContainerControl2.Size = new System.Drawing.Size(1305, 615);
+            this.splitContainerControl2.SplitterPosition = 297;
+            this.splitContainerControl2.TabIndex = 1;
+            // 
+            // groupControl2
+            // 
+            this.groupControl2.Controls.Add(this.gc_DSTH);
+            this.groupControl2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupControl2.Location = new System.Drawing.Point(0, 0);
+            this.groupControl2.Name = "groupControl2";
+            this.groupControl2.Size = new System.Drawing.Size(1305, 297);
+            this.groupControl2.TabIndex = 0;
+            this.groupControl2.Text = "Danh sách thuốc chờ hủy";
+            // 
+            // gc_DSTDH
+            // 
+            this.gc_DSTDH.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gc_DSTDH.Location = new System.Drawing.Point(2, 23);
+            this.gc_DSTDH.MainView = this.gv_DSTDH;
+            this.gc_DSTDH.Name = "gc_DSTDH";
+            this.gc_DSTDH.Size = new System.Drawing.Size(1301, 283);
+            this.gc_DSTDH.TabIndex = 0;
+            this.gc_DSTDH.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.gv_DSTDH});
+            // 
+            // gv_DSTDH
+            // 
+            this.gv_DSTDH.GridControl = this.gc_DSTDH;
+            this.gv_DSTDH.Name = "gv_DSTDH";
+            this.gv_DSTDH.OptionsView.ShowGroupPanel = false;
+            // 
+            // groupControl3
+            // 
+            this.groupControl3.Controls.Add(this.gc_DSTDH);
+            this.groupControl3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupControl3.Location = new System.Drawing.Point(0, 0);
+            this.groupControl3.Name = "groupControl3";
+            this.groupControl3.Size = new System.Drawing.Size(1305, 308);
+            this.groupControl3.TabIndex = 0;
+            this.groupControl3.Text = "Danh sách thuốc đã hủy";
             // 
             // HuyThuoc
             // 
@@ -267,7 +351,6 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pb_BienBan)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cb_ThuocHuy.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).EndInit();
             this.groupControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gc_ThuocHuy)).EndInit();
@@ -275,6 +358,20 @@
             this.tabPage2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gc_DSTH)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gv_DSHT)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cb_ThuocHuy.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit1View)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl2.Panel1)).EndInit();
+            this.splitContainerControl2.Panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl2.Panel2)).EndInit();
+            this.splitContainerControl2.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl2)).EndInit();
+            this.splitContainerControl2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).EndInit();
+            this.groupControl2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.gc_DSTDH)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gv_DSTDH)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.groupControl3)).EndInit();
+            this.groupControl3.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -286,7 +383,6 @@
         private System.Windows.Forms.TabPage tabPage2;
         private DevExpress.XtraEditors.SplitContainerControl splitContainerControl1;
         private DevExpress.XtraEditors.SimpleButton btn_Luu;
-        private DevExpress.XtraEditors.ComboBoxEdit cb_ThuocHuy;
         private DevExpress.XtraEditors.LabelControl labelControl1;
         private DevExpress.XtraEditors.GroupControl groupControl1;
         private DevExpress.XtraGrid.GridControl gc_ThuocHuy;
@@ -298,5 +394,12 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private DevExpress.XtraEditors.LabelControl labelControl2;
         private DevExpress.XtraEditors.LabelControl labelControl3;
+        private DevExpress.XtraEditors.SearchLookUpEdit cb_ThuocHuy;
+        private DevExpress.XtraGrid.Views.Grid.GridView searchLookUpEdit1View;
+        private DevExpress.XtraEditors.SplitContainerControl splitContainerControl2;
+        private DevExpress.XtraEditors.GroupControl groupControl2;
+        private DevExpress.XtraGrid.GridControl gc_DSTDH;
+        private DevExpress.XtraGrid.Views.Grid.GridView gv_DSTDH;
+        private DevExpress.XtraEditors.GroupControl groupControl3;
     }
 }

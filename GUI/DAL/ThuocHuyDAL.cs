@@ -51,12 +51,12 @@ namespace DAL
             }
         }
 
-        public DataTable HienThiThongTinThuocHuy()
+        public DataTable HienThiThongTinThuocHuy_ChuaHuy()
         {
             try
             {
                 // Gọi stored procedure và trả về DataTable
-                return dataConnect.ExecuteStoredProcedureWithDataTable("sp_HienThiThongTinThuocHuy");
+                return dataConnect.ExecuteStoredProcedureWithDataTable("sp_HienThiThongTinThuocHuy_ChuaHuy");
             }
             catch (Exception ex)
             {
@@ -64,16 +64,42 @@ namespace DAL
             }
         }
 
-        public int CapNhatTinhTrangThuocHuy()
+        public DataTable HienThiThongTinThuocHuy_DaHuy()
         {
             try
             {
-                // Gọi stored procedure
-                return dataConnect.ExecuteStoredProcedure("sp_CapNhatTinhTrangThuocHuy");
+                // Gọi stored procedure và trả về DataTable
+                return dataConnect.ExecuteStoredProcedureWithDataTable("sp_HienThiThongTinThuocHuy_DaHuy");
             }
             catch (Exception ex)
             {
-                throw new Exception($"Lỗi khi cập nhật trạng thái thuốc hủy: {ex.Message}");
+                throw new Exception($"Lỗi khi hiển thị thông tin thuốc hủy: {ex.Message}");
+            }
+        }
+
+        public bool CapNhatTinhTrangThuocHuy(string idThuocHuy, string tinhTrangMoi)
+        {
+            try
+            {
+                // Câu truy vấn SQL
+                string query = "UPDATE ThuocHuy SET TinhTrang = @TinhTrangMoi WHERE IDThuocHuy = @IDThuocHuy";
+
+                // Tạo tham số
+                SqlParameter[] parameters = new SqlParameter[]
+                {
+                new SqlParameter("@TinhTrangMoi", tinhTrangMoi),
+                new SqlParameter("@IDThuocHuy", idThuocHuy)
+                };
+
+                // Thực thi truy vấn
+                int rowsAffected = dataConnect.ExecuteNonQuery(query, parameters);
+
+                // Trả về kết quả
+                return rowsAffected > 0;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Lỗi khi cập nhật tình trạng thuốc hủy: " + ex.Message);
             }
         }
     }

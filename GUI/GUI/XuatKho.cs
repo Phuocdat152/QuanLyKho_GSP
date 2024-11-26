@@ -30,10 +30,18 @@ namespace GUI
             txt_IDNhanVien.Visible = false;
 
 
+            // Gắn sự kiện
+            cb_ChonThuoc.EditValueChanged += Cb_ChonThuoc_EditValueChanged;
+            btn_ThemSP.Click += btn_ThemSP_Click;
+            btn_Luu.Click += btn_Luu_Click;
+            btn_XoaSP.Click += btn_XoaSP_Click;
+            btn_Them.Click += btn_Them_Click;
+            dgv_PhieuXuat.CellClick += dgv_PhieuXuat_CellClick;
+
             var gridView = gc_SanPham.MainView as DevExpress.XtraGrid.Views.Grid.GridView;
             if (gridView != null)
             {
-                gridView.CellValueChanged += gv_SanPham_CellValueChanged; // Thêm sự kiện
+                gridView.CellValueChanged += gv_SanPham_CellValueChanged;
             }
         }
 
@@ -91,28 +99,85 @@ namespace GUI
         {
             try
             {
-                // Gọi phương thức từ BLL để lấy danh sách thuốc
+                // Lấy dữ liệu thuốc từ BLL
                 DataTable thuocData = thuocBLL.GetThuocInfo();
 
                 if (thuocData != null && thuocData.Rows.Count > 0)
                 {
-                    // Gán dữ liệu vào ComboBox
-                    cb_ChonThuoc.DataSource = thuocData;
-                    cb_ChonThuoc.DisplayMember = "TenThuoc"; // Tên cột hiển thị
-                    cb_ChonThuoc.ValueMember = "IDThuoc";   // Tên cột giá trị
-                    cb_ChonThuoc.SelectedIndex = -1; // Đặt mặc định là chưa chọn
+                    // Cấu hình SearchLookUpEdit
+                    cb_ChonThuoc.Properties.DataSource = thuocData; // Gán dữ liệu
+                    cb_ChonThuoc.Properties.DisplayMember = "TenThuoc"; // Hiển thị tên thuốc
+                    cb_ChonThuoc.Properties.ValueMember = "IDThuoc"; // Giá trị sẽ là IDThuoc
+
+                    // Tùy chỉnh các cột hiển thị trong danh sách tìm kiếm
+                    cb_ChonThuoc.Properties.PopulateViewColumns();
+                    var view = cb_ChonThuoc.Properties.View;
+                    view.Columns["IDThuoc"].Caption = "Mã Thuốc";
+                    view.Columns["TenThuoc"].Caption = "Tên Thuốc";
+                    view.Columns["ThanhPhan"].Caption = "Thành Phần";
+                    view.Columns["DonGia"].Visible = false; // Ẩn cột không cần thiết
+                   
+
+                    // Tắt tính năng chỉnh sửa trong danh sách
+                    view.OptionsBehavior.Editable = false;
+
+                    // Đặt ô tìm kiếm
+                    cb_ChonThuoc.Properties.NullText = "Tìm kiếm thuốc...";
+
+                    // Xóa giá trị chọn trước đó (nếu có)
+                    cb_ChonThuoc.EditValue = null;
+
+                    // Gắn sự kiện khi chọn thuốc
+                    cb_ChonThuoc.EditValueChanged += Cb_ChonThuoc_EditValueChanged;
                 }
                 else
                 {
-                    // Xóa dữ liệu nếu không có gì
-                    cb_ChonThuoc.DataSource = null;
+                    MessageBox.Show("Không có dữ liệu thuốc để tải!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Lỗi khi tải dữ liệu thuốc vào ComboBox: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Lỗi khi tải dữ liệu thuốc: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+
+
+        private void Cb_ChonThuoc_EditValueChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                // Lấy giá trị thuốc được chọn
+                var selectedValue = cb_ChonThuoc.EditValue?.ToString();
+
+                if (!string.IsNullOrEmpty(selectedValue))
+                {
+                    // Lấy dữ liệu thuốc tương ứng từ DataTable
+                    DataRowView selectedRow = cb_ChonThuoc.Properties.View.GetFocusedRow() as DataRowView;
+
+                    if (selectedRow != null)
+                    {
+                        // Lấy thông tin thuốc từ dòng được chọn
+                        string idThuoc = selectedRow["IDThuoc"].ToString();
+                        string tenThuoc = selectedRow["TenThuoc"].ToString();
+                        string thanhPhan = selectedRow["ThanhPhan"].ToString();
+
+                        //// Hiển thị thông tin vào các trường hoặc lưới
+                        //txt_TenThuoc.Text = tenThuoc;
+                        //txt_ThanhPhan.Text = thanhPhan;
+
+                        //// Ghi ID thuốc vào TextBox ẩn (nếu cần thiết)
+                        //txt_IDThuoc.Text = idThuoc;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Lỗi khi chọn thuốc: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+
 
 
         private void ConfigureGridColumnHeaders()
@@ -315,20 +380,16 @@ namespace GUI
             LoadThuocToComboBox();
             LoadDanhSachPhieuXuat();
 
-            // Đảm bảo sự kiện được gắn
-            var gridView = gc_SanPham.MainView as DevExpress.XtraGrid.Views.Grid.GridView;
-            if (gridView != null)
-            {
-                gridView.CellValueChanged += gv_SanPham_CellValueChanged; // Gắn sự kiện
-            }
+           
         }
 
         private void btn_ThemSP_Click(object sender, EventArgs e)
         {
             try
             {
-                string idThuoc = cb_ChonThuoc.SelectedValue?.ToString();
-                if (string.IsNullOrEmpty(idThuoc))
+                // Lấy ID thuốc từ SearchLookUpEdit
+                var selectedValue = cb_ChonThuoc.EditValue?.ToString();
+                if (string.IsNullOrEmpty(selectedValue))
                 {
                     MessageBox.Show("Vui lòng chọn thuốc!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
@@ -341,7 +402,22 @@ namespace GUI
                     return;
                 }
 
-                // Lấy thông tin thuốc
+                // Lấy dòng thuốc được chọn từ SearchLookUpEdit
+                DataRowView selectedRow = cb_ChonThuoc.Properties.View.GetFocusedRow() as DataRowView;
+                if (selectedRow == null)
+                {
+                    MessageBox.Show("Không tìm thấy thông tin thuốc!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                // Lấy thông tin thuốc từ dòng được chọn
+                string idThuoc = selectedRow["IDThuoc"].ToString();
+                string tenThuoc = selectedRow["TenThuoc"].ToString();
+                string thanhPhan = selectedRow["ThanhPhan"].ToString();
+                string quyCach = "Hộp"; // Hoặc lấy từ dữ liệu nếu có
+                float donGia = float.Parse(selectedRow["DonGia"].ToString());
+
+                // Lấy thông tin chi tiết thuốc từ BLL
                 DataTable thuocInfo = xuatKhoBLL.LayThongTinThuocXuatTheoID(idThuoc, soLuongYeuCau);
 
                 if (thuocInfo != null && thuocInfo.Rows.Count > 0)
@@ -351,7 +427,7 @@ namespace GUI
 
                     int remainingQuantity = soLuongYeuCau;
 
-                    // Xóa tất cả các dòng liên quan đến thuốc hiện tại trước khi thêm lại
+                    // Xóa các dòng liên quan đến thuốc hiện tại trước khi thêm lại
                     var rowsToRemove = currentData.AsEnumerable()
                         .Where(row => row["IDThuoc"].ToString() == idThuoc)
                         .ToList();
@@ -361,7 +437,7 @@ namespace GUI
                         currentData.Rows.Remove(row);
                     }
 
-                    // Thêm lại dữ liệu từ đầu
+                    // Thêm dữ liệu từ kết quả
                     foreach (DataRow newRow in thuocInfo.Rows)
                     {
                         if (remainingQuantity <= 0) break;
@@ -373,7 +449,7 @@ namespace GUI
 
                         if (availableQuantity <= 0) continue; // Bỏ qua lô hàng không còn tồn
 
-                        // Kiểm tra nếu số lượng yêu cầu lớn hơn số lượng tồn
+                        // Tính số lượng có thể xuất
                         int quantityToExport = Math.Min(remainingQuantity, availableQuantity);
                         remainingQuantity -= quantityToExport;
 
@@ -399,8 +475,8 @@ namespace GUI
                         MessageBox.Show("Không đủ số lượng để xuất theo yêu cầu!", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     }
 
-                    gc_SanPham.DataSource = currentData; // Cập nhật dữ liệu nguồn
-                    CapNhatTongTien(); // Tính lại Tổng tiền
+                    gc_SanPham.DataSource = currentData; // Cập nhật lại dữ liệu GridControl
+                    CapNhatTongTien(); // Tính lại tổng tiền
                 }
                 else
                 {
@@ -409,7 +485,7 @@ namespace GUI
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Lỗi: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Lỗi: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -524,7 +600,8 @@ namespace GUI
             txt_TrangThai.Text = "";
             cb_KhoXuat.SelectedIndex = -1;
             cb_KhoNhan.SelectedIndex = -1;
-            cb_ChonThuoc.SelectedIndex = -1;
+            cb_ChonThuoc.EditValue = "Tìm kiếm thuốc...";
+            num_SoLuong.Value = 0;
             
 
             // Xóa dữ liệu trong GridControl

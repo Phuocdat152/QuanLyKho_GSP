@@ -181,112 +181,226 @@ namespace GUI
         }
 
 
-
-
-
-        private void LoadComboBoxInTenThuocColumn()
+        private void LoadChiTietPhieuNhap()
         {
             try
             {
-                // Lấy danh sách IDChiTietPhieuNhap đã lưu từ BLL
-                List<string> savedIDs = luuTruBLL.GetSavedIDChiTietPhieuNhap();
-
-                // Lấy dữ liệu từ bảng ChiTietPhieuNhap qua BLL
+                // Lấy dữ liệu từ BLL
                 DataTable dtChiTietPhieuNhap = luuTruBLL.HienThiTatCaChiTietNhapKho();
 
-                // Kiểm tra nếu không có dữ liệu hoặc không có dữ liệu sau khi lọc
-                if (dtChiTietPhieuNhap == null || dtChiTietPhieuNhap.Rows.Count == 0)
+                if (dtChiTietPhieuNhap != null && dtChiTietPhieuNhap.Rows.Count > 0)
                 {
-                    // Tạo DataTable trống với các cột cần thiết
-                    dtChiTietPhieuNhap = new DataTable();
-                    dtChiTietPhieuNhap.Columns.Add("IDChiTietPhieuNhap", typeof(string));
-                    dtChiTietPhieuNhap.Columns.Add("IDThuoc", typeof(string));
-                    dtChiTietPhieuNhap.Columns.Add("TenThuoc", typeof(string));
-                    dtChiTietPhieuNhap.Columns.Add("SoLuong", typeof(int));
-                    dtChiTietPhieuNhap.Columns.Add("NgayNhap", typeof(DateTime));
-                    dtChiTietPhieuNhap.Columns.Add("NgayHetHan", typeof(DateTime));
-                    dtChiTietPhieuNhap.Columns.Add("QuyCach", typeof(string));
-                    dtChiTietPhieuNhap.Columns.Add("GiaDonVi", typeof(decimal));
+                    // Gán dữ liệu vào GridControl
+                    gc_ThuocChuaSapXep.DataSource = dtChiTietPhieuNhap;
+
+                    // Tùy chỉnh hiển thị cột
+                    gv_ThuocChuaSapXep.PopulateColumns();
+
+                    // Đặt tên tiêu đề cho các cột
+                    if (gv_ThuocChuaSapXep.Columns["IDChiTietNhapKho"] != null)
+                        gv_ThuocChuaSapXep.Columns["IDChiTietNhapKho"].Caption = "Mã CTPN";
+
+                    if (gv_ThuocChuaSapXep.Columns["IDThuoc"] != null)
+                        gv_ThuocChuaSapXep.Columns["IDThuoc"].Caption = "Mã Thuốc";
+
+                    if (gv_ThuocChuaSapXep.Columns["TenThuoc"] != null)
+                        gv_ThuocChuaSapXep.Columns["TenThuoc"].Caption = "Tên Thuốc";
+
+                    if (gv_ThuocChuaSapXep.Columns["SoLuong"] != null)
+                        gv_ThuocChuaSapXep.Columns["SoLuong"].Caption = "Số Lượng";
+
+                    if (gv_ThuocChuaSapXep.Columns["DonGia"] != null)
+                        gv_ThuocChuaSapXep.Columns["DonGia"].Caption = "Đơn Giá";
+
+                    if (gv_ThuocChuaSapXep.Columns["ThanhTien"] != null)
+                        gv_ThuocChuaSapXep.Columns["ThanhTien"].Caption = "Thành Tiền";
+
+                    if (gv_ThuocChuaSapXep.Columns["NgaySanXuat"] != null)
+                        gv_ThuocChuaSapXep.Columns["NgaySanXuat"].Caption = "Ngày Sản Xuất";
+
+                    if (gv_ThuocChuaSapXep.Columns["NgayHetHan"] != null)
+                        gv_ThuocChuaSapXep.Columns["NgayHetHan"].Caption = "Ngày Hết Hạn";
+
+                    // Thêm cột "Vị trí" với combobox
+                    AddViTriColumn();
                 }
                 else
                 {
-                    // Lọc dữ liệu để loại bỏ các IDChiTietPhieuNhap đã lưu
-                    dtChiTietPhieuNhap = dtChiTietPhieuNhap.AsEnumerable()
-                        .Where(row => !savedIDs.Contains(row["IDChiTietPhieuNhap"].ToString()))
-                        .CopyToDataTable();
+                    MessageBox.Show("Không có dữ liệu chi tiết nhập kho!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    gc_ThuocChuaSapXep.DataSource = null;
                 }
-
-                // Thêm cột UniqueID để làm khóa duy nhất, kết hợp IDThuoc và IDChiTietPhieuNhap
-                dtChiTietPhieuNhap.Columns.Add("UniqueID", typeof(string), "IDThuoc + '-' + IDChiTietPhieuNhap");
-
-                // Tạo RepositoryItemLookUpEdit cho cột "Tên thuốc"
-                RepositoryItemLookUpEdit lookUpEditTenThuoc = new RepositoryItemLookUpEdit
-                {
-                    DataSource = dtChiTietPhieuNhap,
-                    DisplayMember = "TenThuoc",  // Hiển thị tên thuốc trong ComboBox
-                    ValueMember = "UniqueID",    // Sử dụng UniqueID để phân biệt các dòng
-                    NullText = "Chọn tên thuốc"
-                };
-
-                // Thiết lập các cột hiển thị trong dropdown của LookUpEdit
-                lookUpEditTenThuoc.PopulateColumns();
-                lookUpEditTenThuoc.Columns["IDChiTietPhieuNhap"].Caption = "Mã CTPN";
-                lookUpEditTenThuoc.Columns["IDThuoc"].Caption = "Mã Thuốc";
-                lookUpEditTenThuoc.Columns["NgayHetHan"].Caption = "Ngày Hết Hạn";
-                lookUpEditTenThuoc.Columns["QuyCach"].Caption = "Quy Cách";
-                lookUpEditTenThuoc.Columns["SoLuong"].Caption = "Số Lượng";
-                lookUpEditTenThuoc.Columns["GiaDonVi"].Caption = "Giá Đơn Vị";
-                lookUpEditTenThuoc.Columns["NgayNhap"].Caption = "Ngày Nhập";
-                lookUpEditTenThuoc.Columns["TenThuoc"].Caption = "Tên Thuốc";
-                lookUpEditTenThuoc.Columns["UniqueID"].Visible = false; // Ẩn UniqueID
-
-                // Xử lý sự kiện EditValueChanged để tự động điền dữ liệu khi chọn một dòng
-                lookUpEditTenThuoc.EditValueChanged += (s, e) =>
-                {
-                    var editor = s as DevExpress.XtraEditors.LookUpEdit;
-                    if (editor?.EditValue == null) return;
-
-                    // Lấy thông tin từ dòng được chọn dựa trên UniqueID
-                    DataRow selectedRow = (editor.Properties.GetDataSourceRowByKeyValue(editor.EditValue) as DataRowView)?.Row;
-                    if (selectedRow != null)
-                    {
-                        // Điền dữ liệu vào các cột tương ứng trong GridView
-                        gv_ThuocChuaSapXep.SetFocusedRowCellValue("IDThuoc", selectedRow["IDThuoc"]);
-                        gv_ThuocChuaSapXep.SetFocusedRowCellValue("IDChiTietPhieuNhap", selectedRow["IDChiTietPhieuNhap"]);
-                        gv_ThuocChuaSapXep.SetFocusedRowCellValue("SLTon", selectedRow["SoLuong"]);
-                        gv_ThuocChuaSapXep.SetFocusedRowCellValue("NgayNhap", selectedRow["NgayNhap"]);
-                    }
-                };
-
-                // Gán LookUpEdit vào cột "Tên thuốc"
-                var colTenThuoc = gv_ThuocChuaSapXep.Columns["TenThuoc"];
-                if (colTenThuoc != null)
-                {
-                    colTenThuoc.ColumnEdit = lookUpEditTenThuoc;
-                }
-
-                gv_ThuocChuaSapXep.RefreshData();
             }
             catch (Exception ex)
             {
-                // Bỏ qua lỗi, không hiện thông báo
+                MessageBox.Show($"Lỗi khi tải dữ liệu chi tiết nhập kho: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
 
 
 
-        private void LoadComboBoxInViTriColumn()
+
+        //private void LoadComboBoxInTenThuocColumn()
+        //{
+        //    try
+        //    {
+        //        // Lấy danh sách IDChiTietPhieuNhap đã lưu từ BLL
+        //        List<string> savedIDs = luuTruBLL.GetSavedIDChiTietPhieuNhap();
+
+        //        // Lấy dữ liệu từ bảng ChiTietPhieuNhap qua BLL
+        //        DataTable dtChiTietPhieuNhap = luuTruBLL.HienThiTatCaChiTietNhapKho();
+
+        //        // Kiểm tra nếu không có dữ liệu hoặc không có dữ liệu sau khi lọc
+        //        if (dtChiTietPhieuNhap == null || dtChiTietPhieuNhap.Rows.Count == 0)
+        //        {
+        //            // Tạo DataTable trống với các cột cần thiết
+        //            dtChiTietPhieuNhap = new DataTable();
+        //            dtChiTietPhieuNhap.Columns.Add("IDChiTietPhieuNhap", typeof(string));
+        //            dtChiTietPhieuNhap.Columns.Add("IDThuoc", typeof(string));
+        //            dtChiTietPhieuNhap.Columns.Add("TenThuoc", typeof(string));
+        //            dtChiTietPhieuNhap.Columns.Add("SoLuong", typeof(int));
+        //            dtChiTietPhieuNhap.Columns.Add("NgayNhap", typeof(DateTime));
+        //            dtChiTietPhieuNhap.Columns.Add("NgayHetHan", typeof(DateTime));
+        //            dtChiTietPhieuNhap.Columns.Add("QuyCach", typeof(string));
+        //            dtChiTietPhieuNhap.Columns.Add("GiaDonVi", typeof(decimal));
+        //        }
+        //        else
+        //        {
+        //            // Lọc dữ liệu để loại bỏ các IDChiTietPhieuNhap đã lưu
+        //            dtChiTietPhieuNhap = dtChiTietPhieuNhap.AsEnumerable()
+        //                .Where(row => !savedIDs.Contains(row["IDChiTietPhieuNhap"].ToString()))
+        //                .CopyToDataTable();
+        //        }
+
+        //        // Thêm cột UniqueID để làm khóa duy nhất, kết hợp IDThuoc và IDChiTietPhieuNhap
+        //        dtChiTietPhieuNhap.Columns.Add("UniqueID", typeof(string), "IDThuoc + '-' + IDChiTietPhieuNhap");
+
+        //        // Tạo RepositoryItemLookUpEdit cho cột "Tên thuốc"
+        //        RepositoryItemLookUpEdit lookUpEditTenThuoc = new RepositoryItemLookUpEdit
+        //        {
+        //            DataSource = dtChiTietPhieuNhap,
+        //            DisplayMember = "TenThuoc",  // Hiển thị tên thuốc trong ComboBox
+        //            ValueMember = "UniqueID",    // Sử dụng UniqueID để phân biệt các dòng
+        //            NullText = "Chọn tên thuốc"
+        //        };
+
+        //        // Thiết lập các cột hiển thị trong dropdown của LookUpEdit
+        //        lookUpEditTenThuoc.PopulateColumns();
+        //        lookUpEditTenThuoc.Columns["IDChiTietPhieuNhap"].Caption = "Mã CTPN";
+        //        lookUpEditTenThuoc.Columns["IDThuoc"].Caption = "Mã Thuốc";
+        //        lookUpEditTenThuoc.Columns["NgayHetHan"].Caption = "Ngày Hết Hạn";
+        //        lookUpEditTenThuoc.Columns["QuyCach"].Caption = "Quy Cách";
+        //        lookUpEditTenThuoc.Columns["SoLuong"].Caption = "Số Lượng";
+        //        lookUpEditTenThuoc.Columns["GiaDonVi"].Caption = "Giá Đơn Vị";
+        //        lookUpEditTenThuoc.Columns["NgayNhap"].Caption = "Ngày Nhập";
+        //        lookUpEditTenThuoc.Columns["TenThuoc"].Caption = "Tên Thuốc";
+        //        lookUpEditTenThuoc.Columns["UniqueID"].Visible = false; // Ẩn UniqueID
+
+        //        // Xử lý sự kiện EditValueChanged để tự động điền dữ liệu khi chọn một dòng
+        //        lookUpEditTenThuoc.EditValueChanged += (s, e) =>
+        //        {
+        //            var editor = s as DevExpress.XtraEditors.LookUpEdit;
+        //            if (editor?.EditValue == null) return;
+
+        //            // Lấy thông tin từ dòng được chọn dựa trên UniqueID
+        //            DataRow selectedRow = (editor.Properties.GetDataSourceRowByKeyValue(editor.EditValue) as DataRowView)?.Row;
+        //            if (selectedRow != null)
+        //            {
+        //                // Điền dữ liệu vào các cột tương ứng trong GridView
+        //                gv_ThuocChuaSapXep.SetFocusedRowCellValue("IDThuoc", selectedRow["IDThuoc"]);
+        //                gv_ThuocChuaSapXep.SetFocusedRowCellValue("IDChiTietPhieuNhap", selectedRow["IDChiTietPhieuNhap"]);
+        //                gv_ThuocChuaSapXep.SetFocusedRowCellValue("SLTon", selectedRow["SoLuong"]);
+        //                gv_ThuocChuaSapXep.SetFocusedRowCellValue("NgayNhap", selectedRow["NgayNhap"]);
+        //            }
+        //        };
+
+        //        // Gán LookUpEdit vào cột "Tên thuốc"
+        //        var colTenThuoc = gv_ThuocChuaSapXep.Columns["TenThuoc"];
+        //        if (colTenThuoc != null)
+        //        {
+        //            colTenThuoc.ColumnEdit = lookUpEditTenThuoc;
+        //        }
+
+        //        gv_ThuocChuaSapXep.RefreshData();
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        // Bỏ qua lỗi, không hiện thông báo
+        //    }
+        //}
+
+
+
+
+        //private void LoadComboBoxInViTriColumn()
+        //{
+        //    try
+        //    {
+        //        // Lấy dữ liệu vị trí theo loại khu nhập từ ViTriBLL
+        //        DataTable dtViTri = viTriBLL.GetViTriTheoLoaiKhuNhap(); // Gọi hàm mới
+
+        //        // Kiểm tra nếu không có dữ liệu
+        //        if (dtViTri == null || dtViTri.Rows.Count == 0)
+        //        {
+        //            MessageBox.Show("Không có dữ liệu vị trí để hiển thị!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+        //            return;
+        //        }
+
+        //        // Tạo RepositoryItemLookUpEdit cho cột "Vị trí"
+        //        RepositoryItemLookUpEdit lookUpEditViTri = new RepositoryItemLookUpEdit
+        //        {
+        //            DataSource = dtViTri,
+        //            DisplayMember = "Mã Vị Trí",  // Tên cột hiển thị trong ComboBox
+        //            ValueMember = "Mã Vị Trí",    // Tên cột làm giá trị lưu trữ
+        //            NullText = "Chọn vị trí",
+        //            BestFitMode = DevExpress.XtraEditors.Controls.BestFitMode.BestFit // Tự động điều chỉnh kích thước
+        //        };
+
+        //        // Cấu hình các cột hiển thị trong LookUpEdit
+        //        lookUpEditViTri.PopulateColumns();
+
+        //        // Đặt tên hiển thị cho các cột
+        //        if (lookUpEditViTri.Columns["Mã Vị Trí"] != null)
+        //            lookUpEditViTri.Columns["Mã Vị Trí"].Caption = "Mã Vị Trí";
+        //        if (lookUpEditViTri.Columns["Tên Khu"] != null)
+        //            lookUpEditViTri.Columns["Tên Khu"].Caption = "Tên Khu";
+        //        if (lookUpEditViTri.Columns["Tên Kệ"] != null)
+        //            lookUpEditViTri.Columns["Tên Kệ"].Caption = "Tên Kệ";
+        //        if (lookUpEditViTri.Columns["Tên Ô"] != null)
+        //            lookUpEditViTri.Columns["Tên Ô"].Caption = "Tên Ô";
+
+        //        // Ẩn các cột không cần thiết (nếu có)
+        //        if (lookUpEditViTri.Columns["Trạng Thái"] != null)
+        //            lookUpEditViTri.Columns["Trạng Thái"].Visible = false;
+        //        if (lookUpEditViTri.Columns["Loại Khu"] != null)
+        //            lookUpEditViTri.Columns["Loại Khu"].Caption = "Loại khu";
+
+        //        // Gán RepositoryItemLookUpEdit vào cột "IDViTri" trên GridView
+        //        var colViTri = gv_ThuocChuaSapXep.Columns["IDViTri"];
+        //        if (colViTri != null)
+        //        {
+        //            colViTri.ColumnEdit = lookUpEditViTri;
+        //        }
+
+        //        // Làm mới GridView
+        //        gv_ThuocChuaSapXep.RefreshData();
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        MessageBox.Show($"Lỗi khi tải dữ liệu vào ComboBox Vị trí: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        //    }
+        //}
+
+        private void AddViTriColumn()
         {
             try
             {
-                // Lấy dữ liệu vị trí theo loại khu nhập từ ViTriBLL
-                DataTable dtViTri = viTriBLL.GetViTriTheoLoaiKhuNhap(); // Gọi hàm mới
+                // Lấy dữ liệu vị trí từ BLL
+                DataTable dtViTri = viTriBLL.GetViTriTheoLoaiKhuNhap();
 
-                // Kiểm tra nếu không có dữ liệu
-                if (dtViTri == null || dtViTri.Rows.Count == 0)
+                if (dtViTri == null || dtViTri.Columns.Count == 0)
                 {
-                    MessageBox.Show("Không có dữ liệu vị trí để hiển thị!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("Dữ liệu vị trí bị rỗng hoặc không hợp lệ.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
@@ -294,46 +408,44 @@ namespace GUI
                 RepositoryItemLookUpEdit lookUpEditViTri = new RepositoryItemLookUpEdit
                 {
                     DataSource = dtViTri,
-                    DisplayMember = "Mã Vị Trí",  // Tên cột hiển thị trong ComboBox
-                    ValueMember = "Mã Vị Trí",    // Tên cột làm giá trị lưu trữ
-                    NullText = "Chọn vị trí",
-                    BestFitMode = DevExpress.XtraEditors.Controls.BestFitMode.BestFit // Tự động điều chỉnh kích thước
+                    DisplayMember = "TenViTri",  // Hiển thị tên vị trí
+                    ValueMember = "IDViTri",     // Giá trị lưu trữ là ID vị trí
+                    NullText = "Chọn vị trí"
                 };
 
-                // Cấu hình các cột hiển thị trong LookUpEdit
+                // Tùy chỉnh hiển thị các cột trong combobox
                 lookUpEditViTri.PopulateColumns();
 
-                // Đặt tên hiển thị cho các cột
-                if (lookUpEditViTri.Columns["Mã Vị Trí"] != null)
-                    lookUpEditViTri.Columns["Mã Vị Trí"].Caption = "Mã Vị Trí";
-                if (lookUpEditViTri.Columns["Tên Khu"] != null)
-                    lookUpEditViTri.Columns["Tên Khu"].Caption = "Tên Khu";
-                if (lookUpEditViTri.Columns["Tên Kệ"] != null)
-                    lookUpEditViTri.Columns["Tên Kệ"].Caption = "Tên Kệ";
-                if (lookUpEditViTri.Columns["Tên Ô"] != null)
-                    lookUpEditViTri.Columns["Tên Ô"].Caption = "Tên Ô";
+                if (lookUpEditViTri.Columns["IDViTri"] != null)
+                    lookUpEditViTri.Columns["IDViTri"].Caption = "Mã Vị Trí";
 
-                // Ẩn các cột không cần thiết (nếu có)
-                if (lookUpEditViTri.Columns["Trạng Thái"] != null)
-                    lookUpEditViTri.Columns["Trạng Thái"].Visible = false;
-                if (lookUpEditViTri.Columns["Loại Khu"] != null)
-                    lookUpEditViTri.Columns["Loại Khu"].Caption = "Loại khu";
+                if (lookUpEditViTri.Columns["TenViTri"] != null)
+                    lookUpEditViTri.Columns["TenViTri"].Caption = "Tên Vị Trí";
 
-                // Gán RepositoryItemLookUpEdit vào cột "IDViTri" trên GridView
-                var colViTri = gv_ThuocChuaSapXep.Columns["IDViTri"];
-                if (colViTri != null)
+                if (lookUpEditViTri.Columns["LoaiKhu"] != null)
+                    lookUpEditViTri.Columns["LoaiKhu"].Caption = "Loại Khu";
+
+                if (lookUpEditViTri.Columns["TrangThai"] != null)
+                    lookUpEditViTri.Columns["TrangThai"].Visible = false;
+
+                // Thêm cột "Vị trí" vào GridView
+                var colViTri = new DevExpress.XtraGrid.Columns.GridColumn
                 {
-                    colViTri.ColumnEdit = lookUpEditViTri;
-                }
+                    Caption = "Vị Trí",
+                    FieldName = "IDViTri",
+                    Visible = true,
+                    ColumnEdit = lookUpEditViTri
+                };
 
-                // Làm mới GridView
-                gv_ThuocChuaSapXep.RefreshData();
+                gv_ThuocChuaSapXep.Columns.Add(colViTri);
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Lỗi khi tải dữ liệu vào ComboBox Vị trí: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Lỗi khi thêm cột Vị trí: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+
 
 
         private void HienThiThongTinLuuTru()
@@ -357,55 +469,40 @@ namespace GUI
 
         private void SapXepThuoc_Load(object sender, EventArgs e)
         {
-            AddColumnsToGridView();
-            ConfigureBandedColumns();
-            LoadComboBoxInTenThuocColumn();
-            LoadComboBoxInViTriColumn();
-            HienThiThongTinLuuTru();
-            gv_ThuocChuaSapXep.Columns["IDThuoc"].OptionsColumn.AllowEdit = false;
-            gv_ThuocChuaSapXep.Columns["IDChiTietPhieuNhap"].OptionsColumn.AllowEdit = false;
-            gv_ThuocChuaSapXep.Columns["SLTon"].OptionsColumn.AllowEdit = false;
-            gv_ThuocChuaSapXep.Columns["NgayNhap"].OptionsColumn.AllowEdit = false;
-
-            var bandedView = gc_ThuocDaSapXep.MainView as DevExpress.XtraGrid.Views.BandedGrid.BandedGridView;
-            if (bandedView != null)
+            try
             {
-                bandedView.OptionsBehavior.Editable = false;
-            }
-        }
+                AddColumnsToGridView(); // Thêm cột
+                ConfigureBandedColumns(); // Cấu hình nếu cần
+                HienThiThongTinLuuTru(); // Hiển thị thông tin
 
+                LoadChiTietPhieuNhap(); // Load dữ liệu vào GridControl
 
-        private void btn_Them_Click(object sender, EventArgs e)
-        {
-            DataRow newRow = dataTable.NewRow();
-            dataTable.Rows.Add(newRow);
+                // Chỉ định cột nếu tồn tại
+                if (gv_ThuocChuaSapXep.Columns["IDThuoc"] != null)
+                    gv_ThuocChuaSapXep.Columns["IDThuoc"].OptionsColumn.AllowEdit = false;
 
-            gv_ThuocChuaSapXep.FocusedRowHandle = gv_ThuocChuaSapXep.RowCount - 1;
-            gv_ThuocChuaSapXep.FocusedColumn = gv_ThuocChuaSapXep.VisibleColumns[0];
-            gv_ThuocChuaSapXep.ShowEditor();
-           
-            btn_Luu.Enabled = true;
-        }
+                if (gv_ThuocChuaSapXep.Columns["IDChiTietPhieuNhap"] != null)
+                    gv_ThuocChuaSapXep.Columns["IDChiTietPhieuNhap"].OptionsColumn.AllowEdit = false;
 
-        private void btn_Xoa_Click(object sender, EventArgs e)
-        {
-            // Kiểm tra nếu có dòng nào được chọn
-            int selectedRowHandle = gv_ThuocChuaSapXep.FocusedRowHandle;
-            if (selectedRowHandle >= 0)
-            {
-                // Xác nhận việc xóa
-                var confirmResult = MessageBox.Show("Bạn có chắc chắn muốn xóa dòng này?", "Xác nhận xóa", MessageBoxButtons.YesNo);
-                if (confirmResult == DialogResult.Yes)
+                if (gv_ThuocChuaSapXep.Columns["SLTon"] != null)
+                    gv_ThuocChuaSapXep.Columns["SLTon"].OptionsColumn.AllowEdit = false;
+
+                if (gv_ThuocChuaSapXep.Columns["NgayNhap"] != null)
+                    gv_ThuocChuaSapXep.Columns["NgayNhap"].OptionsColumn.AllowEdit = false;
+
+                var bandedView = gc_ThuocDaSapXep.MainView as DevExpress.XtraGrid.Views.BandedGrid.BandedGridView;
+                if (bandedView != null)
                 {
-                    // Xóa dòng từ GridView (nó sẽ tự động xóa khỏi DataTable do data binding)
-                    gv_ThuocChuaSapXep.DeleteRow(selectedRowHandle);
+                    bandedView.OptionsBehavior.Editable = false;
                 }
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("Vui lòng chọn dòng để xóa.");
+                MessageBox.Show($"Lỗi khi tải form: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+
 
         private void btn_Luu_Click(object sender, EventArgs e)
         {
@@ -458,16 +555,13 @@ namespace GUI
                     MessageBox.Show("Lưu thông tin thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                     // Đặt lại trạng thái của các nút
-                    btn_Them.Enabled = true;
-                    btn_Xoa.Enabled = true;
                     btn_Luu.Enabled = false;
 
                     // Làm mới dữ liệu trong GridControl nếu cần
                     dataTable.Clear();
                     HienThiThongTinLuuTru();
 
-                    // Tải lại danh sách trong ComboBox "Tên thuốc"
-                    LoadComboBoxInTenThuocColumn();
+                    
                 }
             }
             catch (Exception ex)

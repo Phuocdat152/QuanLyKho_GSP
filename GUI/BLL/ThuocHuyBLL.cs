@@ -30,15 +30,20 @@ namespace BLL
             }
         }
 
-        public DataTable HienThiThongTinThuocHuy()
+        public DataTable HienThiThongTinThuocHuy_ChoHuy()
         {
-            return thuocHuyDAL.HienThiThongTinThuocHuy();
+            return thuocHuyDAL.HienThiThongTinThuocHuy_ChuaHuy();
         }
 
-        public int CapNhatTinhTrangThuocHuy()
+        public DataTable HienThiThongTinThuocHuy_DaHuy()
         {
-                return thuocHuyDAL.CapNhatTinhTrangThuocHuy();
-           
+            return thuocHuyDAL.HienThiThongTinThuocHuy_DaHuy();
+        }
+
+        public bool CapNhatTinhTrangThuocHuy(string idThuocHuy, string tinhTrangMoi)
+        {
+            
+                return thuocHuyDAL.CapNhatTinhTrangThuocHuy(idThuocHuy, tinhTrangMoi);          
         }
     }
 }
