@@ -23,6 +23,8 @@ namespace GUI
             luuTruBLL = new LuuTruBLL(username, password);
             viTriBLL = new ViTriBLL(username,password);
             thuocHuyBLL = new ThuocHuyBLL(username,password);
+
+            
         }
 
 
@@ -56,23 +58,38 @@ namespace GUI
 
                 if (dtLuuTru != null && dtLuuTru.Rows.Count > 0)
                 {
-                    // Gán dữ liệu vào ComboBoxEdit
-                    cb_ThuocHuy.Properties.Items.Clear(); // Xóa dữ liệu cũ
-                    foreach (DataRow row in dtLuuTru.Rows)
-                    {
-                        // Ghép nối các tham số có tên và giá trị
-                        string displayText = $"Mã lưu trữ: {row["IDLuuTru"]}| " + 
-                                             $"Mã thuốc: {row["IDThuoc"]}| " +
-                                             $"Tên thuốc: {row["TenThuoc"]}| " +
-                                             $"Số lượng tồn: {row["SLTon"]}| " +
-                                             $"Vị trí: {row["Khu"]}, " +
-                                             $"{row["Ke"]}, " +
-                                             $"{row["O"]}";
+                    // Gán dữ liệu vào SearchLookUpEdit
+                    cb_ThuocHuy.Properties.DataSource = dtLuuTru;
+                    cb_ThuocHuy.Properties.DisplayMember = "TenThuoc"; // Hiển thị tên thuốc
+                    cb_ThuocHuy.Properties.ValueMember = "IDLuuTru";   // Giá trị là IDLuuTru
 
+                    // Tùy chỉnh hiển thị cột trong danh sách
+                    cb_ThuocHuy.Properties.PopulateViewColumns();
+                    var view = cb_ThuocHuy.Properties.View;
 
-                        // Thêm dòng vào ComboBoxEdit
-                        cb_ThuocHuy.Properties.Items.Add(displayText);
-                    }
+                    // Đặt tên cột và hiển thị dữ liệu
+                    view.Columns["IDLuuTru"].Caption = "Mã lưu trữ";
+                    view.Columns["IDThuoc"].Caption = "Mã thuốc";
+                    view.Columns["TenThuoc"].Caption = "Tên thuốc";
+                    view.Columns["SLTon"].Caption = "Số lượng tồn";
+                    view.Columns["Khu"].Caption = "Khu vực";
+                    view.Columns["Ke"].Caption = "Kệ";
+                    view.Columns["O"].Caption = "Ô";
+                    view.Columns["IDChiTietPhieuNhap"].Visible = false;
+                    view.Columns["NgayNhap"].Visible = false;
+                    view.Columns["TrangThai"].Visible = false;
+
+                    // Ẩn các cột không cần thiết (nếu có)
+                    // view.Columns["SomeColumn"].Visible = false;
+
+                    // Tắt chỉnh sửa trong danh sách
+                    view.OptionsBehavior.Editable = false;
+
+                    // Đặt giá trị mặc định (nếu cần)
+                    cb_ThuocHuy.EditValue = null;
+
+                    // Gán văn bản placeholder cho ô tìm kiếm
+                    cb_ThuocHuy.Properties.NullText = "Tìm kiếm thuốc...";
                 }
                 else
                 {
@@ -129,46 +146,63 @@ namespace GUI
 
 
 
-        private void cb_ThuocHuy_SelectedIndexChanged(object sender, EventArgs e)
+        private void View_RowClick(object sender, DevExpress.XtraGrid.Views.Grid.RowClickEventArgs e)
         {
             try
             {
-                if (cb_ThuocHuy.SelectedIndex != -1)
+                // Lấy dòng được chọn trong SearchLookUpEdit
+                var view = sender as DevExpress.XtraGrid.Views.Grid.GridView;
+                DataRow selectedRow = view.GetDataRow(e.RowHandle);
+
+                if (selectedRow != null)
                 {
-                    // Lấy thông tin từ dòng đã chọn
-                    string selectedText = cb_ThuocHuy.Properties.Items[cb_ThuocHuy.SelectedIndex].ToString();
+                    string idLuuTru = selectedRow["IDLuuTru"].ToString();
+                    string idThuoc = selectedRow["IDThuoc"].ToString();
+                    string tenThuoc = selectedRow["TenThuoc"].ToString();
+                    int soLuongTon = Convert.ToInt32(selectedRow["SLTon"]);
 
-                    // Tách thông tin từ chuỗi
-                    string[] parts = selectedText.Split('|');
-                    if (parts.Length >= 3)
+                    // Lấy DataTable từ GridControl
+                    DataTable dt = gc_ThuocHuy.DataSource as DataTable;
+                    if (dt == null)
                     {
-                        string idLuuTru = parts[0].Split(':')[1].Trim();
-                        string idThuoc = parts[1].Split(':')[1].Trim();
-                        string tenThuoc = parts[2].Split(':')[1].Trim();
-                        string soLuongHuy = parts[3].Split(':')[1].Trim();
-
-                        // Lấy DataTable từ GridControl
-                        DataTable dt = gc_ThuocHuy.DataSource as DataTable;
-
-                        // Thêm dòng mới vào GridControl
-                        DataRow newRow = dt.NewRow();
-                        newRow["IDLuuTru"] = idLuuTru;
-                        newRow["IDThuoc"] = idThuoc;
-                        newRow["TenThuoc"] = tenThuoc;
-                        newRow["SoLuongHuy"] = soLuongHuy;
-
-                        dt.Rows.Add(newRow);
-
-                        // Làm mới GridControl
-                        gc_ThuocHuy.RefreshDataSource();
+                        // Tạo mới DataTable nếu GridControl chưa có nguồn dữ liệu
+                        dt = new DataTable();
+                        dt.Columns.Add("IDLuuTru", typeof(string));
+                        dt.Columns.Add("IDThuoc", typeof(string));
+                        dt.Columns.Add("TenThuoc", typeof(string));
+                        dt.Columns.Add("SoLuongHuy", typeof(int));
+                        gc_ThuocHuy.DataSource = dt;
                     }
+
+                    // Kiểm tra xem thuốc với IDLuuTru đã tồn tại trong GridControl hay chưa
+                    bool isExists = dt.AsEnumerable().Any(row => row.Field<string>("IDLuuTru") == idLuuTru);
+
+                    if (isExists)
+                    {
+                        MessageBox.Show($"Thuốc '{tenThuoc}' với ID lưu trữ '{idLuuTru}' đã được thêm vào danh sách!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        return;
+                    }
+
+                    // Thêm dòng mới vào DataTable
+                    DataRow newRow = dt.NewRow();
+                    newRow["IDLuuTru"] = idLuuTru;
+                    newRow["IDThuoc"] = idThuoc;
+                    newRow["TenThuoc"] = tenThuoc;
+                    newRow["SoLuongHuy"] = soLuongTon; // Có thể thêm số lượng hủy từ người dùng
+                    dt.Rows.Add(newRow);
+
+                    // Làm mới GridControl
+                    gc_ThuocHuy.RefreshDataSource();
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Lỗi khi thêm thông tin thuốc vào GridControl: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Lỗi khi thêm thuốc vào danh sách hủy: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+
+
 
         private void LoadComboBoxInViTriColumn()
         {
@@ -293,8 +327,8 @@ namespace GUI
                 // Hiển thị thông báo kết quả
                 if (successCount > 0)
                 {
-                    MessageBox.Show($"Đã lưu thành công {successCount} dòng thuốc hủy.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    LoadDanhSachThuocHuy();
+                    MessageBox.Show($"Đã lưu thành công {successCount} thuốc hủy.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    LoadDanhSachThuocHuy_ChoHuy();
                 }
 
                 if (errorCount > 0)
@@ -308,7 +342,7 @@ namespace GUI
                     var dataTable = gc_ThuocHuy.DataSource as DataTable;
                     dataTable?.Clear();
                     gc_ThuocHuy.RefreshDataSource();
-                    cb_ThuocHuy.SelectedIndex = -1;
+                    cb_ThuocHuy.EditValue = null;
                 }
             }
             catch (Exception ex)
@@ -319,23 +353,53 @@ namespace GUI
 
 
 
-        private void LoadDanhSachThuocHuy()
+        private void LoadDanhSachThuocHuy_ChoHuy()
         {
             try
             {
                 // Lấy dữ liệu từ BLL
-                DataTable dt = thuocHuyBLL.HienThiThongTinThuocHuy();
+                DataTable dt = thuocHuyBLL.HienThiThongTinThuocHuy_ChoHuy();
 
                 if (dt != null && dt.Rows.Count > 0)
                 {
                     // Gán dữ liệu vào GridControl
                     gc_DSTH.DataSource = dt;
-                    ConfigureDanhSachThuocHuyGridColumns(); // Cấu hình GridView
+                    ConfigureDanhSachThuocHuyGridColumns();
+
+                    // Thêm nút Hủy vào cuối mỗi dòng
+                    AddCancelButtonToGrid(); // Gọi hàm sau khi gán dữ liệu
                 }
                 else
                 {
                     // Xóa dữ liệu cũ nếu không có kết quả
                     gc_DSTH.DataSource = null;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Lỗi khi tải danh sách thuốc hủy: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+
+
+        private void LoadDanhSachThuocHuy_DaHuy()
+        {
+            try
+            {
+                // Lấy dữ liệu từ BLL
+                DataTable dt = thuocHuyBLL.HienThiThongTinThuocHuy_DaHuy();
+
+                if (dt != null && dt.Rows.Count > 0)
+                {
+                    // Gán dữ liệu vào GridControl
+                    gc_DSTDH.DataSource = dt;
+                    ConfigureDanhSachThuocHuy_DaHuyGridColumns(); // Cấu hình GridView
+                }
+                else
+                {
+                    // Xóa dữ liệu cũ nếu không có kết quả
+                    gc_DSTDH.DataSource = null;
                 }
             }
             catch (Exception ex)
@@ -356,8 +420,53 @@ namespace GUI
                 gridView.Columns["Mã Thuốc Hủy"].Caption = "Mã Thuốc Hủy";
                 gridView.Columns["Mã Thuốc"].Caption = "Mã Thuốc";
                 gridView.Columns["Tên Thuốc"].Caption = "Tên Thuốc";
-                gridView.Columns["Mã Lưu Trữ"].Caption = "Mã Lưu Trữ";
+                gridView.Columns["Mã Lưu Trữ"].Visible = false;
                 gridView.Columns["Vị Trí"].Caption = "Vị Trí";
+                gridView.Columns["Số Lượng Hủy"].Caption = "Số Lượng Hủy";
+                gridView.Columns["Lý Do Hủy"].Caption = "Lý Do Hủy";
+                gridView.Columns["Ngày Hủy"].Caption = "Ngày Hủy";
+                gridView.Columns["Tình Trạng"].Caption = "Tình Trạng";
+                gridView.Columns["Ghi Chú"].Caption = "Ghi Chú";
+
+                // Tắt chỉnh sửa tất cả các cột ngoại trừ cột "Hủy"
+                foreach (DevExpress.XtraGrid.Columns.GridColumn column in gridView.Columns)
+                {
+                    if (column.FieldName != "Action") // Cột "Hủy" có FieldName là "Action"
+                    {
+                        column.OptionsColumn.AllowEdit = false; // Chỉ đọc
+                    }
+                    else
+                    {
+                        column.OptionsColumn.AllowEdit = true; // Cho phép chỉnh sửa
+                    }
+
+                    // Căn giữa tiêu đề cột
+                    column.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+                }
+
+                // Tắt các chức năng không cần thiết
+                gridView.OptionsBehavior.Editable = true; // Bật chỉnh sửa GridView
+                gridView.OptionsView.ShowGroupPanel = false; // Ẩn GroupPanel
+                gridView.OptionsSelection.EnableAppearanceFocusedCell = false; // Không cho chọn ô
+                gridView.OptionsSelection.EnableAppearanceFocusedRow = true; // Chỉ cho chọn hàng
+                gridView.OptionsSelection.MultiSelect = false; // Chỉ cho phép chọn một hàng tại một thời điểm
+
+                gridView.RefreshData(); // Làm mới GridView
+            }
+        }
+
+
+
+        private void ConfigureDanhSachThuocHuy_DaHuyGridColumns()
+        {
+            var gridView = gc_DSTDH.MainView as DevExpress.XtraGrid.Views.Grid.GridView;
+
+            if (gridView != null)
+            {
+                // Đặt tên hiển thị cho các cột
+                gridView.Columns["Mã Thuốc Hủy"].Caption = "Mã Thuốc Hủy";
+                gridView.Columns["Mã Thuốc"].Caption = "Mã Thuốc";
+                gridView.Columns["Tên Thuốc"].Caption = "Tên Thuốc";
                 gridView.Columns["Số Lượng Hủy"].Caption = "Số Lượng Hủy";
                 gridView.Columns["Lý Do Hủy"].Caption = "Lý Do Hủy";
                 gridView.Columns["Ngày Hủy"].Caption = "Ngày Hủy";
@@ -370,7 +479,7 @@ namespace GUI
                     column.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
 
                     // Đặt tất cả cột chỉ đọc
-                    column.OptionsColumn.AllowEdit = false;
+                    column.OptionsColumn.AllowEdit = true;
                 }
 
                 // Tắt các chức năng chỉnh sửa khác
@@ -383,14 +492,6 @@ namespace GUI
 
                 gridView.RefreshData(); // Làm mới GridView
             }
-        }
-
-
-        private void CapNhatTinhTrangThuocHuy()
-        {
-                int soDongCapNhat = thuocHuyBLL.CapNhatTinhTrangThuocHuy();
-                LoadDanhSachThuocHuy();
-
         }
 
 
@@ -437,16 +538,190 @@ namespace GUI
             InitializeThuocHuyGrid();
             LoadLuuTruToComboBoxEdit();
             LoadComboBoxInViTriColumn();
-            LoadDanhSachThuocHuy();
-            CapNhatTinhTrangThuocHuy();
+            LoadDanhSachThuocHuy_ChoHuy();
+            LoadDanhSachThuocHuy_DaHuy();
 
             // Gắn sự kiện SelectedIndexChanged
-            cb_ThuocHuy.SelectedIndexChanged += cb_ThuocHuy_SelectedIndexChanged;
             btn_TaiBienBan.Click += btn_TaiBienBan_Click;
 
             btn_Luu.Click += btn_Luu_Click;
 
+            // Gắn sự kiện khi người dùng nhấn vào dòng trong SearchLookUpEdit
+            cb_ThuocHuy.Properties.View.RowClick += View_RowClick;
+
+            var gridView = gc_DSTH.MainView as DevExpress.XtraGrid.Views.Grid.GridView;
+            if (gridView != null)
+            {
+                gridView.CustomDrawCell += GridView_CustomDrawCell;
+            }
+
+
 
         }
+
+
+
+        // Tạo nút "Hủy"
+        private void AddCancelButtonToGrid()
+        {
+            // Tạo RepositoryItemButtonEdit
+            RepositoryItemButtonEdit btnHuy = new RepositoryItemButtonEdit
+            {
+                ButtonsStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple
+            };
+
+            btnHuy.Buttons[0].Caption = "Hủy thuốc";
+            btnHuy.Buttons[0].Kind = DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph;
+
+            // Thiết lập màu sắc mặc định
+            btnHuy.Appearance.BackColor = Color.Red; // Nền đỏ
+            btnHuy.Appearance.ForeColor = Color.White; // Chữ trắng
+            btnHuy.Appearance.Font = new Font("Arial", 10, FontStyle.Bold); // Font chữ
+            btnHuy.Appearance.Options.UseBackColor = true; // Áp dụng màu nền
+            btnHuy.Appearance.Options.UseForeColor = true; // Áp dụng màu chữ
+
+            // Ẩn TextEdit
+            btnHuy.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
+
+            // Gắn sự kiện click
+            btnHuy.ButtonClick += BtnHuy_ButtonClick;
+
+            // Thêm nút vào GridControl
+            var gridView = gc_DSTH.MainView as DevExpress.XtraGrid.Views.Grid.GridView;
+            if (gridView != null)
+            {
+                var colHuy = gridView.Columns["Action"];
+                if (colHuy == null)
+                {
+                    // Nếu cột chưa tồn tại, tạo mới
+                    colHuy = new DevExpress.XtraGrid.Columns.GridColumn
+                    {
+                        Caption = "Chức năng",
+                        FieldName = "Action", // Không bắt buộc
+                        ColumnEdit = btnHuy,
+                        Visible = true,
+                        Width = 50 // Đặt độ rộng phù hợp
+                    };
+
+                    // Canh giữa tiêu đề cột
+                    colHuy.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+
+                    // Canh giữa nội dung cột
+                    colHuy.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+
+                    gridView.Columns.Add(colHuy);
+                }
+                else
+                {
+                    colHuy.ColumnEdit = btnHuy; // Gắn lại ColumnEdit nếu đã tồn tại
+                    colHuy.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center; // Canh giữa tiêu đề
+                    colHuy.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center; // Canh giữa nội dung
+                }
+
+                gridView.RefreshData(); // Làm mới GridView
+            }
+        }
+
+
+
+
+
+        private void GridView_CustomDrawCell(object sender, DevExpress.XtraGrid.Views.Base.RowCellCustomDrawEventArgs e)
+        {
+            if (e.Column.FieldName == "Action") // Chỉ áp dụng cho cột "Action"
+            {
+                // Kiểm tra nếu hàng được chọn (giả lập hiệu ứng "Pressed")
+                if (e.RowHandle == (sender as DevExpress.XtraGrid.Views.Grid.GridView)?.FocusedRowHandle)
+                {
+                    e.Appearance.BackColor = Color.Maroon; // Màu nền khi nhấn
+                    e.Appearance.ForeColor = Color.White; // Màu chữ khi nhấn
+                }
+                else
+                {
+                    // Màu nền khi hover
+                    e.Appearance.BackColor = Color.DarkRed;
+                    e.Appearance.ForeColor = Color.White;
+                }
+            }
+        }
+
+
+
+
+
+        private void BtnHuy_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
+        {
+            var gridView = gc_DSTH.MainView as DevExpress.XtraGrid.Views.Grid.GridView;
+
+            if (gridView != null)
+            {
+                int rowIndex = gridView.FocusedRowHandle;
+
+                if (rowIndex >= 0)
+                {
+                    string idThuocHuy = gridView.GetRowCellValue(rowIndex, "Mã Thuốc Hủy")?.ToString();
+                    DateTime ngayHuy = Convert.ToDateTime(gridView.GetRowCellValue(rowIndex, "Ngày Hủy"));
+
+                    // Kiểm tra nếu ngày hiện tại chưa tới ngày hủy
+                    if (DateTime.Now.Date < ngayHuy.Date)
+                    {
+                        DialogResult confirmEarlyCancel = MessageBox.Show(
+                            $"Chưa tới thời gian hủy ({ngayHuy:dd/MM/yyyy}). Bạn có muốn hủy trước thời hạn không?",
+                            "Xác nhận hủy trước thời hạn",
+                            MessageBoxButtons.YesNo,
+                            MessageBoxIcon.Warning
+                        );
+
+                        if (confirmEarlyCancel != DialogResult.Yes)
+                        {
+                            // Nếu chọn "No", thoát mà không làm gì
+                            return;
+                        }
+                    }
+
+                    // Hiển thị xác nhận hủy
+                    DialogResult confirm = MessageBox.Show(
+                        $"Bạn có chắc chắn muốn hủy thuốc với ID: {idThuocHuy}?",
+                        "Xác nhận hủy",
+                        MessageBoxButtons.YesNo,
+                        MessageBoxIcon.Question
+                    );
+
+                    if (confirm == DialogResult.Yes)
+                    {
+                        try
+                        {
+                            // Cập nhật trạng thái thuốc thành "Đã hủy"
+                            bool isUpdated = thuocHuyBLL.CapNhatTinhTrangThuocHuy(idThuocHuy, "Đã hủy");
+
+                            if (isUpdated)
+                            {
+                                MessageBox.Show("Hủy thuốc thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                                // Cập nhật lại danh sách
+                                LoadDanhSachThuocHuy_ChoHuy();
+                                LoadDanhSachThuocHuy_DaHuy();
+                            }
+                            else
+                            {
+                                MessageBox.Show("Không thể cập nhật trạng thái thuốc hủy.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show($"Lỗi khi hủy thuốc: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                    }
+                }
+            }
+        }
+
+
+
+
+
+
+
+
     }
 }

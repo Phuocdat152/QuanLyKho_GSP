@@ -1,4 +1,5 @@
-﻿using DevExpress.XtraBars;
+﻿using BLL;
+using DevExpress.XtraBars;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,11 +16,14 @@ namespace GUI
     public partial class TrangChu : DevExpress.XtraBars.Ribbon.RibbonForm
     {
         public string username, password;
+        private UserBLL userBLL;
         public TrangChu(string username, string password)
         {
             InitializeComponent();
             this.username = username;
             this.password = password;
+            userBLL = new UserBLL(username, password);
+            HienThiTenNhanVien(username);
         }
 
         void OpenForm<T>() where T : Form
@@ -39,7 +43,30 @@ namespace GUI
             f.Show();
         }
 
+        private void HienThiTenNhanVien(string username)
+        {
+            try
+            {
+                DataRow nhanVienInfo = userBLL.GetNhanVienByUsername1(username);
+                if (nhanVienInfo != null)
+                {
+                    string tenNhanVien = nhanVienInfo["TenNhanVien"].ToString();
+                    //string idNhanVien = nhanVienInfo["IDNhanVien"].ToString();
 
+                    bar_TenDangNhap.Caption = tenNhanVien;   // Hiển thị tên nhân viên
+                    //txt_IDNhanVien.Text = idNhanVien; // Lưu ID nhân viên vào TextBox ẩn
+                }
+                else
+                {
+                    bar_TenDangNhap.Caption = "Không tìm thấy tên nhân viên";
+                    //txt_IDNhanVien.Text = ""; // Xóa giá trị nếu không tìm thấy
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi khi hiển thị tên nhân viên: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
 
         private void TrangChu_Load(object sender, EventArgs e)
         {
