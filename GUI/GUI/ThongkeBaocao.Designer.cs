@@ -50,7 +50,7 @@
             // 
             this.splitContainerControl1.Panel2.Text = "Panel2";
             this.splitContainerControl1.Size = new System.Drawing.Size(1167, 618);
-            this.splitContainerControl1.SplitterPosition = 167;
+            this.splitContainerControl1.SplitterPosition = 144;
             this.splitContainerControl1.TabIndex = 0;
             // 
             // ThongkeBaocao
@@ -59,7 +59,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1167, 618);
             this.Controls.Add(this.splitContainerControl1);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "ThongkeBaocao";
             this.Text = "Thống Kê Và Báo Cáo";
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1.Panel1)).EndInit();

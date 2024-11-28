@@ -30,6 +30,7 @@ namespace DAL
         }
 
 
+
         //Thêm lưu trữ 
         public bool ThemLuuTru(string idThuoc, string idChiTietPhieuNhap, int slTon, DateTime ngayNhap, string idViTri)
         {

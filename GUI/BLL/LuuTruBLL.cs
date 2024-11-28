@@ -20,9 +20,10 @@ namespace BLL
 
         public DataTable HienThiTatCaChiTietNhapKho()
         {
-
-                return luuTruDAL.HienThiTatCaChiTietNhapKho();
+            // Gọi LuuTruDAL để lấy tất cả chi tiết nhập kho
+            return luuTruDAL.HienThiTatCaChiTietNhapKho();
         }
+
 
         //Thêm Lưu trữ
         public bool ThemLuuTru(string idThuoc, string idChiTietPhieuNhap, int slTon, DateTime ngayNhap, string idViTri)
