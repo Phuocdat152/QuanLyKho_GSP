@@ -65,7 +65,8 @@ namespace GUI
                 }
                 else
                 {
-                    MessageBox.Show("Chỉnh sửa không thành công!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Chỉnh sửa thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    this.Close();
                 }
             }
         }

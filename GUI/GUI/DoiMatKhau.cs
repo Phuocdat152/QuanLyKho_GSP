@@ -77,9 +77,45 @@ namespace GUI
 
         private void txt_Huy_Click(object sender, EventArgs e)
         {
-            Main mainForm = new Main();
-            mainForm.Show();
-            this.Close();
+            txt_OPass.Clear();
+            txt_NPass.Clear();
+            txt_CNPass.Clear();
+        }
+
+        private void btn_LuuMKM_Click(object sender, EventArgs e)
+        {
+            string oldPassword = txt_OPass.Text;
+            string newPassword = txt_NPass.Text;
+            string confirmPassword = txt_CNPass.Text;
+
+            // Kiểm tra mật khẩu mới và xác nhận mật khẩu có khớp nhau không
+            if (newPassword != confirmPassword)
+            {
+                MessageBox.Show("Mật khẩu xác nhận không khớp. Vui lòng nhập lại.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txt_NPass.Focus();
+                return;
+            }
+
+            // Gọi phương thức đổi mật khẩu từ BLL
+            try
+            {
+                bool isPasswordChanged = userBLL.ChangeLoginPassword(_username, oldPassword, newPassword);
+
+                if (isPasswordChanged)
+                {
+                    MessageBox.Show("Đổi mật khẩu thành công.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    this.Close(); // Đóng form sau khi đổi mật khẩu thành công
+                }
+                else
+                {
+                    MessageBox.Show("Đổi mật khẩu thất bại. Vui lòng kiểm tra lại mật khẩu cũ.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    txt_OPass.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi khi đổi mật khẩu: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }

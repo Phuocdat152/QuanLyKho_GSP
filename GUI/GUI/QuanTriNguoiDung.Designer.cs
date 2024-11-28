@@ -29,12 +29,11 @@
         private void InitializeComponent()
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(QuanTriNguoiDung));
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.txt_ChucVu = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.btn_CapLaiMatKhau = new System.Windows.Forms.Button();
-            this.btn_XoaND = new System.Windows.Forms.Button();
             this.txt_UserName = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -44,6 +43,9 @@
             this.label2 = new System.Windows.Forms.Label();
             this.dgv_DanhSach = new System.Windows.Forms.DataGridView();
             this.label1 = new System.Windows.Forms.Label();
+            this.btn_Xoa = new DevExpress.XtraEditors.SimpleButton();
+            this.btn_CapLaiMK = new DevExpress.XtraEditors.SimpleButton();
+            this.btn_PhanQuyen = new DevExpress.XtraEditors.SimpleButton();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -91,8 +93,9 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.btn_CapLaiMatKhau);
-            this.groupBox1.Controls.Add(this.btn_XoaND);
+            this.groupBox1.Controls.Add(this.btn_PhanQuyen);
+            this.groupBox1.Controls.Add(this.btn_CapLaiMK);
+            this.groupBox1.Controls.Add(this.btn_Xoa);
             this.groupBox1.Location = new System.Drawing.Point(628, 2);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.groupBox1.Name = "groupBox1";
@@ -101,30 +104,6 @@
             this.groupBox1.TabIndex = 10;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Chức năng";
-            // 
-            // btn_CapLaiMatKhau
-            // 
-            this.btn_CapLaiMatKhau.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_CapLaiMatKhau.Location = new System.Drawing.Point(209, 108);
-            this.btn_CapLaiMatKhau.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btn_CapLaiMatKhau.Name = "btn_CapLaiMatKhau";
-            this.btn_CapLaiMatKhau.Size = new System.Drawing.Size(102, 65);
-            this.btn_CapLaiMatKhau.TabIndex = 5;
-            this.btn_CapLaiMatKhau.Text = "Cấp Lại Mật Khẩu";
-            this.btn_CapLaiMatKhau.UseVisualStyleBackColor = true;
-            this.btn_CapLaiMatKhau.Click += new System.EventHandler(this.btn_CapLaiMatKhau_Click);
-            // 
-            // btn_XoaND
-            // 
-            this.btn_XoaND.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_XoaND.Location = new System.Drawing.Point(60, 108);
-            this.btn_XoaND.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btn_XoaND.Name = "btn_XoaND";
-            this.btn_XoaND.Size = new System.Drawing.Size(102, 63);
-            this.btn_XoaND.TabIndex = 1;
-            this.btn_XoaND.Text = "Xoá Người Dùng";
-            this.btn_XoaND.UseVisualStyleBackColor = true;
-            this.btn_XoaND.Click += new System.EventHandler(this.btn_XoaND_Click);
             // 
             // txt_UserName
             // 
@@ -225,6 +204,45 @@
             this.label1.TabIndex = 2;
             this.label1.Text = "Quản Trị Người Dùng";
             // 
+            // btn_Xoa
+            // 
+            this.btn_Xoa.Appearance.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_Xoa.Appearance.Options.UseFont = true;
+            this.btn_Xoa.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("simpleButton1.ImageOptions.Image2")));
+            this.btn_Xoa.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
+            this.btn_Xoa.Location = new System.Drawing.Point(85, 96);
+            this.btn_Xoa.Name = "btn_Xoa";
+            this.btn_Xoa.Size = new System.Drawing.Size(216, 70);
+            this.btn_Xoa.TabIndex = 6;
+            this.btn_Xoa.Text = "Xoá";
+            this.btn_Xoa.Click += new System.EventHandler(this.btn_XoaND_Click);
+            // 
+            // btn_CapLaiMK
+            // 
+            this.btn_CapLaiMK.Appearance.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_CapLaiMK.Appearance.Options.UseFont = true;
+            this.btn_CapLaiMK.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("simpleButton1.ImageOptions.Image1")));
+            this.btn_CapLaiMK.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
+            this.btn_CapLaiMK.Location = new System.Drawing.Point(85, 20);
+            this.btn_CapLaiMK.Name = "btn_CapLaiMK";
+            this.btn_CapLaiMK.Size = new System.Drawing.Size(216, 70);
+            this.btn_CapLaiMK.TabIndex = 7;
+            this.btn_CapLaiMK.Text = "Cấp Lại Mật Khẩu";
+            this.btn_CapLaiMK.Click += new System.EventHandler(this.btn_CapLaiMatKhau_Click);
+            // 
+            // btn_PhanQuyen
+            // 
+            this.btn_PhanQuyen.Appearance.Font = new System.Drawing.Font("Segoe UI Semibold", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_PhanQuyen.Appearance.Options.UseFont = true;
+            this.btn_PhanQuyen.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("simpleButton1.ImageOptions.Image")));
+            this.btn_PhanQuyen.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
+            this.btn_PhanQuyen.Location = new System.Drawing.Point(85, 172);
+            this.btn_PhanQuyen.Name = "btn_PhanQuyen";
+            this.btn_PhanQuyen.Size = new System.Drawing.Size(216, 70);
+            this.btn_PhanQuyen.TabIndex = 8;
+            this.btn_PhanQuyen.Text = "Phân quyền";
+            this.btn_PhanQuyen.Click += new System.EventHandler(this.btn_PhanQuyen_Click);
+            // 
             // QuanTriNguoiDung
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -236,7 +254,7 @@
             this.MinimizeBox = false;
             this.Name = "QuanTriNguoiDung";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "QuanTriNguoiDung";
+            this.Text = "Quản Trị Người Dùng";
             this.Load += new System.EventHandler(this.QuanTriNguoiDung_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
@@ -262,8 +280,9 @@
         private System.Windows.Forms.TextBox txt_UserName;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Button btn_XoaND;
-        private System.Windows.Forms.Button btn_CapLaiMatKhau;
         private System.Windows.Forms.TextBox txt_ChucVu;
+        private DevExpress.XtraEditors.SimpleButton btn_Xoa;
+        private DevExpress.XtraEditors.SimpleButton btn_CapLaiMK;
+        private DevExpress.XtraEditors.SimpleButton btn_PhanQuyen;
     }
 }

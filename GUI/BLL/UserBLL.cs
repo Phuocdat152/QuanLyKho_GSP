@@ -159,6 +159,19 @@ namespace BLL
         {
             return userDAL.GetTenNhanVien(username);
         }
+        public UserDTO GetNhanVienById(string maNhanVien)
+        {
+            return userDAL.GetNhanVienById(maNhanVien);
+        }
+        public DataTable GetAllChucVu()
+        {
+            return userDAL.GetAllChucVu();
+        }
+        public bool UpdateNhanVien2(string maNhanVien, string idChucVu)
+        {
+            return userDAL.UpdateNhanVien2(maNhanVien, idChucVu);
+        }
+
 
         public DataRow GetNhanVienByUsername1(string username)
         {
@@ -170,6 +183,18 @@ namespace BLL
             {
                 throw new Exception("Lỗi khi lấy thông tin nhân viên từ username: " + ex.Message);
             }
+        }
+        public DataTable GetAllNhanVienWithChucVuSimple()
+        {
+            return userDAL.GetAllNhanVienWithChucVuSimple();
+        }
+        public bool ResetUserPassword(string maNhanVien, string newPassword)
+        {
+            return userDAL.ResetUserPassword(maNhanVien, newPassword);
+        }
+        public bool ChangeLoginPassword(string username, string oldPassword, string newPassword)
+        {
+            return userDAL.ChangeLoginPassword(username, oldPassword, newPassword);
         }
 
 

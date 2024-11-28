@@ -45,6 +45,8 @@
             this.btn_ChinhSua = new DevExpress.XtraEditors.SimpleButton();
             this.btn_ThemThuoc = new DevExpress.XtraEditors.SimpleButton();
             this.groupControl2 = new DevExpress.XtraEditors.GroupControl();
+            this.lb_ThanhPhan = new DevExpress.XtraEditors.LabelControl();
+            this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
             this.lb_NSX = new DevExpress.XtraEditors.LabelControl();
             this.labelControl13 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl12 = new DevExpress.XtraEditors.LabelControl();
@@ -63,8 +65,6 @@
             this.labelControl22 = new DevExpress.XtraEditors.LabelControl();
             this.cb_DanhMuc = new System.Windows.Forms.ComboBox();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
-            this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
-            this.lb_ThanhPhan = new DevExpress.XtraEditors.LabelControl();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl4)).BeginInit();
@@ -128,9 +128,8 @@
             this.lb_AnhSang.Location = new System.Drawing.Point(157, 145);
             this.lb_AnhSang.Margin = new System.Windows.Forms.Padding(29, 30, 29, 30);
             this.lb_AnhSang.Name = "lb_AnhSang";
-            this.lb_AnhSang.Size = new System.Drawing.Size(9, 25);
+            this.lb_AnhSang.Size = new System.Drawing.Size(0, 25);
             this.lb_AnhSang.TabIndex = 18;
-            this.lb_AnhSang.Text = "x";
             // 
             // labelControl20
             // 
@@ -150,9 +149,8 @@
             this.lb_DoAm.Location = new System.Drawing.Point(157, 98);
             this.lb_DoAm.Margin = new System.Windows.Forms.Padding(24, 25, 24, 25);
             this.lb_DoAm.Name = "lb_DoAm";
-            this.lb_DoAm.Size = new System.Drawing.Size(9, 25);
+            this.lb_DoAm.Size = new System.Drawing.Size(0, 25);
             this.lb_DoAm.TabIndex = 16;
-            this.lb_DoAm.Text = "x";
             // 
             // labelControl18
             // 
@@ -194,9 +192,8 @@
             this.lb_NhietDo.Location = new System.Drawing.Point(157, 54);
             this.lb_NhietDo.Margin = new System.Windows.Forms.Padding(19, 18, 19, 18);
             this.lb_NhietDo.Name = "lb_NhietDo";
-            this.lb_NhietDo.Size = new System.Drawing.Size(9, 25);
+            this.lb_NhietDo.Size = new System.Drawing.Size(0, 25);
             this.lb_NhietDo.TabIndex = 12;
-            this.lb_NhietDo.Text = "x";
             // 
             // labelControl14
             // 
@@ -284,6 +281,27 @@
             this.groupControl2.TabIndex = 0;
             this.groupControl2.Text = "Thông Tin Thuốc";
             // 
+            // lb_ThanhPhan
+            // 
+            this.lb_ThanhPhan.Appearance.Font = new System.Drawing.Font("Segoe UI Semibold", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lb_ThanhPhan.Appearance.Options.UseFont = true;
+            this.lb_ThanhPhan.Location = new System.Drawing.Point(157, 142);
+            this.lb_ThanhPhan.Margin = new System.Windows.Forms.Padding(8, 7, 8, 7);
+            this.lb_ThanhPhan.Name = "lb_ThanhPhan";
+            this.lb_ThanhPhan.Size = new System.Drawing.Size(0, 25);
+            this.lb_ThanhPhan.TabIndex = 14;
+            // 
+            // labelControl3
+            // 
+            this.labelControl3.Appearance.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelControl3.Appearance.Options.UseFont = true;
+            this.labelControl3.Location = new System.Drawing.Point(15, 144);
+            this.labelControl3.Margin = new System.Windows.Forms.Padding(5);
+            this.labelControl3.Name = "labelControl3";
+            this.labelControl3.Size = new System.Drawing.Size(96, 23);
+            this.labelControl3.TabIndex = 13;
+            this.labelControl3.Text = "Thành Phần:";
+            // 
             // lb_NSX
             // 
             this.lb_NSX.Appearance.Font = new System.Drawing.Font("Segoe UI Semibold", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -291,9 +309,8 @@
             this.lb_NSX.Location = new System.Drawing.Point(157, 261);
             this.lb_NSX.Margin = new System.Windows.Forms.Padding(11, 10, 11, 10);
             this.lb_NSX.Name = "lb_NSX";
-            this.lb_NSX.Size = new System.Drawing.Size(9, 25);
+            this.lb_NSX.Size = new System.Drawing.Size(0, 25);
             this.lb_NSX.TabIndex = 12;
-            this.lb_NSX.Text = "x";
             // 
             // labelControl13
             // 
@@ -323,9 +340,8 @@
             this.lb_DonGia.Location = new System.Drawing.Point(157, 221);
             this.lb_DonGia.Margin = new System.Windows.Forms.Padding(11, 10, 11, 10);
             this.lb_DonGia.Name = "lb_DonGia";
-            this.lb_DonGia.Size = new System.Drawing.Size(54, 25);
+            this.lb_DonGia.Size = new System.Drawing.Size(0, 25);
             this.lb_DonGia.TabIndex = 7;
-            this.lb_DonGia.Text = "xxxxxx";
             // 
             // labelControl8
             // 
@@ -345,9 +361,8 @@
             this.lb_DVT.Location = new System.Drawing.Point(157, 178);
             this.lb_DVT.Margin = new System.Windows.Forms.Padding(8, 7, 8, 7);
             this.lb_DVT.Name = "lb_DVT";
-            this.lb_DVT.Size = new System.Drawing.Size(27, 25);
+            this.lb_DVT.Size = new System.Drawing.Size(0, 25);
             this.lb_DVT.TabIndex = 5;
-            this.lb_DVT.Text = "xxx";
             // 
             // labelControl6
             // 
@@ -367,9 +382,8 @@
             this.lb_TenThuoc.Location = new System.Drawing.Point(157, 105);
             this.lb_TenThuoc.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
             this.lb_TenThuoc.Name = "lb_TenThuoc";
-            this.lb_TenThuoc.Size = new System.Drawing.Size(63, 25);
+            this.lb_TenThuoc.Size = new System.Drawing.Size(0, 25);
             this.lb_TenThuoc.TabIndex = 3;
-            this.lb_TenThuoc.Text = "xxxxxxx";
             // 
             // labelControl5
             // 
@@ -389,9 +403,8 @@
             this.lb_MaThuoc.Location = new System.Drawing.Point(157, 62);
             this.lb_MaThuoc.Margin = new System.Windows.Forms.Padding(5);
             this.lb_MaThuoc.Name = "lb_MaThuoc";
-            this.lb_MaThuoc.Size = new System.Drawing.Size(61, 25);
+            this.lb_MaThuoc.Size = new System.Drawing.Size(0, 25);
             this.lb_MaThuoc.TabIndex = 1;
-            this.lb_MaThuoc.Text = "TH00xx";
             // 
             // labelControl2
             // 
@@ -488,28 +501,6 @@
             this.labelControl1.Size = new System.Drawing.Size(161, 28);
             this.labelControl1.TabIndex = 0;
             this.labelControl1.Text = "Danh Mục Thuốc";
-            // 
-            // labelControl3
-            // 
-            this.labelControl3.Appearance.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelControl3.Appearance.Options.UseFont = true;
-            this.labelControl3.Location = new System.Drawing.Point(15, 144);
-            this.labelControl3.Margin = new System.Windows.Forms.Padding(5);
-            this.labelControl3.Name = "labelControl3";
-            this.labelControl3.Size = new System.Drawing.Size(96, 23);
-            this.labelControl3.TabIndex = 13;
-            this.labelControl3.Text = "Thành Phần:";
-            // 
-            // lb_ThanhPhan
-            // 
-            this.lb_ThanhPhan.Appearance.Font = new System.Drawing.Font("Segoe UI Semibold", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lb_ThanhPhan.Appearance.Options.UseFont = true;
-            this.lb_ThanhPhan.Location = new System.Drawing.Point(157, 142);
-            this.lb_ThanhPhan.Margin = new System.Windows.Forms.Padding(8, 7, 8, 7);
-            this.lb_ThanhPhan.Name = "lb_ThanhPhan";
-            this.lb_ThanhPhan.Size = new System.Drawing.Size(27, 25);
-            this.lb_ThanhPhan.TabIndex = 14;
-            this.lb_ThanhPhan.Text = "xxx";
             // 
             // Quanlythuoc
             // 
