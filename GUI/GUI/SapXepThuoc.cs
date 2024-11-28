@@ -30,6 +30,7 @@ namespace GUI
             InitializeDataTable();
             Load += SapXepThuoc_Load;
 
+
         }
 
         private void InitializeDataTable()
@@ -40,10 +41,11 @@ namespace GUI
             dataTable.Columns.Add("IDChiTietPhieuNhap", typeof(string));
             dataTable.Columns.Add("SLTon", typeof(int));
             dataTable.Columns.Add("NgayNhap", typeof(DateTime));
-            dataTable.Columns.Add("IDViTri", typeof(string)); // Đảm bảo cột này tồn tại
+            dataTable.Columns.Add("ViTri", typeof(string));   // Thêm cột mới "Vị trí"
 
             gc_ThuocChuaSapXep.DataSource = dataTable;
         }
+
 
 
         private void ConfigureBandedColumns()
@@ -163,24 +165,6 @@ namespace GUI
 
 
 
-
-        private void AddColumnsToGridView()
-        {
-            var captions = new[] { "Tên thuốc", "Mã thuốc", "Mã CTPN", "SL nhập", "Ngày nhập", "Vị trí" };
-            int captionCount = captions.Length;
-
-            for (int i = 0; i < dataTable.Columns.Count; i++)
-            {
-                var column = gv_ThuocChuaSapXep.Columns[dataTable.Columns[i].ColumnName];
-                if (column != null && i < captionCount)
-                {
-                    column.Caption = captions[i];
-                    column.Visible = true;
-                }
-            }
-        }
-
-
         private void LoadChiTietPhieuNhap()
         {
             try
@@ -190,15 +174,24 @@ namespace GUI
 
                 if (dtChiTietPhieuNhap != null && dtChiTietPhieuNhap.Rows.Count > 0)
                 {
-                    // Gán dữ liệu vào GridControl
-                    gc_ThuocChuaSapXep.DataSource = dtChiTietPhieuNhap;
+                    // Gán dữ liệu vào DataTable chính
+                    dataTable = dtChiTietPhieuNhap.Copy();
+
+                    // Kiểm tra và thêm cột "Vị trí" nếu chưa tồn tại
+                    if (!dataTable.Columns.Contains("ViTri"))
+                    {
+                        dataTable.Columns.Add("ViTri", typeof(string)); // Cột "Vị trí" hiển thị
+                    }
+
+                    // Gán DataTable vào GridControl
+                    gc_ThuocChuaSapXep.DataSource = dataTable;
 
                     // Tùy chỉnh hiển thị cột
                     gv_ThuocChuaSapXep.PopulateColumns();
 
-                    // Đặt tên tiêu đề cho các cột
-                    if (gv_ThuocChuaSapXep.Columns["IDChiTietNhapKho"] != null)
-                        gv_ThuocChuaSapXep.Columns["IDChiTietNhapKho"].Caption = "Mã CTPN";
+                    // Đặt tiêu đề cho các cột
+                    if (gv_ThuocChuaSapXep.Columns["IDChiTietPhieuNhap"] != null)
+                        gv_ThuocChuaSapXep.Columns["IDChiTietPhieuNhap"].Caption = "Mã CTPN";
 
                     if (gv_ThuocChuaSapXep.Columns["IDThuoc"] != null)
                         gv_ThuocChuaSapXep.Columns["IDThuoc"].Caption = "Mã Thuốc";
@@ -206,23 +199,39 @@ namespace GUI
                     if (gv_ThuocChuaSapXep.Columns["TenThuoc"] != null)
                         gv_ThuocChuaSapXep.Columns["TenThuoc"].Caption = "Tên Thuốc";
 
+                    if (gv_ThuocChuaSapXep.Columns["ThanhPhan"] != null)
+                        gv_ThuocChuaSapXep.Columns["ThanhPhan"].Caption = "Thành Phần";
+
+                    if (gv_ThuocChuaSapXep.Columns["QuyCach"] != null)
+                        gv_ThuocChuaSapXep.Columns["QuyCach"].Caption = "Đơn Vị Tính";
+
                     if (gv_ThuocChuaSapXep.Columns["SoLuong"] != null)
-                        gv_ThuocChuaSapXep.Columns["SoLuong"].Caption = "Số Lượng";
+                        gv_ThuocChuaSapXep.Columns["SoLuong"].Caption = "Số lượng";
 
-                    if (gv_ThuocChuaSapXep.Columns["DonGia"] != null)
-                        gv_ThuocChuaSapXep.Columns["DonGia"].Caption = "Đơn Giá";
+                    if (gv_ThuocChuaSapXep.Columns["GiaDonVi"] != null)
+                        gv_ThuocChuaSapXep.Columns["GiaDonVi"].Visible = false;
 
-                    if (gv_ThuocChuaSapXep.Columns["ThanhTien"] != null)
-                        gv_ThuocChuaSapXep.Columns["ThanhTien"].Caption = "Thành Tiền";
-
-                    if (gv_ThuocChuaSapXep.Columns["NgaySanXuat"] != null)
-                        gv_ThuocChuaSapXep.Columns["NgaySanXuat"].Caption = "Ngày Sản Xuất";
+                    if (gv_ThuocChuaSapXep.Columns["NgayNhap"] != null)
+                        gv_ThuocChuaSapXep.Columns["NgayNhap"].Caption = "Ngày Nhập";
 
                     if (gv_ThuocChuaSapXep.Columns["NgayHetHan"] != null)
                         gv_ThuocChuaSapXep.Columns["NgayHetHan"].Caption = "Ngày Hết Hạn";
 
-                    // Thêm cột "Vị trí" với combobox
-                    AddViTriColumn();
+                    // Cột "Loại thuốc"
+                    if (gv_ThuocChuaSapXep.Columns["LoaiThuoc"] != null)
+                    {
+                        gv_ThuocChuaSapXep.Columns["LoaiThuoc"].Caption = "Loại Thuốc";
+                        gv_ThuocChuaSapXep.Columns["LoaiThuoc"].OptionsColumn.AllowEdit = false; // Không cho chỉnh sửa
+                    }
+
+                    // Cột "Vị trí"
+                    if (gv_ThuocChuaSapXep.Columns["ViTri"] != null)
+                    {
+                        gv_ThuocChuaSapXep.Columns["ViTri"].Caption = "Vị trí";
+                        gv_ThuocChuaSapXep.Columns["ViTri"].OptionsColumn.AllowEdit = true; // Cho phép chỉnh sửa
+                    }
+
+                    ConfigureViTriColumn(); // Cấu hình cột "Vị trí" với ComboBox
                 }
                 else
                 {
@@ -238,212 +247,65 @@ namespace GUI
 
 
 
-
-
-        //private void LoadComboBoxInTenThuocColumn()
-        //{
-        //    try
-        //    {
-        //        // Lấy danh sách IDChiTietPhieuNhap đã lưu từ BLL
-        //        List<string> savedIDs = luuTruBLL.GetSavedIDChiTietPhieuNhap();
-
-        //        // Lấy dữ liệu từ bảng ChiTietPhieuNhap qua BLL
-        //        DataTable dtChiTietPhieuNhap = luuTruBLL.HienThiTatCaChiTietNhapKho();
-
-        //        // Kiểm tra nếu không có dữ liệu hoặc không có dữ liệu sau khi lọc
-        //        if (dtChiTietPhieuNhap == null || dtChiTietPhieuNhap.Rows.Count == 0)
-        //        {
-        //            // Tạo DataTable trống với các cột cần thiết
-        //            dtChiTietPhieuNhap = new DataTable();
-        //            dtChiTietPhieuNhap.Columns.Add("IDChiTietPhieuNhap", typeof(string));
-        //            dtChiTietPhieuNhap.Columns.Add("IDThuoc", typeof(string));
-        //            dtChiTietPhieuNhap.Columns.Add("TenThuoc", typeof(string));
-        //            dtChiTietPhieuNhap.Columns.Add("SoLuong", typeof(int));
-        //            dtChiTietPhieuNhap.Columns.Add("NgayNhap", typeof(DateTime));
-        //            dtChiTietPhieuNhap.Columns.Add("NgayHetHan", typeof(DateTime));
-        //            dtChiTietPhieuNhap.Columns.Add("QuyCach", typeof(string));
-        //            dtChiTietPhieuNhap.Columns.Add("GiaDonVi", typeof(decimal));
-        //        }
-        //        else
-        //        {
-        //            // Lọc dữ liệu để loại bỏ các IDChiTietPhieuNhap đã lưu
-        //            dtChiTietPhieuNhap = dtChiTietPhieuNhap.AsEnumerable()
-        //                .Where(row => !savedIDs.Contains(row["IDChiTietPhieuNhap"].ToString()))
-        //                .CopyToDataTable();
-        //        }
-
-        //        // Thêm cột UniqueID để làm khóa duy nhất, kết hợp IDThuoc và IDChiTietPhieuNhap
-        //        dtChiTietPhieuNhap.Columns.Add("UniqueID", typeof(string), "IDThuoc + '-' + IDChiTietPhieuNhap");
-
-        //        // Tạo RepositoryItemLookUpEdit cho cột "Tên thuốc"
-        //        RepositoryItemLookUpEdit lookUpEditTenThuoc = new RepositoryItemLookUpEdit
-        //        {
-        //            DataSource = dtChiTietPhieuNhap,
-        //            DisplayMember = "TenThuoc",  // Hiển thị tên thuốc trong ComboBox
-        //            ValueMember = "UniqueID",    // Sử dụng UniqueID để phân biệt các dòng
-        //            NullText = "Chọn tên thuốc"
-        //        };
-
-        //        // Thiết lập các cột hiển thị trong dropdown của LookUpEdit
-        //        lookUpEditTenThuoc.PopulateColumns();
-        //        lookUpEditTenThuoc.Columns["IDChiTietPhieuNhap"].Caption = "Mã CTPN";
-        //        lookUpEditTenThuoc.Columns["IDThuoc"].Caption = "Mã Thuốc";
-        //        lookUpEditTenThuoc.Columns["NgayHetHan"].Caption = "Ngày Hết Hạn";
-        //        lookUpEditTenThuoc.Columns["QuyCach"].Caption = "Quy Cách";
-        //        lookUpEditTenThuoc.Columns["SoLuong"].Caption = "Số Lượng";
-        //        lookUpEditTenThuoc.Columns["GiaDonVi"].Caption = "Giá Đơn Vị";
-        //        lookUpEditTenThuoc.Columns["NgayNhap"].Caption = "Ngày Nhập";
-        //        lookUpEditTenThuoc.Columns["TenThuoc"].Caption = "Tên Thuốc";
-        //        lookUpEditTenThuoc.Columns["UniqueID"].Visible = false; // Ẩn UniqueID
-
-        //        // Xử lý sự kiện EditValueChanged để tự động điền dữ liệu khi chọn một dòng
-        //        lookUpEditTenThuoc.EditValueChanged += (s, e) =>
-        //        {
-        //            var editor = s as DevExpress.XtraEditors.LookUpEdit;
-        //            if (editor?.EditValue == null) return;
-
-        //            // Lấy thông tin từ dòng được chọn dựa trên UniqueID
-        //            DataRow selectedRow = (editor.Properties.GetDataSourceRowByKeyValue(editor.EditValue) as DataRowView)?.Row;
-        //            if (selectedRow != null)
-        //            {
-        //                // Điền dữ liệu vào các cột tương ứng trong GridView
-        //                gv_ThuocChuaSapXep.SetFocusedRowCellValue("IDThuoc", selectedRow["IDThuoc"]);
-        //                gv_ThuocChuaSapXep.SetFocusedRowCellValue("IDChiTietPhieuNhap", selectedRow["IDChiTietPhieuNhap"]);
-        //                gv_ThuocChuaSapXep.SetFocusedRowCellValue("SLTon", selectedRow["SoLuong"]);
-        //                gv_ThuocChuaSapXep.SetFocusedRowCellValue("NgayNhap", selectedRow["NgayNhap"]);
-        //            }
-        //        };
-
-        //        // Gán LookUpEdit vào cột "Tên thuốc"
-        //        var colTenThuoc = gv_ThuocChuaSapXep.Columns["TenThuoc"];
-        //        if (colTenThuoc != null)
-        //        {
-        //            colTenThuoc.ColumnEdit = lookUpEditTenThuoc;
-        //        }
-
-        //        gv_ThuocChuaSapXep.RefreshData();
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        // Bỏ qua lỗi, không hiện thông báo
-        //    }
-        //}
-
-
-
-
-        //private void LoadComboBoxInViTriColumn()
-        //{
-        //    try
-        //    {
-        //        // Lấy dữ liệu vị trí theo loại khu nhập từ ViTriBLL
-        //        DataTable dtViTri = viTriBLL.GetViTriTheoLoaiKhuNhap(); // Gọi hàm mới
-
-        //        // Kiểm tra nếu không có dữ liệu
-        //        if (dtViTri == null || dtViTri.Rows.Count == 0)
-        //        {
-        //            MessageBox.Show("Không có dữ liệu vị trí để hiển thị!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-        //            return;
-        //        }
-
-        //        // Tạo RepositoryItemLookUpEdit cho cột "Vị trí"
-        //        RepositoryItemLookUpEdit lookUpEditViTri = new RepositoryItemLookUpEdit
-        //        {
-        //            DataSource = dtViTri,
-        //            DisplayMember = "Mã Vị Trí",  // Tên cột hiển thị trong ComboBox
-        //            ValueMember = "Mã Vị Trí",    // Tên cột làm giá trị lưu trữ
-        //            NullText = "Chọn vị trí",
-        //            BestFitMode = DevExpress.XtraEditors.Controls.BestFitMode.BestFit // Tự động điều chỉnh kích thước
-        //        };
-
-        //        // Cấu hình các cột hiển thị trong LookUpEdit
-        //        lookUpEditViTri.PopulateColumns();
-
-        //        // Đặt tên hiển thị cho các cột
-        //        if (lookUpEditViTri.Columns["Mã Vị Trí"] != null)
-        //            lookUpEditViTri.Columns["Mã Vị Trí"].Caption = "Mã Vị Trí";
-        //        if (lookUpEditViTri.Columns["Tên Khu"] != null)
-        //            lookUpEditViTri.Columns["Tên Khu"].Caption = "Tên Khu";
-        //        if (lookUpEditViTri.Columns["Tên Kệ"] != null)
-        //            lookUpEditViTri.Columns["Tên Kệ"].Caption = "Tên Kệ";
-        //        if (lookUpEditViTri.Columns["Tên Ô"] != null)
-        //            lookUpEditViTri.Columns["Tên Ô"].Caption = "Tên Ô";
-
-        //        // Ẩn các cột không cần thiết (nếu có)
-        //        if (lookUpEditViTri.Columns["Trạng Thái"] != null)
-        //            lookUpEditViTri.Columns["Trạng Thái"].Visible = false;
-        //        if (lookUpEditViTri.Columns["Loại Khu"] != null)
-        //            lookUpEditViTri.Columns["Loại Khu"].Caption = "Loại khu";
-
-        //        // Gán RepositoryItemLookUpEdit vào cột "IDViTri" trên GridView
-        //        var colViTri = gv_ThuocChuaSapXep.Columns["IDViTri"];
-        //        if (colViTri != null)
-        //        {
-        //            colViTri.ColumnEdit = lookUpEditViTri;
-        //        }
-
-        //        // Làm mới GridView
-        //        gv_ThuocChuaSapXep.RefreshData();
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        MessageBox.Show($"Lỗi khi tải dữ liệu vào ComboBox Vị trí: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-        //    }
-        //}
-
-        private void AddViTriColumn()
+        private void ConfigureViTriColumn()
         {
-            try
+            // Tạo RepositoryItemLookUpEdit
+            RepositoryItemLookUpEdit repoViTri = new RepositoryItemLookUpEdit();
+            repoViTri.DisplayMember = "Vị Trí"; // Tên cột hiển thị trong ComboBox
+            repoViTri.ValueMember = "Mã Vị Trí"; // Giá trị thực lưu trữ
+            repoViTri.NullText = "Chọn vị trí";
+
+
+
+
+            // Gán RepositoryItemLookUpEdit cho cột "ViTri"
+            if (gv_ThuocChuaSapXep.Columns["ViTri"] != null)
             {
-                // Lấy dữ liệu vị trí từ BLL
-                DataTable dtViTri = viTriBLL.GetViTriTheoLoaiKhuNhap();
+                gv_ThuocChuaSapXep.Columns["ViTri"].ColumnEdit = repoViTri;
+                gv_ThuocChuaSapXep.Columns["ViTri"].Caption = "Vị trí";
 
-                if (dtViTri == null || dtViTri.Columns.Count == 0)
-                {
-                    MessageBox.Show("Dữ liệu vị trí bị rỗng hoặc không hợp lệ.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
+                // Đảm bảo cột "ViTri" có thể chỉnh sửa
+                gv_ThuocChuaSapXep.Columns["ViTri"].OptionsColumn.AllowEdit = true;
 
-                // Tạo RepositoryItemLookUpEdit cho cột "Vị trí"
-                RepositoryItemLookUpEdit lookUpEditViTri = new RepositoryItemLookUpEdit
+                // Sự kiện CustomRowCellEdit để cập nhật dữ liệu ComboBox theo giá trị Loại thuốc
+                gv_ThuocChuaSapXep.CustomRowCellEdit += (sender, e) =>
                 {
-                    DataSource = dtViTri,
-                    DisplayMember = "TenViTri",  // Hiển thị tên vị trí
-                    ValueMember = "IDViTri",     // Giá trị lưu trữ là ID vị trí
-                    NullText = "Chọn vị trí"
+                    if (e.Column.FieldName == "ViTri")
+                    {
+                        // Lấy giá trị Loại thuốc từ hàng hiện tại
+                        string loaiThuoc = gv_ThuocChuaSapXep.GetRowCellValue(e.RowHandle, "LoaiThuoc")?.ToString();
+
+                        if (!string.IsNullOrEmpty(loaiThuoc))
+                        {
+                            DataTable dtViTri = null;
+
+                            // Lấy dữ liệu vị trí theo Loại thuốc
+                            if (loaiThuoc == "Thuốc thường")
+                            {
+                                dtViTri = viTriBLL.GetViTriTheoLoaiThuocThuong(loaiThuoc);
+                            }
+                            else if (loaiThuoc == "Thuốc kiểm soát đặt biệt")
+                            {
+                                dtViTri = viTriBLL.GetViTriTheoLoaiThuocKSDB(loaiThuoc);
+                            }
+
+                            // Gán dữ liệu cho LookUpEdit
+                            if (dtViTri != null)
+                            {
+                                repoViTri.DataSource = dtViTri;
+                            }
+                        }
+
+                        // Gán LookUpEdit vào cột hiện tại
+                        e.RepositoryItem = repoViTri;
+                    }
                 };
-
-                // Tùy chỉnh hiển thị các cột trong combobox
-                lookUpEditViTri.PopulateColumns();
-
-                if (lookUpEditViTri.Columns["IDViTri"] != null)
-                    lookUpEditViTri.Columns["IDViTri"].Caption = "Mã Vị Trí";
-
-                if (lookUpEditViTri.Columns["TenViTri"] != null)
-                    lookUpEditViTri.Columns["TenViTri"].Caption = "Tên Vị Trí";
-
-                if (lookUpEditViTri.Columns["LoaiKhu"] != null)
-                    lookUpEditViTri.Columns["LoaiKhu"].Caption = "Loại Khu";
-
-                if (lookUpEditViTri.Columns["TrangThai"] != null)
-                    lookUpEditViTri.Columns["TrangThai"].Visible = false;
-
-                // Thêm cột "Vị trí" vào GridView
-                var colViTri = new DevExpress.XtraGrid.Columns.GridColumn
-                {
-                    Caption = "Vị Trí",
-                    FieldName = "IDViTri",
-                    Visible = true,
-                    ColumnEdit = lookUpEditViTri
-                };
-
-                gv_ThuocChuaSapXep.Columns.Add(colViTri);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Lỗi khi thêm cột Vị trí: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+
+
+
 
 
 
@@ -469,37 +331,11 @@ namespace GUI
 
         private void SapXepThuoc_Load(object sender, EventArgs e)
         {
-            try
-            {
-                AddColumnsToGridView(); // Thêm cột
+
                 ConfigureBandedColumns(); // Cấu hình nếu cần
                 HienThiThongTinLuuTru(); // Hiển thị thông tin
-
                 LoadChiTietPhieuNhap(); // Load dữ liệu vào GridControl
 
-                // Chỉ định cột nếu tồn tại
-                if (gv_ThuocChuaSapXep.Columns["IDThuoc"] != null)
-                    gv_ThuocChuaSapXep.Columns["IDThuoc"].OptionsColumn.AllowEdit = false;
-
-                if (gv_ThuocChuaSapXep.Columns["IDChiTietPhieuNhap"] != null)
-                    gv_ThuocChuaSapXep.Columns["IDChiTietPhieuNhap"].OptionsColumn.AllowEdit = false;
-
-                if (gv_ThuocChuaSapXep.Columns["SLTon"] != null)
-                    gv_ThuocChuaSapXep.Columns["SLTon"].OptionsColumn.AllowEdit = false;
-
-                if (gv_ThuocChuaSapXep.Columns["NgayNhap"] != null)
-                    gv_ThuocChuaSapXep.Columns["NgayNhap"].OptionsColumn.AllowEdit = false;
-
-                var bandedView = gc_ThuocDaSapXep.MainView as DevExpress.XtraGrid.Views.BandedGrid.BandedGridView;
-                if (bandedView != null)
-                {
-                    bandedView.OptionsBehavior.Editable = false;
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Lỗi khi tải form: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
         }
 
 
@@ -516,25 +352,28 @@ namespace GUI
 
                 foreach (DataRow row in dataTable.Rows)
                 {
+                    // Kiểm tra xem các cột có giá trị hợp lệ không
                     if (row["IDThuoc"] == DBNull.Value || string.IsNullOrEmpty(row["IDThuoc"].ToString()) ||
                         row["IDChiTietPhieuNhap"] == DBNull.Value || string.IsNullOrEmpty(row["IDChiTietPhieuNhap"].ToString()) ||
                         row["SLTon"] == DBNull.Value ||
                         row["NgayNhap"] == DBNull.Value ||
-                        row["IDViTri"] == DBNull.Value || string.IsNullOrEmpty(row["IDViTri"].ToString()))
+                        row["ViTri"] == DBNull.Value || string.IsNullOrEmpty(row["ViTri"].ToString())) // Sửa từ IDViTri thành ViTri
                     {
                         MessageBox.Show("Vui lòng điền đầy đủ thông tin trước khi lưu.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         return;
                     }
 
+                    // Chuyển dữ liệu từ DataRow sang DTO (Data Transfer Object)
                     LuuTruDTO luuTruDTO = new LuuTruDTO
                     {
                         IDThuoc = row["IDThuoc"].ToString(),
                         IDChiTietPhieuNhap = row["IDChiTietPhieuNhap"].ToString(),
                         SLton = Convert.ToInt32(row["SLTon"]),
                         NgayNhap = Convert.ToDateTime(row["NgayNhap"]),
-                        IDViTri = row["IDViTri"].ToString()
+                        IDViTri = row["ViTri"].ToString() // Lưu cột ViTri
                     };
 
+                    // Lưu thông tin vào cơ sở dữ liệu
                     bool isSuccess = luuTruBLL.ThemLuuTru(
                         luuTruDTO.IDThuoc,
                         luuTruDTO.IDChiTietPhieuNhap,
@@ -543,6 +382,7 @@ namespace GUI
                         luuTruDTO.IDViTri
                     );
 
+                    // Kiểm tra nếu lưu thất bại
                     if (!isSuccess)
                     {
                         MessageBox.Show($"Lưu thất bại cho thuốc ID: {luuTruDTO.IDThuoc}.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -550,18 +390,14 @@ namespace GUI
                     }
                 }
 
+                // Nếu không có lỗi, thông báo thành công và làm mới dữ liệu
                 if (!hasErrors)
                 {
                     MessageBox.Show("Lưu thông tin thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                    // Đặt lại trạng thái của các nút
-                    btn_Luu.Enabled = false;
-
-                    // Làm mới dữ liệu trong GridControl nếu cần
+                    // Làm mới dữ liệu trong GridControl
                     dataTable.Clear();
-                    HienThiThongTinLuuTru();
-
-                    
+                    HienThiThongTinLuuTru(); // Hiển thị lại dữ liệu đã được lưu
                 }
             }
             catch (Exception ex)
@@ -569,5 +405,7 @@ namespace GUI
                 MessageBox.Show("Có lỗi xảy ra khi lưu thông tin: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+
     }
 }
