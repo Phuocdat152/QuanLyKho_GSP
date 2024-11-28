@@ -69,6 +69,7 @@ namespace DAL
             {
                 throw new Exception("Lỗi khi lấy thông tin nhân viên theo Username: " + ex.Message);
             }
+
         }
 
 
@@ -96,6 +97,46 @@ namespace DAL
             }
             return null;
         }
+        public DataTable GetAllChucVu()
+        {
+            return dataConnect.ExecuteStoredProcedureWithDataTable("sp_GetAllChucVu");
+        }
+        public bool UpdateNhanVien2(string maNhanVien, string idChucVu)
+        {
+            SqlParameter[] parameters = {
+        new SqlParameter("@IDNhanVien", maNhanVien),
+        new SqlParameter("@IDChucVu", idChucVu)
+    };
+
+            int result = dataConnect.ExecuteStoredProcedure("sp_UpdateNhanVien2", parameters);
+            return result > 0;
+        }
+
+        public UserDTO GetNhanVienById(string maNhanVien)
+        {
+            SqlParameter[] parameters = { new SqlParameter("@MaNhanVien", maNhanVien) };
+            DataTable result = dataConnect.ExecuteStoredProcedureWithDataTable("sp_GetNhanVienById2", parameters);
+
+            if (result.Rows.Count > 0)
+            {
+                DataRow row = result.Rows[0];
+                return new UserDTO(
+                    row["IDNhanVien"].ToString(),
+                    row["TenNhanVien"].ToString(),
+                    null, // Không cần ID chức vụ
+                    row["Username"].ToString(),
+                    DateTime.MinValue, // Không cần ngày sinh
+                    null, // Không cần địa chỉ
+                    null, // Không cần email
+                    null, // Không cần số điện thoại
+                    null, // Không cần trình độ
+                    row["ChucVu"].ToString(), // Lấy tên chức vụ
+                    null // Không cần ảnh
+                );
+            }
+            return null;
+        }
+
         public DataTable GetChucVuList()
         {
             string query = "SELECT IDChucVu, TenChucVu FROM ChucVu";
@@ -324,6 +365,46 @@ namespace DAL
             catch (Exception ex)
             {
                 throw new Exception("Lỗi khi lấy thông tin nhân viên: " + ex.Message);
+            }
+        }
+        public DataTable GetAllNhanVienWithChucVuSimple()
+        {
+            return dataConnect.ExecuteStoredProcedureWithDataTable("sp_GetAllNhanVienWithChucVu2");
+        }
+        public bool ResetUserPassword(string username, string newPassword)
+        {
+            SqlParameter[] parameters = {
+        new SqlParameter("@Username", username),
+        new SqlParameter("@NewPassword", newPassword)
+    };
+
+            try
+            {
+                int result = dataConnect.ExecuteStoredProcedure("sp_ResetUserPassword", parameters);
+                return result == 0; // Thành công nếu trả về 0
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Lỗi khi đặt lại mật khẩu: " + ex.Message);
+            }
+        }
+
+        public bool ChangeLoginPassword(string username, string oldPassword, string newPassword)
+        {
+            SqlParameter[] parameters = {
+        new SqlParameter("@Username", username),
+        new SqlParameter("@OldPassword", oldPassword),
+        new SqlParameter("@NewPassword", newPassword)
+    };
+
+            try
+            {
+                int result = dataConnect.ExecuteStoredProcedure("sp_DoiMatKhauLogin", parameters);
+                return result == 0; // Trả về true nếu đổi mật khẩu thành công
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Lỗi khi đổi mật khẩu: " + ex.Message);
             }
         }
 

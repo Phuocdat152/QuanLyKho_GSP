@@ -51,6 +51,7 @@
     <Compile Include="NhaCungCapBLL.cs" />
     <Compile Include="NhapKhoBLL.cs" />
     <Compile Include="OBLL.cs" />
+    <Compile Include="SaoLuuPhucHoiBLL.cs" />
     <Compile Include="ThuocBLL.cs" />
     <Compile Include="ThuocHuyBLL.cs" />
     <Compile Include="UserBLL.cs" />

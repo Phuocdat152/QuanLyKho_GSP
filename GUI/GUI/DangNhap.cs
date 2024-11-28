@@ -63,6 +63,8 @@ namespace GUI
                 //XuatKho mainForm = new XuatKho(username, password);
                 //HuyThuoc mainForm = new HuyThuoc(username, password);
                 TrangChu mainForm = new TrangChu(username, password);
+                //DoiMatKhau mainForm = new DoiMatKhau(username, password);
+                //SaoLuuPhucHoi mainForm = new SaoLuuPhucHoi(username, password);
                 mainForm.Show();
                 this.Hide();
             }

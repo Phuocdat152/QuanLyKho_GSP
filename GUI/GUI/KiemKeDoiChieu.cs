@@ -7,7 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using OfficeOpenXml;
 using BLL;
+using System.IO;
 
 namespace GUI
 {
@@ -389,7 +391,7 @@ namespace GUI
                     }
                     if (row["TinhTrang"] == DBNull.Value) // Nếu chưa có giá trị
                     {
-                        row["TinhTrang"] = "Thêm Tình Trạng"; // Giá trị mặc định cho TinhTrang
+                        row["TinhTrang"] = "Bình Thường"; // Giá trị mặc định cho TinhTrang
                     }
                 }
 
@@ -468,5 +470,69 @@ namespace GUI
             }
         }
 
+        private void toolStripButton1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btn_InExcel_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                // Đặt ngữ cảnh giấy phép cho EPPlus
+                OfficeOpenXml.ExcelPackage.LicenseContext = OfficeOpenXml.LicenseContext.NonCommercial;
+
+                // Hiển thị hộp thoại lưu file
+                SaveFileDialog saveFileDialog = new SaveFileDialog
+                {
+                    Filter = "Excel Files (*.xlsx)|*.xlsx",
+                    FileName = $"Báo Cáo Kiểm Kê Ngày {DateTime.Now:yyyy-MM-dd}.xlsx",
+                    Title = "Lưu Báo Cáo Kiểm Kê"
+                };
+
+                if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    string filePath = saveFileDialog.FileName;
+
+                    // Tạo file Excel
+                    using (ExcelPackage package = new ExcelPackage())
+                    {
+                        // Tạo một sheet mới
+                        ExcelWorksheet worksheet = package.Workbook.Worksheets.Add("Báo Cáo Kiểm Kê");
+
+                        // Thêm tiêu đề cột
+                        for (int col = 0; col < gv_DanhSachKK.Columns.Count; col++)
+                        {
+                            worksheet.Cells[1, col + 1].Value = gv_DanhSachKK.Columns[col].FieldName;
+                        }
+
+                        // Thêm dữ liệu từ GridView vào file Excel
+                        for (int row = 0; row < gv_DanhSachKK.RowCount; row++)
+                        {
+                            for (int col = 0; col < gv_DanhSachKK.Columns.Count; col++)
+                            {
+                                var value = gv_DanhSachKK.GetRowCellValue(row, gv_DanhSachKK.Columns[col]);
+                                worksheet.Cells[row + 2, col + 1].Value = value?.ToString() ?? string.Empty;
+                            }
+                        }
+
+                        // Định dạng tự động cho các cột
+                        worksheet.Cells.AutoFitColumns();
+
+                        // Lưu file Excel
+                        FileInfo fileInfo = new FileInfo(filePath);
+                        package.SaveAs(fileInfo);
+                    }
+
+                    // Hiển thị thông báo thành công
+                    MessageBox.Show("Xuất báo cáo thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            catch (Exception ex)
+            {
+                // Hiển thị lỗi nếu có vấn đề xảy ra
+                MessageBox.Show($"Lỗi khi xuất báo cáo: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
     }
 }

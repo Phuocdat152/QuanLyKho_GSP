@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BackUpRestoreConnect.cs" />
     <Compile Include="BaoQuanDAL.cs" />
     <Compile Include="DanhMucThuocDAL.cs" />
     <Compile Include="DataConnect.cs" />
@@ -52,6 +53,7 @@
     <Compile Include="NhapKhoDAL.cs" />
     <Compile Include="ODAL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SaoLuuPhucHoiDAL.cs" />
     <Compile Include="ThuocDAL.cs" />
     <Compile Include="ThuocHuyDAL.cs" />
     <Compile Include="UserDAL.cs" />

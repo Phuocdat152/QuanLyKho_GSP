@@ -30,37 +30,128 @@ namespace GUI
             this.dgv_DanhSachThuoc.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_DanhSachThuoc_CellClick);
             this.cb_DanhMuc.SelectedIndexChanged += new System.EventHandler(this.cb_DanhMuc_SelectedIndexChanged);
             this.txt_TimKiem.TextChanged += new System.EventHandler(this.txt_TimKiem_TextChanged);
-
-
         }
 
         private void Quanlythuoc_Load(object sender, EventArgs e)
         {
+            
             LoadThuocData();
             LoadDanhMucData();
         }
+        private void LoadInitialData()
+        {
+            try
+            {
+                // Khởi tạo BLL để gọi phương thức lấy dữ liệu
+                ThuocBLL thuocBLL = new ThuocBLL(_username, _password);
+
+                // Lấy toàn bộ thuốc
+                DataTable thuocData = thuocBLL.GetAllThuoc();
+
+                // Kiểm tra dữ liệu trả về
+                if (thuocData == null || thuocData.Rows.Count == 0)
+                {
+                    dgv_DanhSachThuoc.DataSource = null;
+                    MessageBox.Show("Không có dữ liệu thuốc để hiển thị.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
+
+                // Gán dữ liệu vào DataGridView
+                dgv_DanhSachThuoc.DataSource = thuocData;
+
+                // Đặt tiêu đề cột
+                if (dgv_DanhSachThuoc.Columns.Contains("IDThuoc"))
+                    dgv_DanhSachThuoc.Columns["IDThuoc"].HeaderText = "Mã Thuốc";
+                if (dgv_DanhSachThuoc.Columns.Contains("TenThuoc"))
+                    dgv_DanhSachThuoc.Columns["TenThuoc"].HeaderText = "Tên Thuốc";
+                if (dgv_DanhSachThuoc.Columns.Contains("ThanhPhan"))
+                    dgv_DanhSachThuoc.Columns["ThanhPhan"].HeaderText = "Thành Phần";
+                if (dgv_DanhSachThuoc.Columns.Contains("IDDVT"))
+                    dgv_DanhSachThuoc.Columns["IDDVT"].HeaderText = "Đơn Vị Tính";
+                if (dgv_DanhSachThuoc.Columns.Contains("DonGia"))
+                    dgv_DanhSachThuoc.Columns["DonGia"].HeaderText = "Đơn Giá";
+                if (dgv_DanhSachThuoc.Columns.Contains("NuocSanXuat"))
+                    dgv_DanhSachThuoc.Columns["NuocSanXuat"].HeaderText = "Nước Sản Xuất";
+
+                // Đặt tiêu đề tiếng Việt cho các cột "Độ Ẩm", "Nhiệt Độ", "Ánh Sáng"
+                if (dgv_DanhSachThuoc.Columns.Contains("DoAm"))
+                    dgv_DanhSachThuoc.Columns["DoAm"].HeaderText = "Độ Ẩm";
+                if (dgv_DanhSachThuoc.Columns.Contains("NhietDo"))
+                    dgv_DanhSachThuoc.Columns["NhietDo"].HeaderText = "Nhiệt Độ";
+                if (dgv_DanhSachThuoc.Columns.Contains("AnhSang"))
+                    dgv_DanhSachThuoc.Columns["AnhSang"].HeaderText = "Ánh Sáng";
+
+                // Ẩn các cột không cần thiết
+                if (dgv_DanhSachThuoc.Columns.Contains("SoLuong"))
+                    dgv_DanhSachThuoc.Columns["SoLuong"].Visible = false;
+                if (dgv_DanhSachThuoc.Columns.Contains("IDLoaiKT"))
+                    dgv_DanhSachThuoc.Columns["IDLoaiKT"].Visible = false;
+            }
+            catch (Exception ex)
+            {
+                // Hiển thị lỗi nếu xảy ra
+                MessageBox.Show($"Đã xảy ra lỗi khi tải dữ liệu thuốc: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
 
         private void LoadThuocData(string idDanhMuc = null)
         {
-            ThuocBLL thuocBLL = new ThuocBLL(_username, _password);
-            DataTable thuocData = thuocBLL.GetThuocByDanhMuc(idDanhMuc); // Lấy tất cả thuốc nếu idDanhMuc là null
-            dgv_DanhSachThuoc.DataSource = thuocData;
+            try
+            {
+                // Khởi tạo BLL để gọi phương thức lấy dữ liệ
+                ThuocBLL thuocBLL = new ThuocBLL(_username, _password);
 
-            // Đặt tiêu đề cột tiếng Việt
-            dgv_DanhSachThuoc.Columns["MaThuoc"].HeaderText = "Mã Thuốc";
-            dgv_DanhSachThuoc.Columns["TenThuoc"].HeaderText = "Tên Thuốc";
-            dgv_DanhSachThuoc.Columns["ThanhPhan"].HeaderText = "Thành Phần";
-            dgv_DanhSachThuoc.Columns["DVT"].HeaderText = "Đơn Vị Tính";
-            dgv_DanhSachThuoc.Columns["DonGia"].HeaderText = "Đơn Giá";
-            dgv_DanhSachThuoc.Columns["NSX"].HeaderText = "Nước Sản Xuất";
-            dgv_DanhSachThuoc.Columns["NhietDo"].HeaderText = "Nhiệt Độ Bảo Quản";
-            dgv_DanhSachThuoc.Columns["DoAm"].HeaderText = "Độ Ẩm Bảo Quản";
-            dgv_DanhSachThuoc.Columns["AnhSang"].HeaderText = "Điều Kiện Ánh Sáng";
+                // Lấy toàn bộ thuốc
+                DataTable thuocData = thuocBLL.GetAllThuoc();
 
-            // Ẩn hai cột Số Lượng và Loại Kiểm Tra
-            dgv_DanhSachThuoc.Columns["SoLuong"].Visible = false;
-            dgv_DanhSachThuoc.Columns["LKT"].Visible = false;
+                // Kiểm tra dữ liệu trả về
+                if (thuocData == null || thuocData.Rows.Count == 0)
+                {
+                    dgv_DanhSachThuoc.DataSource = null;
+                    MessageBox.Show("Không có dữ liệu thuốc để hiển thị.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
+
+                // Gán dữ liệu vào DataGridView
+                dgv_DanhSachThuoc.DataSource = thuocData;
+
+                // Đặt tiêu đề cột
+                if (dgv_DanhSachThuoc.Columns.Contains("IDThuoc"))
+                    dgv_DanhSachThuoc.Columns["IDThuoc"].HeaderText = "Mã Thuốc";
+                if (dgv_DanhSachThuoc.Columns.Contains("TenThuoc"))
+                    dgv_DanhSachThuoc.Columns["TenThuoc"].HeaderText = "Tên Thuốc";
+                if (dgv_DanhSachThuoc.Columns.Contains("ThanhPhan"))
+                    dgv_DanhSachThuoc.Columns["ThanhPhan"].HeaderText = "Thành Phần";
+                if (dgv_DanhSachThuoc.Columns.Contains("IDDVT"))
+                    dgv_DanhSachThuoc.Columns["IDDVT"].HeaderText = "Đơn Vị Tính";
+                if (dgv_DanhSachThuoc.Columns.Contains("DonGia"))
+                    dgv_DanhSachThuoc.Columns["DonGia"].HeaderText = "Đơn Giá";
+                if (dgv_DanhSachThuoc.Columns.Contains("NuocSanXuat"))
+                    dgv_DanhSachThuoc.Columns["NuocSanXuat"].HeaderText = "Nước Sản Xuất";
+
+                // Đặt tiêu đề tiếng Việt cho các cột "Độ Ẩm", "Nhiệt Độ", "Ánh Sáng"
+                if (dgv_DanhSachThuoc.Columns.Contains("DoAm"))
+                    dgv_DanhSachThuoc.Columns["DoAm"].HeaderText = "Độ Ẩm";
+                if (dgv_DanhSachThuoc.Columns.Contains("NhietDo"))
+                    dgv_DanhSachThuoc.Columns["NhietDo"].HeaderText = "Nhiệt Độ";
+                if (dgv_DanhSachThuoc.Columns.Contains("AnhSang"))
+                    dgv_DanhSachThuoc.Columns["AnhSang"].HeaderText = "Ánh Sáng";
+
+                // Ẩn các cột không cần thiết
+                if (dgv_DanhSachThuoc.Columns.Contains("SoLuong"))
+                    dgv_DanhSachThuoc.Columns["SoLuong"].Visible = false;
+                if (dgv_DanhSachThuoc.Columns.Contains("IDLoaiKT"))
+                    dgv_DanhSachThuoc.Columns["IDLoaiKT"].Visible = false;
+            }
+            catch (Exception ex)
+            {
+                // Hiển thị lỗi nếu xảy ra
+                MessageBox.Show($"Đã xảy ra lỗi khi tải dữ liệu thuốc: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
+
+
 
 
         private void LoadDanhMucData()
@@ -70,13 +161,16 @@ namespace GUI
 
             // Thêm một dòng "Tất cả" vào danh sách
             DataRow allRow = danhMucData.NewRow();
-            allRow["IDDanhMuc"] = DBNull.Value; // hoặc "Tất cả"
+            allRow["IDDanhMuc"] = DBNull.Value; // hoặc để null nếu không cần giá trị cụ thể
             allRow["TenDanhMuc"] = "Tất cả";
             danhMucData.Rows.InsertAt(allRow, 0);
 
             cb_DanhMuc.DataSource = danhMucData;
             cb_DanhMuc.DisplayMember = "TenDanhMuc";
             cb_DanhMuc.ValueMember = "IDDanhMuc";
+
+            // Đặt mục được chọn mặc định là "Tất cả"
+            cb_DanhMuc.SelectedIndex = 0;
         }
 
         private void btn_ThemThuoc_Click(object sender, EventArgs e)
@@ -115,37 +209,81 @@ namespace GUI
                 lb_NhietDo.Text = row.Cells["NhietDo"].Value.ToString();
                 lb_DoAm.Text = row.Cells["DoAm"].Value.ToString();
                 lb_AnhSang.Text = row.Cells["AnhSang"].Value.ToString();
-                
-
+               
             }
 
 
         }
         private void UpdateThuocData()
         {
-            string keyword = txt_TimKiem.Text.Trim();
-            string selectedDanhMucID = cb_DanhMuc.SelectedValue?.ToString();
+            try
+            {
+                // Lấy từ khóa tìm kiếm
+                string keyword = txt_TimKiem.Text.Trim();
 
-            ThuocBLL thuocBLL = new ThuocBLL(_username, _password);
-            DataTable searchResult = thuocBLL.SearchThuoc(keyword, selectedDanhMucID);
-            dgv_DanhSachThuoc.DataSource = searchResult;
+                // Lấy danh mục được chọn (nếu có)
+                string selectedDanhMucID = cb_DanhMuc.SelectedValue?.ToString();
 
-            // Đặt tiêu đề cột tiếng Việt
-            dgv_DanhSachThuoc.Columns["MaThuoc"].HeaderText = "Mã Thuốc";
-            dgv_DanhSachThuoc.Columns["TenThuoc"].HeaderText = "Tên Thuốc";
-            dgv_DanhSachThuoc.Columns["ThanhPhan"].HeaderText = "Thành Phần";
-            dgv_DanhSachThuoc.Columns["DVT"].HeaderText = "Đơn Vị Tính";
-            dgv_DanhSachThuoc.Columns["DonGia"].HeaderText = "Đơn Giá";
-            dgv_DanhSachThuoc.Columns["NSX"].HeaderText = "Nước Sản Xuất";
-            dgv_DanhSachThuoc.Columns["NhietDo"].HeaderText = "Nhiệt Độ Bảo Quản";
-            dgv_DanhSachThuoc.Columns["DoAm"].HeaderText = "Độ Ẩm Bảo Quản";
-            dgv_DanhSachThuoc.Columns["AnhSang"].HeaderText = "Điều Kiện Ánh Sáng";
-            
+                // Khởi tạo BLL
+                ThuocBLL thuocBLL = new ThuocBLL(_username, _password);
 
-            // Ẩn hai cột Số Lượng và Loại Kiểm Tra
-            dgv_DanhSachThuoc.Columns["SoLuong"].Visible = false;
-            dgv_DanhSachThuoc.Columns["LKT"].Visible = false;
+                // Nếu từ khóa rỗng, hiển thị tất cả thuốc
+                DataTable result = string.IsNullOrEmpty(keyword)
+                    ? thuocBLL.GetThuocByDanhMuc(selectedDanhMucID) // Lấy thuốc theo danh mục hoặc tất cả nếu danh mục rỗng
+                    : thuocBLL.SearchThuoc(keyword, selectedDanhMucID); // Tìm kiếm thuốc theo từ khóa
+
+                // Kiểm tra dữ liệu trả về
+                if (result == null || result.Rows.Count == 0)
+                {
+                    // Tạo bảng trống với cấu trúc cột
+                    DataTable emptyTable = new DataTable();
+                    emptyTable.Columns.Add("MaThuoc", typeof(string));
+                    emptyTable.Columns.Add("TenThuoc", typeof(string));
+                    emptyTable.Columns.Add("ThanhPhan", typeof(string));
+                    emptyTable.Columns.Add("DVT", typeof(string));
+                    emptyTable.Columns.Add("DonGia", typeof(decimal));
+                    emptyTable.Columns.Add("NSX", typeof(string));
+                    emptyTable.Columns.Add("NhietDo", typeof(string));
+                    emptyTable.Columns.Add("DoAm", typeof(string));
+                    emptyTable.Columns.Add("AnhSang", typeof(string));
+
+                    dgv_DanhSachThuoc.DataSource = emptyTable;
+                    return;
+                }
+
+                // Hiển thị dữ liệu vào DataGridView
+                dgv_DanhSachThuoc.DataSource = result;
+
+                // Đặt tiêu đề cột tiếng Việt
+                if (dgv_DanhSachThuoc.Columns.Contains("MaThuoc"))
+                    dgv_DanhSachThuoc.Columns["MaThuoc"].HeaderText = "Mã Thuốc";
+                if (dgv_DanhSachThuoc.Columns.Contains("TenThuoc"))
+                    dgv_DanhSachThuoc.Columns["TenThuoc"].HeaderText = "Tên Thuốc";
+                if (dgv_DanhSachThuoc.Columns.Contains("ThanhPhan"))
+                    dgv_DanhSachThuoc.Columns["ThanhPhan"].HeaderText = "Thành Phần";
+                if (dgv_DanhSachThuoc.Columns.Contains("DVT"))
+                    dgv_DanhSachThuoc.Columns["DVT"].HeaderText = "Đơn Vị Tính";
+                if (dgv_DanhSachThuoc.Columns.Contains("DonGia"))
+                    dgv_DanhSachThuoc.Columns["DonGia"].HeaderText = "Đơn Giá";
+                if (dgv_DanhSachThuoc.Columns.Contains("NSX"))
+                    dgv_DanhSachThuoc.Columns["NSX"].HeaderText = "Nước Sản Xuất";
+
+                // Ẩn các cột không cần thiết
+                if (dgv_DanhSachThuoc.Columns.Contains("SoLuong"))
+                    dgv_DanhSachThuoc.Columns["SoLuong"].Visible = false;
+                if (dgv_DanhSachThuoc.Columns.Contains("LKT"))
+                    dgv_DanhSachThuoc.Columns["LKT"].Visible = false;
+            }
+            catch (Exception ex)
+            {
+                // Hiển thị lỗi nếu xảy ra
+                MessageBox.Show($"Lỗi khi cập nhật dữ liệu: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
+
+        
+
+
 
         private void panel1_Paint(object sender, PaintEventArgs e)
         {
@@ -154,57 +292,28 @@ namespace GUI
 
         private void cb_DanhMuc_SelectedIndexChanged(object sender, EventArgs e)
         {
-            // Lấy ID danh mục được chọn từ ComboBox
-            //string selectedDanhMucID = cb_DanhMuc.SelectedValue?.ToString();
+            // Chỉ thực hiện khi danh mục được chọn
+            if (cb_DanhMuc.SelectedValue != null)
+            {
+                string selectedDanhMucID = cb_DanhMuc.SelectedValue.ToString();
 
-            //// Nếu chọn "Tất cả" hoặc không chọn danh mục cụ thể, hiển thị tất cả thuốc
-            //if (string.IsNullOrEmpty(selectedDanhMucID) || selectedDanhMucID == "Tất cả")
-            //{
-            //    LoadThuocData(); // Hiển thị tất cả thuốc
-
-            //}
-            //else
-            //{
-            //    LoadThuocData(selectedDanhMucID);
-            //    // Hiển thị thuốc theo danh mục được chọn
-            //}
-            UpdateThuocData();
+                // Nếu chọn "Tất cả" hoặc danh mục rỗng, tải lại toàn bộ dữ liệu
+                if (string.IsNullOrEmpty(selectedDanhMucID) || selectedDanhMucID == "Tất cả")
+                {
+                    LoadInitialData(); // Tải toàn bộ thuốc
+                }
+                else
+                {
+                    UpdateThuocData(); // Tải thuốc theo danh mục
+                }
+            }
         }
 
         private void txt_TimKiem_TextChanged(object sender, EventArgs e)
         {
-            //string keyword = txt_TimKiem.Text.Trim();
-            
-            //// Kiểm tra từ khóa tìm kiếm
-            //if (string.IsNullOrEmpty(keyword))
-            //{
-            //    // Nếu không có từ khóa, hiển thị tất cả thuốc
-            //    LoadThuocData();
-            //}
-            //else
-            //{
-            //    // Tìm kiếm thuốc theo từ khóa
-            //    ThuocBLL thuocBLL = new ThuocBLL(_username, _password);
-            //    DataTable searchResult = thuocBLL.SearchThuoc(keyword);
-            //    dgv_DanhSachThuoc.DataSource = searchResult;
-
-            //    // Đặt tiêu đề cột tiếng Việt
-            //    dgv_DanhSachThuoc.Columns["MaThuoc"].HeaderText = "Mã Thuốc";
-            //    dgv_DanhSachThuoc.Columns["TenThuoc"].HeaderText = "Tên Thuốc";
-            //    dgv_DanhSachThuoc.Columns["DVT"].HeaderText = "Đơn Vị Tính";
-            //    dgv_DanhSachThuoc.Columns["DonGia"].HeaderText = "Đơn Giá";
-            //    dgv_DanhSachThuoc.Columns["NSX"].HeaderText = "Nước Sản Xuất";
-            //    dgv_DanhSachThuoc.Columns["NhietDo"].HeaderText = "Nhiệt Độ Bảo Quản";
-            //    dgv_DanhSachThuoc.Columns["DoAm"].HeaderText = "Độ Ẩm Bảo Quản";
-            //    dgv_DanhSachThuoc.Columns["AnhSang"].HeaderText = "Điều Kiện Ánh Sáng";
-
-            //    // Ẩn hai cột Số Lượng và Loại Kiểm Tra
-            //    dgv_DanhSachThuoc.Columns["SoLuong"].Visible = false;
-            //    dgv_DanhSachThuoc.Columns["LKT"].Visible = false;
-                
-            //}
             UpdateThuocData();
         }
+
 
         private void btn_ChinhSua_Click(object sender, EventArgs e)
         {
