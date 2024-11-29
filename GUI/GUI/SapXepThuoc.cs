@@ -36,12 +36,19 @@ namespace GUI
         private void InitializeDataTable()
         {
             dataTable = new DataTable();
-            dataTable.Columns.Add("TenThuoc", typeof(string));
+            dataTable.Columns.Add("IDChiTietPhieuNhap", typeof(string));           
             dataTable.Columns.Add("IDThuoc", typeof(string));
-            dataTable.Columns.Add("IDChiTietPhieuNhap", typeof(string));
-            dataTable.Columns.Add("SLTon", typeof(int));
+            dataTable.Columns.Add("TenThuoc", typeof(string));
+            dataTable.Columns.Add("ThanhPhan", typeof(string));
+            dataTable.Columns.Add("LoaiThuoc", typeof(string));
             dataTable.Columns.Add("NgayNhap", typeof(DateTime));
+            dataTable.Columns.Add("NgayHetHan", typeof(DateTime));
+            dataTable.Columns.Add("QuyCach", typeof(string));
+            dataTable.Columns.Add("SoLuong", typeof(int));          
             dataTable.Columns.Add("ViTri", typeof(string));   // Thêm cột mới "Vị trí"
+            
+            
+            
 
             gc_ThuocChuaSapXep.DataSource = dataTable;
         }
@@ -227,7 +234,7 @@ namespace GUI
                     // Cột "Vị trí"
                     if (gv_ThuocChuaSapXep.Columns["ViTri"] != null)
                     {
-                        gv_ThuocChuaSapXep.Columns["ViTri"].Caption = "Vị trí";
+                        gv_ThuocChuaSapXep.Columns["ViTri"].Caption = "Vị Trí";
                         gv_ThuocChuaSapXep.Columns["ViTri"].OptionsColumn.AllowEdit = true; // Cho phép chỉnh sửa
                     }
 
@@ -235,8 +242,17 @@ namespace GUI
                 }
                 else
                 {
-                    MessageBox.Show("Không có dữ liệu chi tiết nhập kho!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     gc_ThuocChuaSapXep.DataSource = null;
+                    gv_ThuocChuaSapXep.Columns["IDChiTietPhieuNhap"].Caption = "Mã CTPN";
+                    gv_ThuocChuaSapXep.Columns["IDThuoc"].Caption = "Mã Thuốc";
+                    gv_ThuocChuaSapXep.Columns["TenThuoc"].Caption = "Tên Thuốc";
+                    gv_ThuocChuaSapXep.Columns["ThanhPhan"].Caption = "Thành Phần";
+                    gv_ThuocChuaSapXep.Columns["LoaiThuoc"].Caption = "Loại Thuốc";
+                    gv_ThuocChuaSapXep.Columns["QuyCach"].Caption = "Đơn Vị Tính";
+                    gv_ThuocChuaSapXep.Columns["SoLuong"].Caption = "Số lượng";
+                    gv_ThuocChuaSapXep.Columns["NgayNhap"].Caption = "Ngày Nhập";
+                    gv_ThuocChuaSapXep.Columns["NgayHetHan"].Caption = "Ngày Hết Hạn";
+                    gv_ThuocChuaSapXep.Columns["ViTri"].Caption = "Vị Trí";
                 }
             }
             catch (Exception ex)
@@ -355,7 +371,7 @@ namespace GUI
                     // Kiểm tra xem các cột có giá trị hợp lệ không
                     if (row["IDThuoc"] == DBNull.Value || string.IsNullOrEmpty(row["IDThuoc"].ToString()) ||
                         row["IDChiTietPhieuNhap"] == DBNull.Value || string.IsNullOrEmpty(row["IDChiTietPhieuNhap"].ToString()) ||
-                        row["SLTon"] == DBNull.Value ||
+                        row["SoLuong"] == DBNull.Value ||
                         row["NgayNhap"] == DBNull.Value ||
                         row["ViTri"] == DBNull.Value || string.IsNullOrEmpty(row["ViTri"].ToString())) // Sửa từ IDViTri thành ViTri
                     {
@@ -368,7 +384,7 @@ namespace GUI
                     {
                         IDThuoc = row["IDThuoc"].ToString(),
                         IDChiTietPhieuNhap = row["IDChiTietPhieuNhap"].ToString(),
-                        SLton = Convert.ToInt32(row["SLTon"]),
+                        SLton = Convert.ToInt32(row["SoLuong"]),
                         NgayNhap = Convert.ToDateTime(row["NgayNhap"]),
                         IDViTri = row["ViTri"].ToString() // Lưu cột ViTri
                     };

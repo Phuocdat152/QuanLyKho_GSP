@@ -20,6 +20,12 @@ namespace GUI
             _password = password;
             userBLL = new UserBLL(_username, _password);
 
+            btn_ThemNV.Click += new EventHandler(btn_ThemNV_Click);
+            btn_SuaNV.Click += new EventHandler(btn_SuaNV_Click);
+            btn_XoaNV.Click += new EventHandler(btn_XoaNV_Click);
+
+            dgv_NhanVien.CellClick += new DataGridViewCellEventHandler(dgv_NhanVien_CellContentClick);
+
             LoadEmployeeData();
 
         }
@@ -75,7 +81,11 @@ namespace GUI
 
             dgv_NhanVien.ReadOnly = true; // Đặt chế độ chỉ đọc
             dgv_NhanVien.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+
+            // Tắt dòng trắng dư ở cuối
+            dgv_NhanVien.AllowUserToAddRows = false;
         }
+
 
         private void dgv_NhanVien_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -160,5 +170,7 @@ namespace GUI
                 }
             }
         }
+
+
     }
 }
