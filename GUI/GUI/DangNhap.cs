@@ -72,7 +72,7 @@ namespace GUI
                     mainForm.Show();
                     this.Hide();
                 }
-
+                ////dkkfkfkfkfkf
                 this.Hide();
             }
             else
