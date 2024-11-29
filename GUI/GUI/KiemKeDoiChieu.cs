@@ -354,8 +354,7 @@ namespace GUI
             });
 
             // Căn chỉnh và cấu hình GridView
-            gv_DanhSachKK.OptionsView.ColumnAutoWidth = false;
-            gv_DanhSachKK.BestFitColumns();
+            
         }
 
         private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)

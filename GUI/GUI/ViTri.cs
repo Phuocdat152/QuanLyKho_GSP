@@ -27,13 +27,16 @@ namespace GUI
             viTriBLL = new ViTriBLL(username, password);
             khoBLL = new KhoBLL(username, password);
 
+
         }
-        
+
 
         private void ViTri_Load(object sender, EventArgs e)
         {
             try
             {
+                groupControlKho.AutoScroll = true;
+
                 // Tải danh sách kho vào ComboBox
                 LoadKhoToComboBox();
 
@@ -100,14 +103,15 @@ namespace GUI
             Form formO = new Form
             {
                 Text = "Danh sách ô",
-                Size = new Size(550, 180),
+                Size = new Size(800, 300), // Tăng kích thước form
                 StartPosition = FormStartPosition.CenterScreen
             };
 
-            int xStart = 20;
-            int yStart = 20;
-            int oWidth = 80;
-            int oHeight = 50;
+            int xStart = 30; // Khoảng cách bắt đầu
+            int yStart = 30;
+            int oWidth = 120; // Tăng chiều rộng của ô
+            int oHeight = 70; // Tăng chiều cao của ô
+            int spacing = 30; // Khoảng cách giữa các ô
 
             for (int i = 0; i < oList.Count; i++)
             {
@@ -119,15 +123,21 @@ namespace GUI
                     Name = $"btnO_{i + 1}",
                     Text = $"{tenO}\n{trangThai}",
                     Size = new Size(oWidth, oHeight),
-                    Location = new Point(xStart + (i % 5) * (oWidth + 20), yStart + (i / 5) * (oHeight + 20)),
-                    BackColor = trangThai == "Còn trống" ? Color.LightYellow : Color.LightCoral
+                    Location = new Point(xStart + (i % 5) * (oWidth + spacing), yStart + (i / 5) * (oHeight + spacing)),
+                    BackColor = trangThai == "Còn trống" ? Color.LightGreen : Color.Red
                 };
+
+                // Gán tooltip để hiển thị thông tin chi tiết
+                ToolTip toolTip = new ToolTip();
+                toolTip.SetToolTip(btnO, $"Tên ô: {tenO}\nTrạng thái: {trangThai}");
 
                 formO.Controls.Add(btnO);
             }
 
             formO.ShowDialog();
         }
+
+
 
         private void VeGiaoDienTuThongTinViTri(DataTable dtViTri)
         {
@@ -148,15 +158,15 @@ namespace GUI
             }).ToList();
 
             int groupControlWidth = groupControlKho.Width; // Chiều rộng GroupControl
-            int khuWidth = 300; // Chiều rộng khu
-            int khuHeight = 300; // Chiều cao khu
-            int spacing = 20; // Khoảng cách giữa các khu
+            int khuWidth = 400; // Tăng chiều rộng khu
+            int khuHeight = 400; // Tăng chiều cao khu
+            int spacing = 30; // Tăng khoảng cách giữa các khu
             int columns = groupControlWidth / (khuWidth + spacing); // Số lượng cột hiển thị được
 
             if (columns == 0) columns = 1; // Đảm bảo ít nhất có 1 cột
             int totalWidth = columns * khuWidth + (columns - 1) * spacing;
             int xStart = (groupControlWidth - totalWidth) / 2; // Căn giữa theo chiều ngang
-            int yStart = 70;
+            int yStart = 100;
 
             for (int i = 0; i < khuGroups.Count; i++)
             {
@@ -178,11 +188,11 @@ namespace GUI
                 Label lblTenKhu = new Label
                 {
                     Text = khuGroups[i].Key.TenKhu,
-                    Font = new Font("Arial", 14, FontStyle.Bold),
+                    Font = new Font("Arial", 18, FontStyle.Bold), // Tăng kích thước font
                     ForeColor = Color.Black,
                     Dock = DockStyle.Top,
                     TextAlign = ContentAlignment.MiddleCenter,
-                    Height = 40
+                    Height = 50
                 };
                 pnlKhu.Controls.Add(lblTenKhu);
 
@@ -194,9 +204,9 @@ namespace GUI
                         TenKe = rows["TenKe"].ToString()
                     }).ToList();
 
-                int keWidth = 70;
-                int keHeight = 40;
-                int keColumns = 4; // Số cột kệ
+                int keWidth = 100; // Tăng chiều rộng của kệ
+                int keHeight = 60; // Tăng chiều cao của kệ
+                int keColumns = 3; // Giảm số cột để phù hợp kích thước lớn hơn
                 int keSpacingX = (khuWidth - keColumns * keWidth) / (keColumns + 1);
                 int keRows = (int)Math.Ceiling((double)keGroups.Count / keColumns);
                 int keSpacingY = (khuHeight - lblTenKhu.Height - keRows * keHeight) / (keRows + 1);
@@ -213,12 +223,30 @@ namespace GUI
                         Size = new Size(keWidth, keHeight),
                         Location = new Point(keSpacingX + keCol * (keWidth + keSpacingX),
                                              lblTenKhu.Height + keSpacingY + keRow * (keHeight + keSpacingY)),
-                        BackColor = Color.LightGreen
+                        BackColor = Color.LightGreen // Mặc định là màu xanh
                     };
 
+                    // Lấy danh sách ô trong kệ
                     var oList = dtViTri.AsEnumerable()
                         .Where(rows => rows["IDKe"].ToString() == keGroups[j].Key.IDKe)
                         .ToList();
+
+                    // Đếm số lượng ô "Đã có thuốc"
+                    int countOCoThuoc = oList.Count(o => o["TrangThai"].ToString() == "Đã có thuốc");
+
+                    // Cập nhật màu kệ dựa trên số lượng ô "Đã có thuốc"
+                    if (countOCoThuoc == 1)
+                    {
+                        btnKe.BackColor = Color.Yellow; // Màu vàng cho 1 ô
+                    }
+                    else if (countOCoThuoc >= 2 && countOCoThuoc <= 4)
+                    {
+                        btnKe.BackColor = Color.Orange; // Màu cam cho 2-4 ô
+                    }
+                    else if (countOCoThuoc >= 5)
+                    {
+                        btnKe.BackColor = Color.Red; // Màu đỏ cho 5 ô trở lên
+                    }
 
                     btnKe.Click += (s, ev) => HienThiOTrongKe(oList);
                     pnlKhu.Controls.Add(btnKe);
@@ -227,6 +255,9 @@ namespace GUI
                 groupControlKho.Controls.Add(pnlKhu);
             }
         }
+
+
+
 
         private void LoadKhoToComboBox()
         {

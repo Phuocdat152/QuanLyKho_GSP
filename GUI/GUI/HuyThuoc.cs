@@ -224,15 +224,15 @@ namespace GUI
                 // Cấu hình các cột hiển thị trong LookUpEdit
                 lookUpEditViTri.PopulateColumns();
                 lookUpEditViTri.Columns["Mã Vị Trí"].Caption = "Mã Vị Trí";
-                lookUpEditViTri.Columns["Tên Khu"].Caption = "Tên Khu";
-                lookUpEditViTri.Columns["Tên Kệ"].Caption = "Tên Kệ";
-                lookUpEditViTri.Columns["Tên Ô"].Caption = "Tên Ô";
+                lookUpEditViTri.Columns["Vị Trí"].Caption = "Vị Trí";
+                lookUpEditViTri.Columns["Trạng Thái"].Caption = "Trạng Thái";
+                lookUpEditViTri.Columns["Loại Khu"].Caption = "Loại Khu";
 
                 // Ẩn các cột không cần thiết
-                if (lookUpEditViTri.Columns["Trạng Thái"] != null)
-                    lookUpEditViTri.Columns["Trạng Thái"].Caption = "Trạng Thái";
-                if (lookUpEditViTri.Columns["Loại Khu"] != null)
-                    lookUpEditViTri.Columns["Loại Khu"].Caption = "Loại khu";
+                //if (lookUpEditViTri.Columns["Trạng Thái"] != null)
+                //    lookUpEditViTri.Columns["Trạng Thái"].Caption = "Trạng Thái";
+                //if (lookUpEditViTri.Columns["Loại Khu"] != null)
+                //    lookUpEditViTri.Columns["Loại Khu"].Caption = "Loại khu";
 
                 // Kiểm tra và gán LookUpEdit vào cột "ViTri"
                 var gridView = gc_ThuocHuy.MainView as DevExpress.XtraGrid.Views.Grid.GridView;
