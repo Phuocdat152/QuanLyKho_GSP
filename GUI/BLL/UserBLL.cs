@@ -197,6 +197,10 @@ namespace BLL
             return userDAL.ChangeLoginPassword(username, oldPassword, newPassword);
         }
 
+        public string GetUserRole(string username)
+        {
+            return userDAL.GetUserRole(username);
+        }
 
     }
 }

@@ -299,7 +299,7 @@ namespace DAL
 
                 foreach (DataRow row in dataTable.Rows)
                 {
-                    string idNhanVien= row["IDNhanVien"].ToString();
+                    string idNhanVien = row["IDNhanVien"].ToString();
                     string tenNhanVien = row["TenNhanVien"].ToString();
                     tenNVList.Add(idNhanVien, tenNhanVien);
                 }
@@ -409,5 +409,34 @@ namespace DAL
         }
 
 
+
+
+        public string GetUserRole(string username)
+        {
+            try
+            {
+                // Câu truy vấn để lấy chức vụ
+                string query = @"
+                    SELECT c.TenChucVu 
+                    FROM NhanVien n
+                    JOIN ChucVu c ON n.IDChucVu = c.IDChucVu
+                    WHERE n.Username = @Username";
+
+                // Tham số cho truy vấn
+                SqlParameter[] parameters = new SqlParameter[]
+                {
+                    new SqlParameter("@Username", username)
+                };
+
+                // Sử dụng ExecuteScalar để lấy kết quả
+                object role = dataConnect.ExecuteScalar(query, parameters);
+
+                return role?.ToString(); // Trả về tên chức vụ
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Lỗi khi lấy chức vụ người dùng: " + ex.Message);
+            }
+        }
     }
 }
