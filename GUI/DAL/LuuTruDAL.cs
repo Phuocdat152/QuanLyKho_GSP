@@ -214,7 +214,18 @@ namespace DAL
             }
         }
 
-        
+        public void UpdateAndSetLuuTruAsEmpty()
+        {
+            try
+            {
+                // Gọi stored procedure sp_UpdateAndSetLuuTruAsEmpty
+                dataConnect.ExecuteStoredProcedure("sp_UpdateAndSetLuuTruAsEmpty");
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error while executing stored procedure sp_UpdateAndSetLuuTruAsEmpty: " + ex.Message);
+            }
+        }
 
     }
 }

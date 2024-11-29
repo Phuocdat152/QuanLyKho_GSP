@@ -197,6 +197,7 @@
             // de_NgayKK
             // 
             this.de_NgayKK.EditValue = null;
+            this.de_NgayKK.Enabled = false;
             this.de_NgayKK.Location = new System.Drawing.Point(911, 14);
             this.de_NgayKK.Margin = new System.Windows.Forms.Padding(4);
             this.de_NgayKK.Name = "de_NgayKK";
@@ -219,6 +220,7 @@
             // 
             // txt_NhanVienKK
             // 
+            this.txt_NhanVienKK.Enabled = false;
             this.txt_NhanVienKK.Location = new System.Drawing.Point(911, 55);
             this.txt_NhanVienKK.Name = "txt_NhanVienKK";
             this.txt_NhanVienKK.Size = new System.Drawing.Size(262, 20);

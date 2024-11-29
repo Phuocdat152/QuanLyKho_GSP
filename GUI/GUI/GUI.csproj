@@ -328,6 +328,18 @@
     <Compile Include="TrangChu.Designer.cs">
       <DependentUpon>TrangChu.cs</DependentUpon>
     </Compile>
+    <Compile Include="TrangNhanVien.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TrangNhanVien.Designer.cs">
+      <DependentUpon>TrangNhanVien.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TrangQuanLy.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TrangQuanLy.Designer.cs">
+      <DependentUpon>TrangQuanLy.cs</DependentUpon>
+    </Compile>
     <Compile Include="ViTri.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -455,6 +467,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="TrangChu.resx">
       <DependentUpon>TrangChu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TrangNhanVien.resx">
+      <DependentUpon>TrangNhanVien.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TrangQuanLy.resx">
+      <DependentUpon>TrangQuanLy.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ViTri.resx">
       <DependentUpon>ViTri.cs</DependentUpon>

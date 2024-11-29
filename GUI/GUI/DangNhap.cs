@@ -54,21 +54,21 @@ namespace GUI
                 if (role == "Quản lý")
                 {
                     MessageBox.Show("Đăng nhập thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    TrangChu mainForm = new TrangChu(username, password);
+                    TrangQuanLy mainForm = new TrangQuanLy();
                     mainForm.Show();
                     this.Hide();
                 }
                 else if (role == "Nhân viên")
                 {
                     MessageBox.Show("Đăng nhập thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    NhapKho mainForm = new NhapKho(username, password);
+                    TrangNhanVien mainForm = new TrangNhanVien();
                     mainForm.Show();
                     this.Hide();
                 }
                 else
-                {
+                {                 
                     MessageBox.Show("Đăng nhập thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    XuatKho mainForm = new XuatKho(username, password);
+                    TrangChu mainForm = new TrangChu(username, password);
                     mainForm.Show();
                     this.Hide();
                 }

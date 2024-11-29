@@ -22,6 +22,8 @@ namespace GUI
             InitializeComponent();
             luuTruBLL = new LuuTruBLL(username, password);
             thuocBLL = new ThuocBLL(username,password);
+
+            luuTruBLL.UpdateAndSetLuuTruAsEmpty();
         }
 
         private void InitializeDataTable()

@@ -456,11 +456,13 @@
             this.btn_In.Name = "btn_In";
             this.btn_In.Size = new System.Drawing.Size(118, 24);
             this.btn_In.Text = "Xuất phiếu nhập";
+            this.btn_In.Visible = false;
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
             this.toolStripSeparator2.Size = new System.Drawing.Size(6, 27);
+            this.toolStripSeparator2.Visible = false;
             // 
             // btn_Thoat
             // 
@@ -469,6 +471,7 @@
             this.btn_Thoat.Name = "btn_Thoat";
             this.btn_Thoat.Size = new System.Drawing.Size(61, 24);
             this.btn_Thoat.Text = "Thoát";
+            this.btn_Thoat.Visible = false;
             // 
             // splitContainerControl3
             // 

@@ -135,6 +135,30 @@ namespace GUI
             OpenForm<QuanLyNCC>();
         }
 
+        private void barButtonItem1_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            // Hiển thị hộp thoại xác nhận đăng xuất
+            DialogResult result = MessageBox.Show(
+                "Bạn có muốn đăng xuất không?",
+                "Xác nhận đăng xuất",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question
+            );
+
+            if (result == DialogResult.Yes)
+            {
+                // Nếu người dùng chọn "Yes", mở form đăng nhập và đóng form hiện tại
+                DangNhap formDangNhap = new DangNhap();
+                formDangNhap.Show();
+                this.Close(); // Đóng form hiện tại
+            }
+        }
+
+        private void btn_QuanTriNguoiDung_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            OpenForm<QuanTriNguoiDung>();
+        }
+
         private void btn_NhapKho_ItemClick(object sender, ItemClickEventArgs e)
         {
             OpenForm<NhapKho>();

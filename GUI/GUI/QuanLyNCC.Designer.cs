@@ -29,9 +29,6 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(QuanLyNCC));
-            this.GroupView1 = new DevExpress.XtraEditors.GroupControl();
-            this.btn_SuaNCC = new DevExpress.XtraEditors.SimpleButton();
-            this.btn_ThemNCC = new DevExpress.XtraEditors.SimpleButton();
             this.groupControl2 = new DevExpress.XtraEditors.GroupControl();
             this.lb_Email = new System.Windows.Forms.Label();
             this.lb_DiaChi = new System.Windows.Forms.Label();
@@ -46,8 +43,12 @@
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
             this.dgv_DanhSach = new System.Windows.Forms.DataGridView();
             this.splitContainerControl1 = new DevExpress.XtraEditors.SplitContainerControl();
-            ((System.ComponentModel.ISupportInitialize)(this.GroupView1)).BeginInit();
-            this.GroupView1.SuspendLayout();
+            this.splitContainerControl2 = new DevExpress.XtraEditors.SplitContainerControl();
+            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.btn_ThemNCC = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.btn_SuaNCC = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).BeginInit();
             this.groupControl2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
@@ -55,48 +56,18 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgv_DanhSach)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1.Panel1)).BeginInit();
+            this.splitContainerControl1.Panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1.Panel2)).BeginInit();
+            this.splitContainerControl1.Panel2.SuspendLayout();
             this.splitContainerControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl2.Panel1)).BeginInit();
+            this.splitContainerControl2.Panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl2.Panel2)).BeginInit();
+            this.splitContainerControl2.Panel2.SuspendLayout();
+            this.splitContainerControl2.SuspendLayout();
+            this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // GroupView1
-            // 
-            this.GroupView1.Controls.Add(this.btn_SuaNCC);
-            this.GroupView1.Controls.Add(this.btn_ThemNCC);
-            this.GroupView1.Location = new System.Drawing.Point(1414, 349);
-            this.GroupView1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.GroupView1.Name = "GroupView1";
-            this.GroupView1.Size = new System.Drawing.Size(297, 248);
-            this.GroupView1.TabIndex = 2;
-            this.GroupView1.Text = "Chức Năng";
-            // 
-            // btn_SuaNCC
-            // 
-            this.btn_SuaNCC.Appearance.Font = new System.Drawing.Font("Segoe UI Semibold", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_SuaNCC.Appearance.Options.UseFont = true;
-            this.btn_SuaNCC.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btn_SuaNCC.ImageOptions.Image")));
-            this.btn_SuaNCC.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
-            this.btn_SuaNCC.Location = new System.Drawing.Point(67, 126);
-            this.btn_SuaNCC.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.btn_SuaNCC.Name = "btn_SuaNCC";
-            this.btn_SuaNCC.Size = new System.Drawing.Size(186, 67);
-            this.btn_SuaNCC.TabIndex = 1;
-            this.btn_SuaNCC.Text = "Sửa Thông Tin";
-            this.btn_SuaNCC.Click += new System.EventHandler(this.btn_SuaNCC_Click);
-            // 
-            // btn_ThemNCC
-            // 
-            this.btn_ThemNCC.Appearance.Font = new System.Drawing.Font("Segoe UI Semibold", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_ThemNCC.Appearance.Options.UseFont = true;
-            this.btn_ThemNCC.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btn_ThemNCC.ImageOptions.Image")));
-            this.btn_ThemNCC.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
-            this.btn_ThemNCC.Location = new System.Drawing.Point(67, 47);
-            this.btn_ThemNCC.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.btn_ThemNCC.Name = "btn_ThemNCC";
-            this.btn_ThemNCC.Size = new System.Drawing.Size(186, 67);
-            this.btn_ThemNCC.TabIndex = 0;
-            this.btn_ThemNCC.Text = "Thêm";
-            this.btn_ThemNCC.Click += new System.EventHandler(this.btn_ThemNCC_Click);
             // 
             // groupControl2
             // 
@@ -110,10 +81,11 @@
             this.groupControl2.Controls.Add(this.label3);
             this.groupControl2.Controls.Add(this.label2);
             this.groupControl2.Controls.Add(this.label1);
-            this.groupControl2.Location = new System.Drawing.Point(1414, 11);
-            this.groupControl2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupControl2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupControl2.Location = new System.Drawing.Point(0, 0);
+            this.groupControl2.Margin = new System.Windows.Forms.Padding(2);
             this.groupControl2.Name = "groupControl2";
-            this.groupControl2.Size = new System.Drawing.Size(301, 332);
+            this.groupControl2.Size = new System.Drawing.Size(415, 552);
             this.groupControl2.TabIndex = 1;
             this.groupControl2.Text = "Thông Tin";
             // 
@@ -124,9 +96,9 @@
             this.lb_Email.Location = new System.Drawing.Point(126, 237);
             this.lb_Email.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lb_Email.Name = "lb_Email";
-            this.lb_Email.Size = new System.Drawing.Size(40, 21);
+            this.lb_Email.Size = new System.Drawing.Size(14, 21);
             this.lb_Email.TabIndex = 9;
-            this.lb_Email.Text = "Info";
+            this.lb_Email.Text = " ";
             // 
             // lb_DiaChi
             // 
@@ -135,9 +107,9 @@
             this.lb_DiaChi.Location = new System.Drawing.Point(126, 185);
             this.lb_DiaChi.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lb_DiaChi.Name = "lb_DiaChi";
-            this.lb_DiaChi.Size = new System.Drawing.Size(40, 21);
+            this.lb_DiaChi.Size = new System.Drawing.Size(14, 21);
             this.lb_DiaChi.TabIndex = 8;
-            this.lb_DiaChi.Text = "Info";
+            this.lb_DiaChi.Text = " ";
             // 
             // lb_SDT
             // 
@@ -146,9 +118,9 @@
             this.lb_SDT.Location = new System.Drawing.Point(126, 137);
             this.lb_SDT.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lb_SDT.Name = "lb_SDT";
-            this.lb_SDT.Size = new System.Drawing.Size(40, 21);
+            this.lb_SDT.Size = new System.Drawing.Size(14, 21);
             this.lb_SDT.TabIndex = 7;
-            this.lb_SDT.Text = "Info";
+            this.lb_SDT.Text = " ";
             // 
             // lb_TenNCC
             // 
@@ -157,9 +129,9 @@
             this.lb_TenNCC.Location = new System.Drawing.Point(126, 90);
             this.lb_TenNCC.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lb_TenNCC.Name = "lb_TenNCC";
-            this.lb_TenNCC.Size = new System.Drawing.Size(40, 21);
+            this.lb_TenNCC.Size = new System.Drawing.Size(14, 21);
             this.lb_TenNCC.TabIndex = 6;
-            this.lb_TenNCC.Text = "Info";
+            this.lb_TenNCC.Text = " ";
             // 
             // lb_MaNCC
             // 
@@ -168,9 +140,9 @@
             this.lb_MaNCC.Location = new System.Drawing.Point(126, 46);
             this.lb_MaNCC.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lb_MaNCC.Name = "lb_MaNCC";
-            this.lb_MaNCC.Size = new System.Drawing.Size(40, 21);
+            this.lb_MaNCC.Size = new System.Drawing.Size(14, 21);
             this.lb_MaNCC.TabIndex = 5;
-            this.lb_MaNCC.Text = "Info";
+            this.lb_MaNCC.Text = " ";
             // 
             // label5
             // 
@@ -230,55 +202,119 @@
             // groupControl1
             // 
             this.groupControl1.Controls.Add(this.dgv_DanhSach);
-            this.groupControl1.Location = new System.Drawing.Point(862, 11);
-            this.groupControl1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupControl1.Location = new System.Drawing.Point(0, 0);
+            this.groupControl1.Margin = new System.Windows.Forms.Padding(2);
             this.groupControl1.Name = "groupControl1";
-            this.groupControl1.Size = new System.Drawing.Size(547, 585);
+            this.groupControl1.Size = new System.Drawing.Size(658, 596);
             this.groupControl1.TabIndex = 0;
             this.groupControl1.Text = "Danh Sách Nhà Cung Cấp";
             // 
             // dgv_DanhSach
             // 
             this.dgv_DanhSach.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgv_DanhSach.Location = new System.Drawing.Point(4, 25);
-            this.dgv_DanhSach.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dgv_DanhSach.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgv_DanhSach.Location = new System.Drawing.Point(2, 23);
+            this.dgv_DanhSach.Margin = new System.Windows.Forms.Padding(2);
             this.dgv_DanhSach.Name = "dgv_DanhSach";
             this.dgv_DanhSach.RowHeadersWidth = 51;
             this.dgv_DanhSach.RowTemplate.Height = 24;
-            this.dgv_DanhSach.Size = new System.Drawing.Size(539, 556);
+            this.dgv_DanhSach.Size = new System.Drawing.Size(654, 571);
             this.dgv_DanhSach.TabIndex = 0;
             this.dgv_DanhSach.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_DanhSach_CellClick);
             // 
             // splitContainerControl1
             // 
-            this.splitContainerControl1.Location = new System.Drawing.Point(138, 108);
+            this.splitContainerControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainerControl1.Location = new System.Drawing.Point(0, 0);
             this.splitContainerControl1.Name = "splitContainerControl1";
             // 
             // splitContainerControl1.Panel1
             // 
+            this.splitContainerControl1.Panel1.Controls.Add(this.splitContainerControl2);
             this.splitContainerControl1.Panel1.Text = "Panel1";
             // 
             // splitContainerControl1.Panel2
             // 
+            this.splitContainerControl1.Panel2.Controls.Add(this.groupControl1);
             this.splitContainerControl1.Panel2.Text = "Panel2";
-            this.splitContainerControl1.Size = new System.Drawing.Size(200, 100);
+            this.splitContainerControl1.Size = new System.Drawing.Size(1083, 596);
+            this.splitContainerControl1.SplitterPosition = 415;
             this.splitContainerControl1.TabIndex = 3;
+            // 
+            // splitContainerControl2
+            // 
+            this.splitContainerControl2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainerControl2.Horizontal = false;
+            this.splitContainerControl2.Location = new System.Drawing.Point(0, 0);
+            this.splitContainerControl2.Name = "splitContainerControl2";
+            // 
+            // splitContainerControl2.Panel1
+            // 
+            this.splitContainerControl2.Panel1.Controls.Add(this.toolStrip1);
+            this.splitContainerControl2.Panel1.Text = "Panel1";
+            // 
+            // splitContainerControl2.Panel2
+            // 
+            this.splitContainerControl2.Panel2.Controls.Add(this.groupControl2);
+            this.splitContainerControl2.Panel2.Text = "Panel2";
+            this.splitContainerControl2.Size = new System.Drawing.Size(415, 596);
+            this.splitContainerControl2.SplitterPosition = 34;
+            this.splitContainerControl2.TabIndex = 0;
+            // 
+            // toolStrip1
+            // 
+            this.toolStrip1.BackColor = System.Drawing.Color.LightSkyBlue;
+            this.toolStrip1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.toolStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.btn_ThemNCC,
+            this.toolStripSeparator1,
+            this.btn_SuaNCC,
+            this.toolStripSeparator2});
+            this.toolStrip1.Location = new System.Drawing.Point(0, 0);
+            this.toolStrip1.Name = "toolStrip1";
+            this.toolStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
+            this.toolStrip1.Size = new System.Drawing.Size(415, 34);
+            this.toolStrip1.TabIndex = 30;
+            this.toolStrip1.Text = "toolStrip1";
+            // 
+            // btn_ThemNCC
+            // 
+            this.btn_ThemNCC.Image = ((System.Drawing.Image)(resources.GetObject("btn_ThemNCC.Image")));
+            this.btn_ThemNCC.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btn_ThemNCC.Name = "btn_ThemNCC";
+            this.btn_ThemNCC.Size = new System.Drawing.Size(61, 31);
+            this.btn_ThemNCC.Text = "Thêm";
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 34);
+            // 
+            // btn_SuaNCC
+            // 
+            this.btn_SuaNCC.Image = ((System.Drawing.Image)(resources.GetObject("btn_SuaNCC.Image")));
+            this.btn_SuaNCC.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btn_SuaNCC.Name = "btn_SuaNCC";
+            this.btn_SuaNCC.Size = new System.Drawing.Size(79, 31);
+            this.btn_SuaNCC.Text = "Cập nhật";
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 34);
             // 
             // QuanLyNCC
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1785, 596);
+            this.ClientSize = new System.Drawing.Size(1083, 596);
             this.Controls.Add(this.splitContainerControl1);
-            this.Controls.Add(this.GroupView1);
-            this.Controls.Add(this.groupControl2);
-            this.Controls.Add(this.groupControl1);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "QuanLyNCC";
             this.Text = "Quản Lý Nhà Cung Cấp";
             this.Load += new System.EventHandler(this.QuanLyNCC_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.GroupView1)).EndInit();
-            this.GroupView1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).EndInit();
             this.groupControl2.ResumeLayout(false);
             this.groupControl2.PerformLayout();
@@ -286,15 +322,25 @@
             this.groupControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgv_DanhSach)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1.Panel1)).EndInit();
+            this.splitContainerControl1.Panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1.Panel2)).EndInit();
+            this.splitContainerControl1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).EndInit();
             this.splitContainerControl1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl2.Panel1)).EndInit();
+            this.splitContainerControl2.Panel1.ResumeLayout(false);
+            this.splitContainerControl2.Panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl2.Panel2)).EndInit();
+            this.splitContainerControl2.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl2)).EndInit();
+            this.splitContainerControl2.ResumeLayout(false);
+            this.toolStrip1.ResumeLayout(false);
+            this.toolStrip1.PerformLayout();
             this.ResumeLayout(false);
 
         }
 
         #endregion
-        private DevExpress.XtraEditors.GroupControl GroupView1;
         private DevExpress.XtraEditors.GroupControl groupControl2;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
@@ -302,8 +348,6 @@
         private System.Windows.Forms.Label label1;
         private DevExpress.XtraEditors.GroupControl groupControl1;
         private System.Windows.Forms.DataGridView dgv_DanhSach;
-        private DevExpress.XtraEditors.SimpleButton btn_SuaNCC;
-        private DevExpress.XtraEditors.SimpleButton btn_ThemNCC;
         private System.Windows.Forms.Label lb_Email;
         private System.Windows.Forms.Label lb_DiaChi;
         private System.Windows.Forms.Label lb_SDT;
@@ -311,5 +355,11 @@
         private System.Windows.Forms.Label lb_MaNCC;
         private System.Windows.Forms.Label label5;
         private DevExpress.XtraEditors.SplitContainerControl splitContainerControl1;
+        private DevExpress.XtraEditors.SplitContainerControl splitContainerControl2;
+        private System.Windows.Forms.ToolStrip toolStrip1;
+        private System.Windows.Forms.ToolStripButton btn_ThemNCC;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripButton btn_SuaNCC;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
     }
 }

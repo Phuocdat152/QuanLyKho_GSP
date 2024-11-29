@@ -117,4 +117,42 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <metadata name="toolStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="btn_ThemDM.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAEjSURBVDhPpVNLTsMwEPUGLoHANmygsOsBuQCfQJJB7QFA
+        Ytkt5RQNC1YsOAC1B6mIj4KfnVSUDAqCJ73I8bw39kwm6ju2iQ8s+czQvLLEz2Ba+wyxRtbF4LpeN8Sl
+        peojmGqRh9W7Ln0ObWNLiObC3YomgYbcdCVJOrkr3B0lSrFQ0nk0x5rD1STRVbWIlGLw7BS8r2zpz0RB
+        4OT+JVKKgYb8ibIF30lBsC+BzuczpYm53dgbp2u3xsen18j2HTFoWv1mzl7h8dsEl7PFSlM3iN3/SwhN
+        PJWCYF8CU/ojhU/x18+4deEHcRYwnpKoZ5CyaAbSf+CmsrBLXbib4ahea+wJSILx/KkcUNPDG07umL8C
+        PcGEocOYkciwDnvHy5qXUOoTkd1Tw6MfHQ8AAAAASUVORK5CYII=
+</value>
+  </data>
+  <data name="btn_XoaDM.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAADISURBVDhPY6AJeGblFvzU0m0VMn5m7h4ElSYMQIrRDXhq
+        4RoIlaYROKlmdfukutV/orCq1S2oNgQ4pW5pdUPP4dgdY6f/+DBIDUgtVBsqAAeWpdt/EH6ekPn/mZ03
+        GIPZUHGQGqhyTIBswJtnz/6/KKgAYxCbZAPevn71/0VJLRiD2EPQgDcXLv5/kZgFxNlgNlEGPLNwmwhT
+        iBu79kOVY4Lnlq46z/TdvmPXCMbfnlu7a0OVYwdgQyzcJoCcioxBYgQ1kw4YGAD2FyQwPlDu7AAAAABJ
+        RU5ErkJggg==
+</value>
+  </data>
+  <data name="btn_SuaDM.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAF5SURBVDhPYyAVWAlJdcTL6F6zFJLuhAoRD0zFpCcftIr+
+        /D+w4v8B29hvtjxyvVApwsDExGByf3fv917n4P8gA/57Vv+P4ze+CpXGD0x1eLonVqp86WrJ/3/q8JH/
+        Pc7h/w8qp32x4pbrgCrBDSz0eXoPztX+8vGYxf/0MOn/7U2F/5uae36Z8stPgSrBDUA275uv8wmkuThe
+        +v+7/S7/JqfpfDMw0JsMVYIbmOvwdu6aqf3py0mL/xXJMv8/7rf5f6DD/Ku5qkAfVAluANK8e7bWN5DN
+        RXFSYM2HOk0/m6kIEA51mLM/Hbf4f3SRHljzwTbzLxbqJGiG2fzpAAmaYX5GcXa7+Regn/uhSnADU32p
+        tjW9al+RNRNtMxCwxEW4XsuLN/tRGCv1/8Nem2+kaGZQV5VNOLtv2q+vz7f/z4+3+LuhyuQnUaENA/wi
+        EseS4nx/nlzX+jbW2/Kqla4M4eSJDNh5BM5zcwucVJcXTwByWSCixAIGBgBOLcD3HtVnSgAAAABJRU5E
+        rkJggg==
+</value>
+  </data>
 </root>
