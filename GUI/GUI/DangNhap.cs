@@ -30,42 +30,49 @@ namespace GUI
 
         private void btnDangNhap_Click_1(object sender, EventArgs e)
         {
-            string username = txtTaiKhoan.Text;
-            string password = txtMatKhau.Text;
             
 
-            
+
+
+            string username = txtTaiKhoan.Text;
+            string password = txtMatKhau.Text;
+
             if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
             {
                 MessageBox.Show("Vui lòng nhập đầy đủ thông tin đăng nhập.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
-            
             UserBLL userBLL = new UserBLL(username, password);
 
-            
             if (userBLL.Login())
             {
-                MessageBox.Show("Đăng nhập thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                // Lấy chức vụ người dùng
+                string role = userBLL.GetUserRole(username);
 
-
-                //QuanTriNguoiDung mainForm = new QuanTriNguoiDung(username, password);
-                //NhapKho mainForm = new NhapKho(username, password);
-                //SapXepThuoc mainForm = new SapXepThuoc(username, password);
-                //ViTri mainForm = new ViTri(username, password);
-                //QuanLyNhanVien mainForm = new QuanLyNhanVien(username, password);
-                //QLDanhMucThuoc mainForm = new QLDanhMucThuoc(username, password);
-                //Quanlythuoc mainForm = new Quanlythuoc(username, password);
-                //QuanLyNCC mainForm = new QuanLyNCC(username, password);
-                //KiemKeDoiChieu mainForm = new KiemKeDoiChieu();
-                //TraCuuThuoc mainForm = new TraCuuThuoc(username, password);
-                //XuatKho mainForm = new XuatKho(username, password);
-                //HuyThuoc mainForm = new HuyThuoc(username, password);
-                TrangChu mainForm = new TrangChu(username, password);
-                //DoiMatKhau mainForm = new DoiMatKhau(username, password);
-                //SaoLuuPhucHoi mainForm = new SaoLuuPhucHoi(username, password);
-                mainForm.Show();
+                // Xử lý logic hiển thị form dựa trên chức vụ
+                if (role == "Quản lý")
+                {
+                    MessageBox.Show("Đăng nhập thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    TrangChu mainForm = new TrangChu(username, password);
+                    mainForm.Show();
+                    this.Hide();
+                }
+                else if (role == "Nhân viên")
+                {
+                    MessageBox.Show("Đăng nhập thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    NhapKho mainForm = new NhapKho(username, password);
+                    mainForm.Show();
+                    this.Hide();
+                }
+                else
+                {
+                    MessageBox.Show("Đăng nhập thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    XuatKho mainForm = new XuatKho(username, password);
+                    mainForm.Show();
+                    this.Hide();
+                }
+                
                 this.Hide();
             }
             else

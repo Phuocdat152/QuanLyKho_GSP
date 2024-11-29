@@ -30,6 +30,19 @@ namespace GUI
             this.dgv_DanhSachThuoc.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_DanhSachThuoc_CellClick);
             this.cb_DanhMuc.SelectedIndexChanged += new System.EventHandler(this.cb_DanhMuc_SelectedIndexChanged);
             this.txt_TimKiem.TextChanged += new System.EventHandler(this.txt_TimKiem_TextChanged);
+
+            dgv_DanhSachThuoc.CellClick += new DataGridViewCellEventHandler(dgv_DanhSachThuoc_CellClick);
+            dgv_DanhSachThuoc.CellContentClick += new DataGridViewCellEventHandler(dgv_DanhSachThuoc_CellContentClick);
+
+            // Sự kiện TextChanged cho ô tìm kiếm
+            txt_TimKiem.TextChanged += new EventHandler(txt_TimKiem_TextChanged);
+
+            // Sự kiện SelectedIndexChanged cho ComboBox
+            cb_DanhMuc.SelectedIndexChanged += new EventHandler(cb_DanhMuc_SelectedIndexChanged);
+
+            // Sự kiện Click cho các nút
+            btn_ThemThuoc.Click += new EventHandler(btn_ThemThuoc_Click);
+            btn_ChinhSua.Click += new EventHandler(btn_ChinhSua_Click);
         }
 
         private void Quanlythuoc_Load(object sender, EventArgs e)
