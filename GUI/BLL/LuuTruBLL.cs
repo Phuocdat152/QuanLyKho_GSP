@@ -85,7 +85,11 @@ namespace BLL
            
         }
 
-       
 
+        public void UpdateAndSetLuuTruAsEmpty()
+        {
+           
+                luuTruDAL.UpdateAndSetLuuTruAsEmpty();      
+        }
     }
 }

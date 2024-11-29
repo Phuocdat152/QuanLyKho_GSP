@@ -28,11 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.groupControl3 = new DevExpress.XtraEditors.GroupControl();
-            this.btn_XoaDM = new System.Windows.Forms.Button();
-            this.btn_SuaDM = new System.Windows.Forms.Button();
-            this.btn_ThemDM = new System.Windows.Forms.Button();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(QLDanhMucThuoc));
             this.groupControl2 = new DevExpress.XtraEditors.GroupControl();
             this.dgv_DanhMucThuoc = new System.Windows.Forms.DataGridView();
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
@@ -42,104 +38,58 @@
             this.lb_MaDM = new DevExpress.XtraEditors.LabelControl();
             this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
-            this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.groupControl3)).BeginInit();
-            this.groupControl3.SuspendLayout();
+            this.splitContainerControl1 = new DevExpress.XtraEditors.SplitContainerControl();
+            this.splitContainerControl2 = new DevExpress.XtraEditors.SplitContainerControl();
+            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.btn_ThemDM = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.btn_XoaDM = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            this.btn_SuaDM = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).BeginInit();
             this.groupControl2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_DanhMucThuoc)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
             this.groupControl1.SuspendLayout();
-            this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1.Panel1)).BeginInit();
+            this.splitContainerControl1.Panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1.Panel2)).BeginInit();
+            this.splitContainerControl1.Panel2.SuspendLayout();
+            this.splitContainerControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl2.Panel1)).BeginInit();
+            this.splitContainerControl2.Panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl2.Panel2)).BeginInit();
+            this.splitContainerControl2.Panel2.SuspendLayout();
+            this.splitContainerControl2.SuspendLayout();
+            this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // panel1
-            // 
-            this.panel1.Controls.Add(this.groupControl3);
-            this.panel1.Controls.Add(this.groupControl2);
-            this.panel1.Controls.Add(this.groupControl1);
-            this.panel1.Controls.Add(this.panel2);
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Margin = new System.Windows.Forms.Padding(2);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(658, 585);
-            this.panel1.TabIndex = 0;
-            // 
-            // groupControl3
-            // 
-            this.groupControl3.Appearance.BackColor = System.Drawing.Color.PaleTurquoise;
-            this.groupControl3.Appearance.Options.UseBackColor = true;
-            this.groupControl3.Controls.Add(this.btn_XoaDM);
-            this.groupControl3.Controls.Add(this.btn_SuaDM);
-            this.groupControl3.Controls.Add(this.btn_ThemDM);
-            this.groupControl3.Location = new System.Drawing.Point(402, 50);
-            this.groupControl3.Margin = new System.Windows.Forms.Padding(2);
-            this.groupControl3.Name = "groupControl3";
-            this.groupControl3.Size = new System.Drawing.Size(254, 204);
-            this.groupControl3.TabIndex = 2;
-            this.groupControl3.Text = "Quản Lý Danh Mục";
-            // 
-            // btn_XoaDM
-            // 
-            this.btn_XoaDM.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_XoaDM.Location = new System.Drawing.Point(22, 149);
-            this.btn_XoaDM.Margin = new System.Windows.Forms.Padding(2);
-            this.btn_XoaDM.Name = "btn_XoaDM";
-            this.btn_XoaDM.Size = new System.Drawing.Size(217, 43);
-            this.btn_XoaDM.TabIndex = 2;
-            this.btn_XoaDM.Text = "Xoá";
-            this.btn_XoaDM.UseVisualStyleBackColor = true;
-            this.btn_XoaDM.Click += new System.EventHandler(this.btn_XoaDM_Click);
-            // 
-            // btn_SuaDM
-            // 
-            this.btn_SuaDM.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_SuaDM.Location = new System.Drawing.Point(22, 92);
-            this.btn_SuaDM.Margin = new System.Windows.Forms.Padding(2);
-            this.btn_SuaDM.Name = "btn_SuaDM";
-            this.btn_SuaDM.Size = new System.Drawing.Size(217, 43);
-            this.btn_SuaDM.TabIndex = 1;
-            this.btn_SuaDM.Text = "Sửa";
-            this.btn_SuaDM.UseVisualStyleBackColor = true;
-            this.btn_SuaDM.Click += new System.EventHandler(this.btn_SuaDM_Click);
-            // 
-            // btn_ThemDM
-            // 
-            this.btn_ThemDM.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_ThemDM.Location = new System.Drawing.Point(22, 37);
-            this.btn_ThemDM.Margin = new System.Windows.Forms.Padding(2);
-            this.btn_ThemDM.Name = "btn_ThemDM";
-            this.btn_ThemDM.Size = new System.Drawing.Size(217, 43);
-            this.btn_ThemDM.TabIndex = 0;
-            this.btn_ThemDM.Text = "Thêm";
-            this.btn_ThemDM.UseVisualStyleBackColor = true;
-            this.btn_ThemDM.Click += new System.EventHandler(this.button1_Click);
             // 
             // groupControl2
             // 
             this.groupControl2.Controls.Add(this.dgv_DanhMucThuoc);
-            this.groupControl2.Location = new System.Drawing.Point(2, 259);
+            this.groupControl2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupControl2.Location = new System.Drawing.Point(0, 0);
             this.groupControl2.Margin = new System.Windows.Forms.Padding(2);
             this.groupControl2.Name = "groupControl2";
-            this.groupControl2.Size = new System.Drawing.Size(656, 326);
+            this.groupControl2.Size = new System.Drawing.Size(747, 584);
             this.groupControl2.TabIndex = 2;
             this.groupControl2.Text = "Danh Sách Danh Mục Thuốc";
             // 
             // dgv_DanhMucThuoc
             // 
             this.dgv_DanhMucThuoc.AllowUserToResizeColumns = false;
-            this.dgv_DanhMucThuoc.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.dgv_DanhMucThuoc.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgv_DanhMucThuoc.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgv_DanhMucThuoc.Location = new System.Drawing.Point(4, 25);
+            this.dgv_DanhMucThuoc.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgv_DanhMucThuoc.Location = new System.Drawing.Point(2, 23);
             this.dgv_DanhMucThuoc.Margin = new System.Windows.Forms.Padding(2);
             this.dgv_DanhMucThuoc.Name = "dgv_DanhMucThuoc";
             this.dgv_DanhMucThuoc.RowHeadersWidth = 51;
             this.dgv_DanhMucThuoc.RowTemplate.Height = 24;
-            this.dgv_DanhMucThuoc.Size = new System.Drawing.Size(649, 298);
+            this.dgv_DanhMucThuoc.Size = new System.Drawing.Size(743, 559);
             this.dgv_DanhMucThuoc.TabIndex = 0;
             this.dgv_DanhMucThuoc.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_DanhMucThuoc_CellClick);
             this.dgv_DanhMucThuoc.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_DanhMucThuoc_CellContentClick);
@@ -154,10 +104,11 @@
             this.groupControl1.Controls.Add(this.lb_MaDM);
             this.groupControl1.Controls.Add(this.labelControl3);
             this.groupControl1.Controls.Add(this.labelControl2);
-            this.groupControl1.Location = new System.Drawing.Point(2, 50);
+            this.groupControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupControl1.Location = new System.Drawing.Point(0, 0);
             this.groupControl1.Margin = new System.Windows.Forms.Padding(2);
             this.groupControl1.Name = "groupControl1";
-            this.groupControl1.Size = new System.Drawing.Size(395, 204);
+            this.groupControl1.Size = new System.Drawing.Size(366, 545);
             this.groupControl1.TabIndex = 1;
             this.groupControl1.Text = "Thông Tin Danh Mục";
             this.groupControl1.Paint += new System.Windows.Forms.PaintEventHandler(this.groupControl1_Paint);
@@ -226,78 +177,156 @@
             this.labelControl2.TabIndex = 0;
             this.labelControl2.Text = "Mã Danh Mục:";
             // 
-            // panel2
+            // splitContainerControl1
             // 
-            this.panel2.Controls.Add(this.panel3);
-            this.panel2.Controls.Add(this.labelControl1);
-            this.panel2.Location = new System.Drawing.Point(0, 0);
-            this.panel2.Margin = new System.Windows.Forms.Padding(2);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(658, 50);
-            this.panel2.TabIndex = 0;
+            this.splitContainerControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainerControl1.Location = new System.Drawing.Point(0, 0);
+            this.splitContainerControl1.Name = "splitContainerControl1";
             // 
-            // panel3
+            // splitContainerControl1.Panel1
             // 
-            this.panel3.Location = new System.Drawing.Point(0, 48);
-            this.panel3.Margin = new System.Windows.Forms.Padding(2);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(658, 537);
-            this.panel3.TabIndex = 1;
+            this.splitContainerControl1.Panel1.Controls.Add(this.splitContainerControl2);
+            this.splitContainerControl1.Panel1.Text = "Panel1";
             // 
-            // labelControl1
+            // splitContainerControl1.Panel2
             // 
-            this.labelControl1.Appearance.Font = new System.Drawing.Font("Segoe UI Semibold", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelControl1.Appearance.Options.UseFont = true;
-            this.labelControl1.Location = new System.Drawing.Point(190, 10);
-            this.labelControl1.Margin = new System.Windows.Forms.Padding(2);
-            this.labelControl1.Name = "labelControl1";
-            this.labelControl1.Size = new System.Drawing.Size(281, 32);
-            this.labelControl1.TabIndex = 1;
-            this.labelControl1.Text = "Quản Lý Danh Mục Thuốc";
+            this.splitContainerControl1.Panel2.Controls.Add(this.groupControl2);
+            this.splitContainerControl1.Panel2.Text = "Panel2";
+            this.splitContainerControl1.Size = new System.Drawing.Size(1123, 584);
+            this.splitContainerControl1.SplitterPosition = 366;
+            this.splitContainerControl1.TabIndex = 3;
+            // 
+            // splitContainerControl2
+            // 
+            this.splitContainerControl2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainerControl2.Horizontal = false;
+            this.splitContainerControl2.Location = new System.Drawing.Point(0, 0);
+            this.splitContainerControl2.Name = "splitContainerControl2";
+            // 
+            // splitContainerControl2.Panel1
+            // 
+            this.splitContainerControl2.Panel1.Controls.Add(this.toolStrip1);
+            this.splitContainerControl2.Panel1.Text = "Panel1";
+            // 
+            // splitContainerControl2.Panel2
+            // 
+            this.splitContainerControl2.Panel2.Controls.Add(this.groupControl1);
+            this.splitContainerControl2.Panel2.Text = "Panel2";
+            this.splitContainerControl2.Size = new System.Drawing.Size(366, 584);
+            this.splitContainerControl2.SplitterPosition = 29;
+            this.splitContainerControl2.TabIndex = 0;
+            // 
+            // toolStrip1
+            // 
+            this.toolStrip1.BackColor = System.Drawing.Color.LightSkyBlue;
+            this.toolStrip1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.toolStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.btn_ThemDM,
+            this.toolStripSeparator1,
+            this.btn_XoaDM,
+            this.toolStripSeparator3,
+            this.btn_SuaDM,
+            this.toolStripSeparator2});
+            this.toolStrip1.Location = new System.Drawing.Point(0, 0);
+            this.toolStrip1.Name = "toolStrip1";
+            this.toolStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
+            this.toolStrip1.Size = new System.Drawing.Size(366, 29);
+            this.toolStrip1.TabIndex = 30;
+            this.toolStrip1.Text = "toolStrip1";
+            // 
+            // btn_ThemDM
+            // 
+            this.btn_ThemDM.Image = ((System.Drawing.Image)(resources.GetObject("btn_ThemDM.Image")));
+            this.btn_ThemDM.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btn_ThemDM.Name = "btn_ThemDM";
+            this.btn_ThemDM.Size = new System.Drawing.Size(61, 26);
+            this.btn_ThemDM.Text = "Thêm";
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 29);
+            // 
+            // btn_XoaDM
+            // 
+            this.btn_XoaDM.Image = ((System.Drawing.Image)(resources.GetObject("btn_XoaDM.Image")));
+            this.btn_XoaDM.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btn_XoaDM.Name = "btn_XoaDM";
+            this.btn_XoaDM.Size = new System.Drawing.Size(51, 26);
+            this.btn_XoaDM.Text = "Xóa";
+            // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 29);
+            // 
+            // btn_SuaDM
+            // 
+            this.btn_SuaDM.Image = ((System.Drawing.Image)(resources.GetObject("btn_SuaDM.Image")));
+            this.btn_SuaDM.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btn_SuaDM.Name = "btn_SuaDM";
+            this.btn_SuaDM.Size = new System.Drawing.Size(79, 26);
+            this.btn_SuaDM.Text = "Cập nhật";
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 29);
             // 
             // QLDanhMucThuoc
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(659, 584);
-            this.Controls.Add(this.panel1);
+            this.ClientSize = new System.Drawing.Size(1123, 584);
+            this.Controls.Add(this.splitContainerControl1);
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "QLDanhMucThuoc";
             this.Text = "Quản lý nhóm thuốc";
             this.Load += new System.EventHandler(this.QLDanhMucThuoc_Load);
-            this.panel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.groupControl3)).EndInit();
-            this.groupControl3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).EndInit();
             this.groupControl2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgv_DanhMucThuoc)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).EndInit();
             this.groupControl1.ResumeLayout(false);
             this.groupControl1.PerformLayout();
-            this.panel2.ResumeLayout(false);
-            this.panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1.Panel1)).EndInit();
+            this.splitContainerControl1.Panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1.Panel2)).EndInit();
+            this.splitContainerControl1.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).EndInit();
+            this.splitContainerControl1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl2.Panel1)).EndInit();
+            this.splitContainerControl2.Panel1.ResumeLayout(false);
+            this.splitContainerControl2.Panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl2.Panel2)).EndInit();
+            this.splitContainerControl2.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl2)).EndInit();
+            this.splitContainerControl2.ResumeLayout(false);
+            this.toolStrip1.ResumeLayout(false);
+            this.toolStrip1.PerformLayout();
             this.ResumeLayout(false);
 
         }
 
         #endregion
-
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.Panel panel2;
-        private DevExpress.XtraEditors.LabelControl labelControl1;
-        private DevExpress.XtraEditors.GroupControl groupControl3;
         private DevExpress.XtraEditors.GroupControl groupControl2;
         private DevExpress.XtraEditors.GroupControl groupControl1;
         private DevExpress.XtraEditors.LabelControl labelControl2;
-        private System.Windows.Forms.Button btn_ThemDM;
         private DevExpress.XtraEditors.LabelControl labelControl3;
-        private System.Windows.Forms.Button btn_XoaDM;
-        private System.Windows.Forms.Button btn_SuaDM;
         private System.Windows.Forms.DataGridView dgv_DanhMucThuoc;
         private DevExpress.XtraEditors.LabelControl lb_TenDM;
         private DevExpress.XtraEditors.LabelControl lb_MaDM;
         private DevExpress.XtraEditors.LabelControl labelControl4;
         private DevExpress.XtraEditors.LabelControl lb_LoaiThuoc;
+        private DevExpress.XtraEditors.SplitContainerControl splitContainerControl1;
+        private DevExpress.XtraEditors.SplitContainerControl splitContainerControl2;
+        private System.Windows.Forms.ToolStrip toolStrip1;
+        private System.Windows.Forms.ToolStripButton btn_ThemDM;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripButton btn_XoaDM;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
+        private System.Windows.Forms.ToolStripButton btn_SuaDM;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
     }
 }

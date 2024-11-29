@@ -23,6 +23,17 @@ namespace GUI
             this.username = username;
             this.password = password;
             nhaCungCapBLL = new NhaCungCapBLL(username, password);
+
+            this.Load += new EventHandler(QuanLyNCC_Load);
+
+            // Sự kiện Click cho DataGridView
+            dgv_DanhSach.CellClick += new DataGridViewCellEventHandler(dgv_DanhSach_CellClick);
+
+            // Sự kiện Click cho nút Thêm Nhà Cung Cấp
+            btn_ThemNCC.Click += new EventHandler(btn_ThemNCC_Click);
+
+            // Sự kiện Click cho nút Sửa Nhà Cung Cấp
+            btn_SuaNCC.Click += new EventHandler(btn_SuaNCC_Click);
         }
 
         private void QuanLyNCC_Load(object sender, EventArgs e)
@@ -42,12 +53,19 @@ namespace GUI
                 dgv_DanhSach.Columns["SDT"].HeaderText = "Số Điện Thoại";
                 dgv_DanhSach.Columns["DiaChi"].HeaderText = "Địa Chỉ";
                 dgv_DanhSach.Columns["Email"].HeaderText = "Email";
+
+                // Thiết lập AutoSizeColumnsMode để cột giãn đều
+                dgv_DanhSach.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+
+                // Nếu muốn cột "Mã Nhà Cung Cấp" nhỏ hơn, bạn có thể tùy chỉnh độ rộng
+                dgv_DanhSach.Columns["IDNhaCC"].Width = 100; // Ví dụ: đặt độ rộng cụ thể cho cột đầu
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Lỗi khi tải danh sách nhà cung cấp: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
         private void btn_ThemNCC_Click(object sender, EventArgs e)
         {
             ThemNCC themNCCForm = new ThemNCC(username, password); // Truyền tài khoản SQL Server

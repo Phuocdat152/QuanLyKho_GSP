@@ -20,16 +20,32 @@ namespace GUI
             _danhMucThuocBLL = new DanhMucThuocBLL(username, password); // Khởi tạo BLL với thông tin đăng nhập
             dgv_DanhMucThuoc.CellClick += new DataGridViewCellEventHandler(dgv_DanhMucThuoc_CellClick);
 
+            this.Load += new EventHandler(QLDanhMucThuoc_Load);
+
+            // Sự kiện CellClick cho DataGridView
+            dgv_DanhMucThuoc.CellContentClick += new DataGridViewCellEventHandler(dgv_DanhMucThuoc_CellContentClick);
+
+            // Sự kiện Click cho nút Thêm
+            btn_ThemDM.Click += new EventHandler(btn_ThemDM_Click);
+
+            // Sự kiện Click cho nút Sửa
+            btn_XoaDM.Click += new EventHandler(btn_XoaDM_Click);
+
+            // Sự kiện Click cho nút Xóa
+            btn_SuaDM.Click += new EventHandler(btn_SuaDM_Click);
+
         }
         private void LoadDanhMucThuoc()
         {
             DataTable danhMucData = _danhMucThuocBLL.GetAllDanhMucThuoc();
             dgv_DanhMucThuoc.DataSource = danhMucData;
+            dgv_DanhMucThuoc.Columns["IDDanhMuc"].HeaderText = "Mã Danh Mục";
+            dgv_DanhMucThuoc.Columns["TenDanhMuc"].HeaderText = "Tên Danh Mục";
             dgv_DanhMucThuoc.Columns["LoaiThuoc"].HeaderText = "Loại Thuốc"; // Hiển thị cột Loại Thuốc
         }
 
 
-        private void button1_Click(object sender, EventArgs e)
+        private void btn_ThemDM_Click(object sender, EventArgs e)
         {
             ThemDanhMuc themDanhMucForm = new ThemDanhMuc(_danhMucThuocBLL);
             themDanhMucForm.ShowDialog();

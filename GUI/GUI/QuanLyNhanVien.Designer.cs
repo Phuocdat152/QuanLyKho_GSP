@@ -31,45 +31,46 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(QuanLyNhanVien));
             this.groupControl3 = new DevExpress.XtraEditors.GroupControl();
             this.dgv_NhanVien = new System.Windows.Forms.DataGridView();
-            this.SoDienThoai = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Email = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DiaChi = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.NgaySinh = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TrinhDo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ChucVu = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Username = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TenNhanVien = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.MaNhanVien = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TenNhanVien = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Username = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ChucVu = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TrinhDo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NgaySinh = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DiaChi = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Email = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SoDienThoai = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.pb_AnhNV = new System.Windows.Forms.PictureBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
-            this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
-            this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
-            this.labelControl5 = new DevExpress.XtraEditors.LabelControl();
-            this.labelControl6 = new DevExpress.XtraEditors.LabelControl();
-            this.labelControl7 = new DevExpress.XtraEditors.LabelControl();
-            this.lb_MaNV = new DevExpress.XtraEditors.LabelControl();
-            this.lb_TenNV = new DevExpress.XtraEditors.LabelControl();
-            this.lb_TenND = new DevExpress.XtraEditors.LabelControl();
-            this.lb_ChucVu = new DevExpress.XtraEditors.LabelControl();
-            this.lb_NgaySinh = new DevExpress.XtraEditors.LabelControl();
             this.lb_TrinhDo = new DevExpress.XtraEditors.LabelControl();
+            this.lb_NgaySinh = new DevExpress.XtraEditors.LabelControl();
+            this.lb_ChucVu = new DevExpress.XtraEditors.LabelControl();
+            this.lb_TenND = new DevExpress.XtraEditors.LabelControl();
+            this.lb_TenNV = new DevExpress.XtraEditors.LabelControl();
+            this.lb_MaNV = new DevExpress.XtraEditors.LabelControl();
+            this.labelControl7 = new DevExpress.XtraEditors.LabelControl();
+            this.labelControl6 = new DevExpress.XtraEditors.LabelControl();
+            this.labelControl5 = new DevExpress.XtraEditors.LabelControl();
+            this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
+            this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
+            this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.labelControl9 = new DevExpress.XtraEditors.LabelControl();
-            this.labelControl10 = new DevExpress.XtraEditors.LabelControl();
-            this.labelControl8 = new DevExpress.XtraEditors.LabelControl();
-            this.lb_DiaChi = new DevExpress.XtraEditors.LabelControl();
-            this.lb_Email = new DevExpress.XtraEditors.LabelControl();
             this.lb_SDT = new DevExpress.XtraEditors.LabelControl();
+            this.lb_Email = new DevExpress.XtraEditors.LabelControl();
+            this.lb_DiaChi = new DevExpress.XtraEditors.LabelControl();
+            this.labelControl8 = new DevExpress.XtraEditors.LabelControl();
+            this.labelControl10 = new DevExpress.XtraEditors.LabelControl();
+            this.labelControl9 = new DevExpress.XtraEditors.LabelControl();
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
             this.splitContainerControl1 = new DevExpress.XtraEditors.SplitContainerControl();
+            this.splitContainerControl2 = new DevExpress.XtraEditors.SplitContainerControl();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.btn_ThemNV = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.btn_XoaNV = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.btn_SuaNV = new System.Windows.Forms.ToolStripButton();
-            this.splitContainerControl2 = new DevExpress.XtraEditors.SplitContainerControl();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl3)).BeginInit();
             this.groupControl3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_NhanVien)).BeginInit();
@@ -84,13 +85,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1.Panel2)).BeginInit();
             this.splitContainerControl1.Panel2.SuspendLayout();
             this.splitContainerControl1.SuspendLayout();
-            this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl2.Panel1)).BeginInit();
             this.splitContainerControl2.Panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl2.Panel2)).BeginInit();
             this.splitContainerControl2.Panel2.SuspendLayout();
             this.splitContainerControl2.SuspendLayout();
+            this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupControl3
@@ -130,54 +131,12 @@
             this.dgv_NhanVien.TabIndex = 1;
             this.dgv_NhanVien.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_NhanVien_CellContentClick);
             // 
-            // SoDienThoai
+            // MaNhanVien
             // 
-            this.SoDienThoai.HeaderText = "Số Điện Thoại";
-            this.SoDienThoai.MinimumWidth = 6;
-            this.SoDienThoai.Name = "SoDienThoai";
-            this.SoDienThoai.ReadOnly = true;
-            // 
-            // Email
-            // 
-            this.Email.HeaderText = "Email";
-            this.Email.MinimumWidth = 6;
-            this.Email.Name = "Email";
-            this.Email.ReadOnly = true;
-            // 
-            // DiaChi
-            // 
-            this.DiaChi.HeaderText = "Địa Chỉ";
-            this.DiaChi.MinimumWidth = 6;
-            this.DiaChi.Name = "DiaChi";
-            this.DiaChi.ReadOnly = true;
-            // 
-            // NgaySinh
-            // 
-            this.NgaySinh.HeaderText = "Ngày Sinh";
-            this.NgaySinh.MinimumWidth = 6;
-            this.NgaySinh.Name = "NgaySinh";
-            this.NgaySinh.ReadOnly = true;
-            // 
-            // TrinhDo
-            // 
-            this.TrinhDo.HeaderText = "Trình Độ";
-            this.TrinhDo.MinimumWidth = 6;
-            this.TrinhDo.Name = "TrinhDo";
-            this.TrinhDo.ReadOnly = true;
-            // 
-            // ChucVu
-            // 
-            this.ChucVu.HeaderText = "Chức Vụ";
-            this.ChucVu.MinimumWidth = 6;
-            this.ChucVu.Name = "ChucVu";
-            this.ChucVu.ReadOnly = true;
-            // 
-            // Username
-            // 
-            this.Username.HeaderText = "Tên Người Dùng";
-            this.Username.MinimumWidth = 6;
-            this.Username.Name = "Username";
-            this.Username.ReadOnly = true;
+            this.MaNhanVien.HeaderText = "Mã Nhân Viên";
+            this.MaNhanVien.MinimumWidth = 6;
+            this.MaNhanVien.Name = "MaNhanVien";
+            this.MaNhanVien.ReadOnly = true;
             // 
             // TenNhanVien
             // 
@@ -186,12 +145,54 @@
             this.TenNhanVien.Name = "TenNhanVien";
             this.TenNhanVien.ReadOnly = true;
             // 
-            // MaNhanVien
+            // Username
             // 
-            this.MaNhanVien.HeaderText = "Mã Nhân Viên";
-            this.MaNhanVien.MinimumWidth = 6;
-            this.MaNhanVien.Name = "MaNhanVien";
-            this.MaNhanVien.ReadOnly = true;
+            this.Username.HeaderText = "Tên Người Dùng";
+            this.Username.MinimumWidth = 6;
+            this.Username.Name = "Username";
+            this.Username.ReadOnly = true;
+            // 
+            // ChucVu
+            // 
+            this.ChucVu.HeaderText = "Chức Vụ";
+            this.ChucVu.MinimumWidth = 6;
+            this.ChucVu.Name = "ChucVu";
+            this.ChucVu.ReadOnly = true;
+            // 
+            // TrinhDo
+            // 
+            this.TrinhDo.HeaderText = "Trình Độ";
+            this.TrinhDo.MinimumWidth = 6;
+            this.TrinhDo.Name = "TrinhDo";
+            this.TrinhDo.ReadOnly = true;
+            // 
+            // NgaySinh
+            // 
+            this.NgaySinh.HeaderText = "Ngày Sinh";
+            this.NgaySinh.MinimumWidth = 6;
+            this.NgaySinh.Name = "NgaySinh";
+            this.NgaySinh.ReadOnly = true;
+            // 
+            // DiaChi
+            // 
+            this.DiaChi.HeaderText = "Địa Chỉ";
+            this.DiaChi.MinimumWidth = 6;
+            this.DiaChi.Name = "DiaChi";
+            this.DiaChi.ReadOnly = true;
+            // 
+            // Email
+            // 
+            this.Email.HeaderText = "Email";
+            this.Email.MinimumWidth = 6;
+            this.Email.Name = "Email";
+            this.Email.ReadOnly = true;
+            // 
+            // SoDienThoai
+            // 
+            this.SoDienThoai.HeaderText = "Số Điện Thoại";
+            this.SoDienThoai.MinimumWidth = 6;
+            this.SoDienThoai.Name = "SoDienThoai";
+            this.SoDienThoai.ReadOnly = true;
             // 
             // pb_AnhNV
             // 
@@ -229,38 +230,88 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Thông tin nhân viên";
             // 
-            // labelControl2
+            // lb_TrinhDo
             // 
-            this.labelControl2.Appearance.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelControl2.Appearance.Options.UseFont = true;
-            this.labelControl2.Location = new System.Drawing.Point(27, 43);
-            this.labelControl2.Margin = new System.Windows.Forms.Padding(2);
-            this.labelControl2.Name = "labelControl2";
-            this.labelControl2.Size = new System.Drawing.Size(91, 19);
-            this.labelControl2.TabIndex = 0;
-            this.labelControl2.Text = "Mã Nhân Viên:";
+            this.lb_TrinhDo.Appearance.Font = new System.Drawing.Font("Segoe UI Semibold", 13F, System.Drawing.FontStyle.Bold);
+            this.lb_TrinhDo.Appearance.Options.UseFont = true;
+            this.lb_TrinhDo.Location = new System.Drawing.Point(138, 220);
+            this.lb_TrinhDo.Margin = new System.Windows.Forms.Padding(2);
+            this.lb_TrinhDo.Name = "lb_TrinhDo";
+            this.lb_TrinhDo.Size = new System.Drawing.Size(0, 23);
+            this.lb_TrinhDo.TabIndex = 14;
             // 
-            // labelControl3
+            // lb_NgaySinh
             // 
-            this.labelControl3.Appearance.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelControl3.Appearance.Options.UseFont = true;
-            this.labelControl3.Location = new System.Drawing.Point(27, 92);
-            this.labelControl3.Margin = new System.Windows.Forms.Padding(2);
-            this.labelControl3.Name = "labelControl3";
-            this.labelControl3.Size = new System.Drawing.Size(93, 19);
-            this.labelControl3.TabIndex = 1;
-            this.labelControl3.Text = "Tên Nhân Viên:";
+            this.lb_NgaySinh.Appearance.Font = new System.Drawing.Font("Segoe UI Semibold", 13F, System.Drawing.FontStyle.Bold);
+            this.lb_NgaySinh.Appearance.Options.UseFont = true;
+            this.lb_NgaySinh.Location = new System.Drawing.Point(138, 176);
+            this.lb_NgaySinh.Margin = new System.Windows.Forms.Padding(2);
+            this.lb_NgaySinh.Name = "lb_NgaySinh";
+            this.lb_NgaySinh.Size = new System.Drawing.Size(0, 23);
+            this.lb_NgaySinh.TabIndex = 13;
             // 
-            // labelControl4
+            // lb_ChucVu
             // 
-            this.labelControl4.Appearance.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelControl4.Appearance.Options.UseFont = true;
-            this.labelControl4.Location = new System.Drawing.Point(27, 131);
-            this.labelControl4.Margin = new System.Windows.Forms.Padding(2);
-            this.labelControl4.Name = "labelControl4";
-            this.labelControl4.Size = new System.Drawing.Size(57, 20);
-            this.labelControl4.TabIndex = 2;
-            this.labelControl4.Text = "Chức Vụ:";
+            this.lb_ChucVu.Appearance.Font = new System.Drawing.Font("Segoe UI Semibold", 13F, System.Drawing.FontStyle.Bold);
+            this.lb_ChucVu.Appearance.Options.UseFont = true;
+            this.lb_ChucVu.Location = new System.Drawing.Point(138, 127);
+            this.lb_ChucVu.Margin = new System.Windows.Forms.Padding(2);
+            this.lb_ChucVu.Name = "lb_ChucVu";
+            this.lb_ChucVu.Size = new System.Drawing.Size(0, 23);
+            this.lb_ChucVu.TabIndex = 12;
+            // 
+            // lb_TenND
+            // 
+            this.lb_TenND.Appearance.Font = new System.Drawing.Font("Segoe UI Semibold", 13F, System.Drawing.FontStyle.Bold);
+            this.lb_TenND.Appearance.Options.UseFont = true;
+            this.lb_TenND.Location = new System.Drawing.Point(354, 279);
+            this.lb_TenND.Margin = new System.Windows.Forms.Padding(2);
+            this.lb_TenND.Name = "lb_TenND";
+            this.lb_TenND.Size = new System.Drawing.Size(0, 23);
+            this.lb_TenND.TabIndex = 11;
+            this.lb_TenND.Visible = false;
+            // 
+            // lb_TenNV
+            // 
+            this.lb_TenNV.Appearance.Font = new System.Drawing.Font("Segoe UI Semibold", 13F, System.Drawing.FontStyle.Bold);
+            this.lb_TenNV.Appearance.Options.UseFont = true;
+            this.lb_TenNV.Location = new System.Drawing.Point(139, 88);
+            this.lb_TenNV.Margin = new System.Windows.Forms.Padding(2);
+            this.lb_TenNV.Name = "lb_TenNV";
+            this.lb_TenNV.Size = new System.Drawing.Size(0, 23);
+            this.lb_TenNV.TabIndex = 10;
+            // 
+            // lb_MaNV
+            // 
+            this.lb_MaNV.Appearance.Font = new System.Drawing.Font("Segoe UI Semibold", 13F, System.Drawing.FontStyle.Bold);
+            this.lb_MaNV.Appearance.Options.UseFont = true;
+            this.lb_MaNV.Location = new System.Drawing.Point(139, 41);
+            this.lb_MaNV.Margin = new System.Windows.Forms.Padding(2);
+            this.lb_MaNV.Name = "lb_MaNV";
+            this.lb_MaNV.Size = new System.Drawing.Size(0, 23);
+            this.lb_MaNV.TabIndex = 9;
+            // 
+            // labelControl7
+            // 
+            this.labelControl7.Appearance.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelControl7.Appearance.Options.UseFont = true;
+            this.labelControl7.Location = new System.Drawing.Point(27, 223);
+            this.labelControl7.Margin = new System.Windows.Forms.Padding(2);
+            this.labelControl7.Name = "labelControl7";
+            this.labelControl7.Size = new System.Drawing.Size(56, 20);
+            this.labelControl7.TabIndex = 5;
+            this.labelControl7.Text = "Trình Độ";
+            // 
+            // labelControl6
+            // 
+            this.labelControl6.Appearance.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelControl6.Appearance.Options.UseFont = true;
+            this.labelControl6.Location = new System.Drawing.Point(27, 180);
+            this.labelControl6.Margin = new System.Windows.Forms.Padding(2);
+            this.labelControl6.Name = "labelControl6";
+            this.labelControl6.Size = new System.Drawing.Size(65, 19);
+            this.labelControl6.TabIndex = 4;
+            this.labelControl6.Text = "Ngày Sinh:";
             // 
             // labelControl5
             // 
@@ -274,88 +325,38 @@
             this.labelControl5.Text = "Tên Người Dùng:";
             this.labelControl5.Visible = false;
             // 
-            // labelControl6
+            // labelControl4
             // 
-            this.labelControl6.Appearance.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelControl6.Appearance.Options.UseFont = true;
-            this.labelControl6.Location = new System.Drawing.Point(27, 180);
-            this.labelControl6.Margin = new System.Windows.Forms.Padding(2);
-            this.labelControl6.Name = "labelControl6";
-            this.labelControl6.Size = new System.Drawing.Size(65, 19);
-            this.labelControl6.TabIndex = 4;
-            this.labelControl6.Text = "Ngày Sinh:";
+            this.labelControl4.Appearance.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelControl4.Appearance.Options.UseFont = true;
+            this.labelControl4.Location = new System.Drawing.Point(27, 131);
+            this.labelControl4.Margin = new System.Windows.Forms.Padding(2);
+            this.labelControl4.Name = "labelControl4";
+            this.labelControl4.Size = new System.Drawing.Size(57, 20);
+            this.labelControl4.TabIndex = 2;
+            this.labelControl4.Text = "Chức Vụ:";
             // 
-            // labelControl7
+            // labelControl3
             // 
-            this.labelControl7.Appearance.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelControl7.Appearance.Options.UseFont = true;
-            this.labelControl7.Location = new System.Drawing.Point(27, 223);
-            this.labelControl7.Margin = new System.Windows.Forms.Padding(2);
-            this.labelControl7.Name = "labelControl7";
-            this.labelControl7.Size = new System.Drawing.Size(56, 20);
-            this.labelControl7.TabIndex = 5;
-            this.labelControl7.Text = "Trình Độ";
+            this.labelControl3.Appearance.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelControl3.Appearance.Options.UseFont = true;
+            this.labelControl3.Location = new System.Drawing.Point(27, 92);
+            this.labelControl3.Margin = new System.Windows.Forms.Padding(2);
+            this.labelControl3.Name = "labelControl3";
+            this.labelControl3.Size = new System.Drawing.Size(93, 19);
+            this.labelControl3.TabIndex = 1;
+            this.labelControl3.Text = "Tên Nhân Viên:";
             // 
-            // lb_MaNV
+            // labelControl2
             // 
-            this.lb_MaNV.Appearance.Font = new System.Drawing.Font("Segoe UI Semibold", 13F, System.Drawing.FontStyle.Bold);
-            this.lb_MaNV.Appearance.Options.UseFont = true;
-            this.lb_MaNV.Location = new System.Drawing.Point(139, 41);
-            this.lb_MaNV.Margin = new System.Windows.Forms.Padding(2);
-            this.lb_MaNV.Name = "lb_MaNV";
-            this.lb_MaNV.Size = new System.Drawing.Size(0, 23);
-            this.lb_MaNV.TabIndex = 9;
-            // 
-            // lb_TenNV
-            // 
-            this.lb_TenNV.Appearance.Font = new System.Drawing.Font("Segoe UI Semibold", 13F, System.Drawing.FontStyle.Bold);
-            this.lb_TenNV.Appearance.Options.UseFont = true;
-            this.lb_TenNV.Location = new System.Drawing.Point(139, 88);
-            this.lb_TenNV.Margin = new System.Windows.Forms.Padding(2);
-            this.lb_TenNV.Name = "lb_TenNV";
-            this.lb_TenNV.Size = new System.Drawing.Size(0, 23);
-            this.lb_TenNV.TabIndex = 10;
-            // 
-            // lb_TenND
-            // 
-            this.lb_TenND.Appearance.Font = new System.Drawing.Font("Segoe UI Semibold", 13F, System.Drawing.FontStyle.Bold);
-            this.lb_TenND.Appearance.Options.UseFont = true;
-            this.lb_TenND.Location = new System.Drawing.Point(354, 279);
-            this.lb_TenND.Margin = new System.Windows.Forms.Padding(2);
-            this.lb_TenND.Name = "lb_TenND";
-            this.lb_TenND.Size = new System.Drawing.Size(0, 23);
-            this.lb_TenND.TabIndex = 11;
-            this.lb_TenND.Visible = false;
-            // 
-            // lb_ChucVu
-            // 
-            this.lb_ChucVu.Appearance.Font = new System.Drawing.Font("Segoe UI Semibold", 13F, System.Drawing.FontStyle.Bold);
-            this.lb_ChucVu.Appearance.Options.UseFont = true;
-            this.lb_ChucVu.Location = new System.Drawing.Point(138, 127);
-            this.lb_ChucVu.Margin = new System.Windows.Forms.Padding(2);
-            this.lb_ChucVu.Name = "lb_ChucVu";
-            this.lb_ChucVu.Size = new System.Drawing.Size(0, 23);
-            this.lb_ChucVu.TabIndex = 12;
-            // 
-            // lb_NgaySinh
-            // 
-            this.lb_NgaySinh.Appearance.Font = new System.Drawing.Font("Segoe UI Semibold", 13F, System.Drawing.FontStyle.Bold);
-            this.lb_NgaySinh.Appearance.Options.UseFont = true;
-            this.lb_NgaySinh.Location = new System.Drawing.Point(138, 176);
-            this.lb_NgaySinh.Margin = new System.Windows.Forms.Padding(2);
-            this.lb_NgaySinh.Name = "lb_NgaySinh";
-            this.lb_NgaySinh.Size = new System.Drawing.Size(0, 23);
-            this.lb_NgaySinh.TabIndex = 13;
-            // 
-            // lb_TrinhDo
-            // 
-            this.lb_TrinhDo.Appearance.Font = new System.Drawing.Font("Segoe UI Semibold", 13F, System.Drawing.FontStyle.Bold);
-            this.lb_TrinhDo.Appearance.Options.UseFont = true;
-            this.lb_TrinhDo.Location = new System.Drawing.Point(138, 220);
-            this.lb_TrinhDo.Margin = new System.Windows.Forms.Padding(2);
-            this.lb_TrinhDo.Name = "lb_TrinhDo";
-            this.lb_TrinhDo.Size = new System.Drawing.Size(0, 23);
-            this.lb_TrinhDo.TabIndex = 14;
+            this.labelControl2.Appearance.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelControl2.Appearance.Options.UseFont = true;
+            this.labelControl2.Location = new System.Drawing.Point(27, 43);
+            this.labelControl2.Margin = new System.Windows.Forms.Padding(2);
+            this.labelControl2.Name = "labelControl2";
+            this.labelControl2.Size = new System.Drawing.Size(91, 19);
+            this.labelControl2.TabIndex = 0;
+            this.labelControl2.Text = "Mã Nhân Viên:";
             // 
             // groupBox2
             // 
@@ -375,27 +376,35 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Thông Tin Liên Hệ";
             // 
-            // labelControl9
+            // lb_SDT
             // 
-            this.labelControl9.Appearance.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelControl9.Appearance.Options.UseFont = true;
-            this.labelControl9.Location = new System.Drawing.Point(28, 83);
-            this.labelControl9.Margin = new System.Windows.Forms.Padding(2);
-            this.labelControl9.Name = "labelControl9";
-            this.labelControl9.Size = new System.Drawing.Size(35, 19);
-            this.labelControl9.TabIndex = 7;
-            this.labelControl9.Text = "Email:";
+            this.lb_SDT.Appearance.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
+            this.lb_SDT.Appearance.Options.UseFont = true;
+            this.lb_SDT.Location = new System.Drawing.Point(143, 118);
+            this.lb_SDT.Margin = new System.Windows.Forms.Padding(2);
+            this.lb_SDT.Name = "lb_SDT";
+            this.lb_SDT.Size = new System.Drawing.Size(0, 21);
+            this.lb_SDT.TabIndex = 17;
             // 
-            // labelControl10
+            // lb_Email
             // 
-            this.labelControl10.Appearance.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelControl10.Appearance.Options.UseFont = true;
-            this.labelControl10.Location = new System.Drawing.Point(28, 120);
-            this.labelControl10.Margin = new System.Windows.Forms.Padding(2);
-            this.labelControl10.Name = "labelControl10";
-            this.labelControl10.Size = new System.Drawing.Size(96, 20);
-            this.labelControl10.TabIndex = 8;
-            this.labelControl10.Text = "Số Điện Thoại:";
+            this.lb_Email.Appearance.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
+            this.lb_Email.Appearance.Options.UseFont = true;
+            this.lb_Email.Location = new System.Drawing.Point(143, 81);
+            this.lb_Email.Margin = new System.Windows.Forms.Padding(2);
+            this.lb_Email.Name = "lb_Email";
+            this.lb_Email.Size = new System.Drawing.Size(0, 21);
+            this.lb_Email.TabIndex = 16;
+            // 
+            // lb_DiaChi
+            // 
+            this.lb_DiaChi.Appearance.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
+            this.lb_DiaChi.Appearance.Options.UseFont = true;
+            this.lb_DiaChi.Location = new System.Drawing.Point(143, 39);
+            this.lb_DiaChi.Margin = new System.Windows.Forms.Padding(2);
+            this.lb_DiaChi.Name = "lb_DiaChi";
+            this.lb_DiaChi.Size = new System.Drawing.Size(0, 21);
+            this.lb_DiaChi.TabIndex = 15;
             // 
             // labelControl8
             // 
@@ -408,35 +417,27 @@
             this.labelControl8.TabIndex = 6;
             this.labelControl8.Text = "Địa Chỉ:";
             // 
-            // lb_DiaChi
+            // labelControl10
             // 
-            this.lb_DiaChi.Appearance.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
-            this.lb_DiaChi.Appearance.Options.UseFont = true;
-            this.lb_DiaChi.Location = new System.Drawing.Point(143, 39);
-            this.lb_DiaChi.Margin = new System.Windows.Forms.Padding(2);
-            this.lb_DiaChi.Name = "lb_DiaChi";
-            this.lb_DiaChi.Size = new System.Drawing.Size(0, 21);
-            this.lb_DiaChi.TabIndex = 15;
+            this.labelControl10.Appearance.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelControl10.Appearance.Options.UseFont = true;
+            this.labelControl10.Location = new System.Drawing.Point(28, 120);
+            this.labelControl10.Margin = new System.Windows.Forms.Padding(2);
+            this.labelControl10.Name = "labelControl10";
+            this.labelControl10.Size = new System.Drawing.Size(96, 20);
+            this.labelControl10.TabIndex = 8;
+            this.labelControl10.Text = "Số Điện Thoại:";
             // 
-            // lb_Email
+            // labelControl9
             // 
-            this.lb_Email.Appearance.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
-            this.lb_Email.Appearance.Options.UseFont = true;
-            this.lb_Email.Location = new System.Drawing.Point(143, 81);
-            this.lb_Email.Margin = new System.Windows.Forms.Padding(2);
-            this.lb_Email.Name = "lb_Email";
-            this.lb_Email.Size = new System.Drawing.Size(0, 21);
-            this.lb_Email.TabIndex = 16;
-            // 
-            // lb_SDT
-            // 
-            this.lb_SDT.Appearance.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
-            this.lb_SDT.Appearance.Options.UseFont = true;
-            this.lb_SDT.Location = new System.Drawing.Point(143, 118);
-            this.lb_SDT.Margin = new System.Windows.Forms.Padding(2);
-            this.lb_SDT.Name = "lb_SDT";
-            this.lb_SDT.Size = new System.Drawing.Size(0, 21);
-            this.lb_SDT.TabIndex = 17;
+            this.labelControl9.Appearance.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelControl9.Appearance.Options.UseFont = true;
+            this.labelControl9.Location = new System.Drawing.Point(28, 83);
+            this.labelControl9.Margin = new System.Windows.Forms.Padding(2);
+            this.labelControl9.Name = "labelControl9";
+            this.labelControl9.Size = new System.Drawing.Size(35, 19);
+            this.labelControl9.TabIndex = 7;
+            this.labelControl9.Text = "Email:";
             // 
             // groupControl1
             // 
@@ -471,9 +472,29 @@
             this.splitContainerControl1.SplitterPosition = 418;
             this.splitContainerControl1.TabIndex = 4;
             // 
+            // splitContainerControl2
+            // 
+            this.splitContainerControl2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainerControl2.Horizontal = false;
+            this.splitContainerControl2.Location = new System.Drawing.Point(0, 0);
+            this.splitContainerControl2.Name = "splitContainerControl2";
+            // 
+            // splitContainerControl2.Panel1
+            // 
+            this.splitContainerControl2.Panel1.Controls.Add(this.toolStrip1);
+            this.splitContainerControl2.Panel1.Text = "Panel1";
+            // 
+            // splitContainerControl2.Panel2
+            // 
+            this.splitContainerControl2.Panel2.Controls.Add(this.groupControl1);
+            this.splitContainerControl2.Panel2.Text = "Panel2";
+            this.splitContainerControl2.Size = new System.Drawing.Size(1112, 418);
+            this.splitContainerControl2.SplitterPosition = 32;
+            this.splitContainerControl2.TabIndex = 0;
+            // 
             // toolStrip1
             // 
-            this.toolStrip1.BackColor = System.Drawing.SystemColors.Window;
+            this.toolStrip1.BackColor = System.Drawing.Color.LightSkyBlue;
             this.toolStrip1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.toolStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -481,7 +502,8 @@
             this.toolStripSeparator1,
             this.btn_XoaNV,
             this.toolStripSeparator3,
-            this.btn_SuaNV});
+            this.btn_SuaNV,
+            this.toolStripSeparator2});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
@@ -523,25 +545,10 @@
             this.btn_SuaNV.Size = new System.Drawing.Size(79, 29);
             this.btn_SuaNV.Text = "Cập nhật";
             // 
-            // splitContainerControl2
+            // toolStripSeparator2
             // 
-            this.splitContainerControl2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainerControl2.Horizontal = false;
-            this.splitContainerControl2.Location = new System.Drawing.Point(0, 0);
-            this.splitContainerControl2.Name = "splitContainerControl2";
-            // 
-            // splitContainerControl2.Panel1
-            // 
-            this.splitContainerControl2.Panel1.Controls.Add(this.toolStrip1);
-            this.splitContainerControl2.Panel1.Text = "Panel1";
-            // 
-            // splitContainerControl2.Panel2
-            // 
-            this.splitContainerControl2.Panel2.Controls.Add(this.groupControl1);
-            this.splitContainerControl2.Panel2.Text = "Panel2";
-            this.splitContainerControl2.Size = new System.Drawing.Size(1112, 418);
-            this.splitContainerControl2.SplitterPosition = 32;
-            this.splitContainerControl2.TabIndex = 0;
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 32);
             // 
             // QuanLyNhanVien
             // 
@@ -571,8 +578,6 @@
             this.splitContainerControl1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).EndInit();
             this.splitContainerControl1.ResumeLayout(false);
-            this.toolStrip1.ResumeLayout(false);
-            this.toolStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl2.Panel1)).EndInit();
             this.splitContainerControl2.Panel1.ResumeLayout(false);
             this.splitContainerControl2.Panel1.PerformLayout();
@@ -580,6 +585,8 @@
             this.splitContainerControl2.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl2)).EndInit();
             this.splitContainerControl2.ResumeLayout(false);
+            this.toolStrip1.ResumeLayout(false);
+            this.toolStrip1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -626,5 +633,6 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
         private System.Windows.Forms.ToolStripButton btn_SuaNV;
         private DevExpress.XtraEditors.SplitContainerControl splitContainerControl2;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
     }
 }
