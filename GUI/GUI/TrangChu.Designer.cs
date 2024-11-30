@@ -91,6 +91,7 @@
             // ribbon
             // 
             this.ribbon.CaptionBarItemLinks.Add(this.bar_TenDangNhap);
+            this.ribbon.EmptyAreaImageOptions.ImagePadding = new System.Windows.Forms.Padding(35, 37, 35, 37);
             this.ribbon.ExpandCollapseItem.Id = 0;
             this.ribbon.Items.AddRange(new DevExpress.XtraBars.BarItem[] {
             this.bar_TenDangNhap,
@@ -113,14 +114,16 @@
             this.btn_QuanTriNguoiDung,
             this.skinRibbonGalleryBarItem1});
             this.ribbon.Location = new System.Drawing.Point(0, 0);
-            this.ribbon.MaxItemId = 35;
+            this.ribbon.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.ribbon.MaxItemId = 36;
             this.ribbon.Name = "ribbon";
+            this.ribbon.OptionsMenuMinWidth = 385;
             this.ribbon.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.ribbonPage1,
             this.ribbonPage2,
             this.ribbonPage3});
             this.ribbon.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonControlStyle.MacOffice;
-            this.ribbon.Size = new System.Drawing.Size(1341, 141);
+            this.ribbon.Size = new System.Drawing.Size(1564, 172);
             this.ribbon.StatusBar = this.ribbonStatusBar;
             // 
             // bar_TenDangNhap
@@ -202,6 +205,7 @@
             this.btn_ThongKe.Id = 9;
             this.btn_ThongKe.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btn_ThongKe.ImageOptions.LargeImage")));
             this.btn_ThongKe.Name = "btn_ThongKe";
+            this.btn_ThongKe.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btn_ThongKe_ItemClick);
             // 
             // btn_NhanVien
             // 
@@ -333,10 +337,11 @@
             // 
             this.ribbonStatusBar.ItemLinks.Add(this.barButtonItem1);
             this.ribbonStatusBar.ItemLinks.Add(this.barStaticItem1);
-            this.ribbonStatusBar.Location = new System.Drawing.Point(0, 818);
+            this.ribbonStatusBar.Location = new System.Drawing.Point(0, 1006);
+            this.ribbonStatusBar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.ribbonStatusBar.Name = "ribbonStatusBar";
             this.ribbonStatusBar.Ribbon = this.ribbon;
-            this.ribbonStatusBar.Size = new System.Drawing.Size(1341, 24);
+            this.ribbonStatusBar.Size = new System.Drawing.Size(1564, 30);
             // 
             // documentManager1
             // 
@@ -357,13 +362,14 @@
             this.AllowFormGlass = DevExpress.Utils.DefaultBoolean.True;
             this.Appearance.BackColor = System.Drawing.Color.White;
             this.Appearance.Options.UseBackColor = true;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1341, 842);
+            this.ClientSize = new System.Drawing.Size(1564, 1036);
             this.Controls.Add(this.ribbonStatusBar);
             this.Controls.Add(this.ribbon);
             this.FormBorderEffect = DevExpress.XtraEditors.FormBorderEffect.None;
             this.IsMdiContainer = true;
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "TrangChu";
             this.Ribbon = this.ribbon;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

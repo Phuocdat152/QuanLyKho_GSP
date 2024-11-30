@@ -69,6 +69,7 @@ namespace GUI
                 {                 
                     MessageBox.Show("Đăng nhập thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     TrangChu mainForm = new TrangChu(username, password);
+                    //ThongkeBaocao mainForm = new ThongkeBaocao(username, password);
                     mainForm.Show();
                     this.Hide();
                 }
