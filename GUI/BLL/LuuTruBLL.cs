@@ -12,9 +12,12 @@ namespace BLL
     public class LuuTruBLL
     {
         private LuuTruDAL luuTruDAL;
-
+        private string _username;
+        private string _password;
         public LuuTruBLL(string username, string password)
         {
+            _username = username;
+            _password = password;
             luuTruDAL = new LuuTruDAL(username, password);
         }
 
@@ -91,5 +94,25 @@ namespace BLL
            
                 luuTruDAL.UpdateAndSetLuuTruAsEmpty();      
         }
+        public DataTable GetStoredMedicines()
+        {
+            return luuTruDAL.GetStoredMedicines();
+        }
+        public DataTable LayThuocTheoTen(string tenThuoc)
+        {
+            return luuTruDAL.LayThuocTheoTen(tenThuoc);
+        }
+
+        public DataTable SearchMedicineByName(string tenThuoc)
+        {
+            LuuTruDAL luuTruDAL = new LuuTruDAL(_username, _password);
+            return luuTruDAL.LayThuocTheoTen(tenThuoc);
+        }
+        public DataTable LayThuocTheoKhoangThoiGian(DateTime ngayBatDau, DateTime ngayKetThuc)
+        {
+            return luuTruDAL.LayThuocTheoKhoangThoiGian(ngayBatDau, ngayKetThuc);
+        }
+
+
     }
 }

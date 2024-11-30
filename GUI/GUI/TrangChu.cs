@@ -159,6 +159,12 @@ namespace GUI
             OpenForm<QuanTriNguoiDung>();
         }
 
+        private void btn_ThongKe_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            OpenForm<ThongkeBaocao>();
+
+        }
+
         private void btn_NhapKho_ItemClick(object sender, ItemClickEventArgs e)
         {
             OpenForm<NhapKho>();

@@ -226,6 +226,49 @@ namespace DAL
                 throw new Exception("Error while executing stored procedure sp_UpdateAndSetLuuTruAsEmpty: " + ex.Message);
             }
         }
+        public DataTable GetStoredMedicines()
+        {
+            try
+            {
+                return dataConnect.ExecuteStoredProcedureWithDataTable("sp_GetAllStoredMedicines");
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error fetching stored medicines: " + ex.Message);
+            }
+        }
+        public DataTable LayThuocTheoTen(string tenThuoc)
+        {
+            try
+            {
+                SqlParameter[] parameters =
+                {
+            new SqlParameter("@TenThuoc", tenThuoc)
+        };
+
+                return dataConnect.ExecuteStoredProcedureWithDataTable("sp_TraCuuThuocTheoTen", parameters);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Lỗi khi tra cứu thuốc theo tên: " + ex.Message);
+            }
+        }
+        public DataTable LayThuocTheoKhoangThoiGian(DateTime ngayBatDau, DateTime ngayKetThuc)
+        {
+            try
+            {
+                SqlParameter[] parameters = {
+            new SqlParameter("@NgayBatDau", SqlDbType.Date) { Value = ngayBatDau },
+            new SqlParameter("@NgayKetThuc", SqlDbType.Date) { Value = ngayKetThuc }
+        };
+                return dataConnect.ExecuteStoredProcedureWithDataTable("sp_LayThuocTheoKhoangThoiGian", parameters);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Lỗi khi lấy thuốc theo khoảng thời gian: " + ex.Message);
+            }
+        }
+
 
     }
 }
