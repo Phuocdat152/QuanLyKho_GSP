@@ -14,7 +14,7 @@ namespace DAL
 
         public void BackupDatabase(string backupFilePath)
         {
-            string query = $"BACKUP DATABASE QuanLyGSPPP TO DISK = @BackupFile";
+            string query = $"BACKUP DATABASE QuanLyGSP TO DISK = @BackupFile";
             SqlParameter[] parameters = new SqlParameter[]
             {
                 new SqlParameter("@BackupFile", backupFilePath)
@@ -31,9 +31,9 @@ namespace DAL
 
                 // Thực hiện lệnh phục hồi
                 string query = @"
-            ALTER DATABASE QuanLyGSPPP SET SINGLE_USER WITH ROLLBACK IMMEDIATE;
-            RESTORE DATABASE QuanLyGSPPP FROM DISK = @RestoreFile WITH REPLACE;
-            ALTER DATABASE QuanLyGSPPP SET MULTI_USER;";
+            ALTER DATABASE QuanLyGSP SET SINGLE_USER WITH ROLLBACK IMMEDIATE;
+            RESTORE DATABASE QuanLyGSP FROM DISK = @RestoreFile WITH REPLACE;
+            ALTER DATABASE QuanLyGSP SET MULTI_USER;";
 
                 SqlParameter[] parameters = new SqlParameter[]
                 {
@@ -43,7 +43,7 @@ namespace DAL
                 dataConnect.ExecuteNonQuery(query, parameters);
 
                 // Khôi phục lại kết nối về QuanLyGSPPP sau khi phục hồi xong
-                dataConnect.ExecuteNonQuery("USE QuanLyGSPPP;");
+                dataConnect.ExecuteNonQuery("USE QuanLyGSP;");
             }
             catch (Exception ex)
             {

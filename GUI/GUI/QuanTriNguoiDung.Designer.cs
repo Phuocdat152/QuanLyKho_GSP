@@ -212,6 +212,7 @@
             this.dgv_DanhSach.RowTemplate.Height = 24;
             this.dgv_DanhSach.Size = new System.Drawing.Size(1060, 281);
             this.dgv_DanhSach.TabIndex = 3;
+            this.dgv_DanhSach.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_DanhSach_CellContentClick);
             this.dgv_DanhSach.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_DanhSach_CellContentClick);
             // 
             // splitContainerControl1
