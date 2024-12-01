@@ -111,8 +111,16 @@ namespace GUI
                 cb_addchucvu.DisplayMember = "TenChucVu";
                 cb_addchucvu.ValueMember = "IDChucVu";
 
-                // Tạo mã nhân viên mới và hiển thị trong txt_addTenTK
-                txt_addTenTK.Text = userBLL.GenerateNewMaNhanVien();
+                // Tạo mã nhân viên mới
+                string newMaNhanVien = userBLL.GenerateNewMaNhanVien();
+                if (!string.IsNullOrEmpty(newMaNhanVien))
+                {
+                    txt_addTenTK.Text = newMaNhanVien;
+                }
+                else
+                {
+                    throw new Exception("Không thể tạo mã nhân viên mới.");
+                }
             }
             catch (Exception ex)
             {

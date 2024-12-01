@@ -176,7 +176,7 @@ namespace GUI
 
                     if (success)
                     {
-                        MessageBox.Show("Đặt lại mật khẩu thành công. Mật khẩu mới là: 123", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show("Đặt lại mật khẩu thành công.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                     else
                     {

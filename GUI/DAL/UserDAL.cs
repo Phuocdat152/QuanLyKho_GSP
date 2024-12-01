@@ -173,16 +173,20 @@ namespace DAL
                 lastId = result.Rows[0]["IDNhanVien"].ToString();
             }
 
-            if (!string.IsNullOrEmpty(lastId))
+            if (!string.IsNullOrEmpty(lastId) && lastId.StartsWith("NV"))
             {
-                // Giả sử mã nhân viên có định dạng NVxxxx, tách phần số và tăng lên 1
-                int number = int.Parse(lastId.Substring(2)) + 1;
-                return "NV" + number.ToString("D4"); // Định dạng số thành 4 chữ số với tiền tố "NV"
+                // Giả sử mã nhân viên có định dạng NVxxxx, tách phần số
+                if (int.TryParse(lastId.Substring(2), out int number))
+                {
+                    number++; // Tăng số lên 1
+                    return "NV" + number.ToString("D4"); // Định dạng 4 chữ số
+                }
             }
 
-            // Nếu không có mã nào trong CSDL, bắt đầu từ NV0001
+            // Nếu không có dữ liệu hoặc định dạng không hợp lệ, bắt đầu từ NV0001
             return "NV0001";
         }
+
 
 
         // Thêm user bằng stored procedure

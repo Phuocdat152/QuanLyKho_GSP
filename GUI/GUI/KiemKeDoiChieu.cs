@@ -481,11 +481,14 @@ namespace GUI
                 // Đặt ngữ cảnh giấy phép cho EPPlus
                 OfficeOpenXml.ExcelPackage.LicenseContext = OfficeOpenXml.LicenseContext.NonCommercial;
 
+                // Lấy ngày giờ hiện tại
+                string currentDateTime = DateTime.Now.ToString("dd-MM-yyyy HH-mm"); // Định dạng ngày và giờ
+
                 // Hiển thị hộp thoại lưu file
                 SaveFileDialog saveFileDialog = new SaveFileDialog
                 {
                     Filter = "Excel Files (*.xlsx)|*.xlsx",
-                    FileName = $"Báo Cáo Kiểm Kê Ngày {DateTime.Now:yyyy-MM-dd}.xlsx",
+                    FileName = $"Báo Cáo Kiểm Kê Ngày {currentDateTime}.xlsx",
                     Title = "Lưu Báo Cáo Kiểm Kê"
                 };
 
@@ -499,10 +502,26 @@ namespace GUI
                         // Tạo một sheet mới
                         ExcelWorksheet worksheet = package.Workbook.Worksheets.Add("Báo Cáo Kiểm Kê");
 
-                        // Thêm tiêu đề cột
+                        // Danh sách ánh xạ FieldName -> Tiêu đề tiếng Việt
+                        Dictionary<string, string> columnHeaders = new Dictionary<string, string>
+                {
+                    { "IDKiemTra", "Mã Kiểm Tra" },
+                    { "TenThuoc", "Tên Thuốc" },
+                    { "ThanhPhan", "Thành Phần" },
+                    { "SLTon", "Số Lượng Tồn" },
+                    { "SLThucTe", "Số Lượng Thực Tế" },
+                    { "TinhTrang", "Tình Trạng" },
+                    { "TenLoaiKT", "Loại Kiểm Tra" },
+                    { "NhanVienKT", "Nhân Viên Kiểm Tra" }
+                };
+
+                        // Thêm tiêu đề cột (tiếng Việt)
                         for (int col = 0; col < gv_DanhSachKK.Columns.Count; col++)
                         {
-                            worksheet.Cells[1, col + 1].Value = gv_DanhSachKK.Columns[col].FieldName;
+                            string fieldName = gv_DanhSachKK.Columns[col].FieldName;
+                            worksheet.Cells[1, col + 1].Value = columnHeaders.ContainsKey(fieldName)
+                                ? columnHeaders[fieldName] // Sử dụng tiêu đề tiếng Việt nếu có
+                                : fieldName;              // Nếu không có, giữ nguyên FieldName
                         }
 
                         // Thêm dữ liệu từ GridView vào file Excel
