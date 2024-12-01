@@ -117,5 +117,10 @@ namespace GUI
                 MessageBox.Show("Lỗi khi đổi mật khẩu: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        private void btn_Huy_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

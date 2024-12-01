@@ -165,6 +165,11 @@ namespace GUI
 
         }
 
+        private void btn_SaoLuuPH_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            OpenForm<SaoLuuPhucHoi>();
+        }
+
         private void btn_NhapKho_ItemClick(object sender, ItemClickEventArgs e)
         {
             OpenForm<NhapKho>();
